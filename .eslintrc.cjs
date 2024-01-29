@@ -4,13 +4,14 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:jest/recommended',
     'plugin:react-hooks/recommended',
     'airbnb',
     'airbnb/hooks',
     'airbnb-typescript',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs','!src/**', 'vite.config.ts'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -18,14 +19,23 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: './tsconfig.json', 
+    project: './tsconfig.json',
   },
-  plugins: ['react-refresh', '@typescript-eslint'],
+  plugins: ['react-refresh', '@typescript-eslint', 'jest'],
   rules: {
+    'no-underscore-dangle': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'always',
+        tsx: 'always',
+      },
+    ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
-    'react/jsx-uses-react': 'off'
+    'react/jsx-uses-react': 'off',
   },
 }
