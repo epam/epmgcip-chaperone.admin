@@ -9,13 +9,13 @@ module.exports = {
     'airbnb/hooks',
     'airbnb-typescript',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs','!src/**', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
-      tsx: true,
+      jsx: true,
     },
     project: './tsconfig.json', 
   },
@@ -25,5 +25,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/jsx-uses-react': 'off'
   },
 }
