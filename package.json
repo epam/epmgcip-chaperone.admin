@@ -10,7 +10,6 @@
     "preview": "vite preview",
     "format": "prettier --write ./src"
   },
-
   "husky": {
     "hooks": {
       "pre-push": "lint-staged"
@@ -23,10 +22,12 @@
       "git add"
     ]
   },
-
   "dependencies": {
+    "i18next": "^23.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.1",
+    "react-router-dom": "^6.21.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -46,6 +47,7 @@
     "husky": "^9.0.6",
     "lint-staged": "^15.2.0",
     "prettier": "3.2.4",
+    "react-query": "^3.39.3",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }
