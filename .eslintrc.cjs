@@ -8,6 +8,7 @@ module.exports = {
     'airbnb',
     'airbnb/hooks',
     'airbnb-typescript',
+    'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs','!src/**', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
