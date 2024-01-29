@@ -16,9 +16,6 @@ function App() {
       <div className='card'>
         <button
           type='button'
-
-
-          
           onClick={() => setCount((pervCount) => pervCount + 1)}
         >
           count is:
