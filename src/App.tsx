@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-             <div>
+      <div>
         <a href='https://react.dev'>
           <img src={reactLogo} className='logo react' alt='React logo' />
         </a>
@@ -28,7 +28,7 @@ function App() {
         </p>
       </div>
       <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
+                        Click on the Vite and React logos to learn more
       </p>
     </>
   )
