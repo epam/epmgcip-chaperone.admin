@@ -11,7 +11,7 @@ module.exports = {
     'airbnb-typescript',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**', 'vite.config.ts'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -38,5 +38,9 @@ module.exports = {
     ],
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['vite.config.ts'] },
+    ],
   },
 }
