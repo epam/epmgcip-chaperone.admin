@@ -40,7 +40,16 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['vite.config.ts'] },
+      {
+        devDependencies: [
+          'vite.config.ts',
+          'test.{ts,tsx}',
+          'test-*.{ts,tsx}',
+          '**/*{.,_}{test,spec}.{ts,tsx}',
+          '**/jest.config.ts',
+          '**/jest.setup.ts',
+        ],
+      },
     ],
   },
 }
