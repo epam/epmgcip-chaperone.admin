@@ -1,0 +1,33 @@
+@import '../../../variables.scss';
+
+.exhibit {
+  padding: 40px $indentMobilePageBorder;
+  font-size: $fontSizeDefault;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 40px $indentTabletPageBorder;
+  }
+}
+
+.title {
+  margin: 0 0 12px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: $fontSizeExtraLarge;
+}
+
+.author {
+  padding-bottom: 24px;
+  text-align: center;
+  font-size: $fontSizeDefault;
+}
+
+.description {
+  padding-bottom: 24px;
+}
+
+.descriptionName {
+  padding-bottom: 8px;
+  font-size: $fontSizeSmall;
+  font-weight: bold;
+}

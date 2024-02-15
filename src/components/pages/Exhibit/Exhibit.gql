@@ -1,0 +1,21 @@
+query GetExhibit($slug: String!) {
+  exhibitCollection(limit: 1, where: { slug: $slug }) {
+    items {
+      nameEn
+      authorEn
+      yearOfCreation
+      descriptionEn {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
