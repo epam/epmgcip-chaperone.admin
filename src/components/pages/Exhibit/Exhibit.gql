@@ -16,6 +16,14 @@ query GetExhibit($slug: String!) {
           }
         }
       }
+      imagesCollection(limit: 5) {
+        items {
+          url
+          sys {
+            id
+          }
+        }
+      }
     }
   }
 }
