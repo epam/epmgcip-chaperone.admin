@@ -1,15 +1,15 @@
 @import '../../../variables.scss';
 
 .header {
-    padding: 8px $indentMobilePageBorder;
-    border-bottom: 1px solid $colorBlack;
+  padding: 8px $indentMobilePageBorder;
+  border-bottom: 1px solid $colorBlack;
 
-    @media (min-width: $breakpointTablet) {
-        padding: 8px $indentTabletPageBorder;
-    }
+  @media (min-width: $breakpointTablet) {
+    padding: 8px $indentTabletPageBorder;
+  }
 }
 
 .logo {
-    width: 44px;
-    padding-top: 4px;
+  width: 44px;
+  padding-top: 4px;
 }

@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier --write ./src",
     "prepare": "husky && husky install",
     "test": "jest",
     "compile": "graphql-codegen --require dotenv/config",
