@@ -1,15 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { MockedProvider } from '@apollo/client/testing'
-import { GetExhibitDocument } from '../__generated__/schema.tsx'
-import App from './App.tsx'
+import { GetExhibitDocument } from '../../../../__generated__/schema.tsx'
+import Exhibit from './Exhibit.tsx'
 
 const mocks = [
   {
     request: {
       query: GetExhibitDocument,
       variables: {
-        slug: '',
+        slug: 'slug-string',
       },
     },
     result: {
@@ -42,7 +42,7 @@ describe('EventCalendar', () => {
   test('renders', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <App />
+        <Exhibit slug='slug-string' />
       </MockedProvider>,
     )
 

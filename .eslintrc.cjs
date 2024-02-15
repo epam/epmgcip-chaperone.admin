@@ -11,7 +11,7 @@ module.exports = {
     'airbnb-typescript',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**', '__generated__/schema.tsx'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -48,6 +48,8 @@ module.exports = {
           '**/*{.,_}{test,spec}.{ts,tsx}',
           '**/jest.config.ts',
           '**/jest.setup.ts',
+          'codegen.ts',
+          'lint-staged.config.ts'
         ],
       },
     ],
