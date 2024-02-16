@@ -30,6 +30,16 @@ const mocks = [
                   },
                 },
               },
+              imagesCollection: {
+                items: [
+                  {
+                    url: './picture.png',
+                    sys: {
+                      id: '1',
+                    },
+                  },
+                ],
+              },
             },
           ],
         },

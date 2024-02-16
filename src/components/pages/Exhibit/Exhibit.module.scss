@@ -1,33 +1,47 @@
 @import '../../../variables.scss';
 
 .exhibit {
-  padding: 40px $indentMobilePageBorder;
+  padding: 40px 0;
   font-size: $fontSizeDefault;
-
-  @media (min-width: $breakpointTablet) {
-    padding: 40px $indentTabletPageBorder;
-  }
 }
 
 .title {
   margin: 0 0 12px 0;
+  padding: 0 $indentMobilePageBorder;
   text-align: center;
   font-weight: bold;
   font-size: $fontSizeExtraLarge;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 0 $indentTabletPageBorder;
+  }
 }
 
 .author {
-  padding-bottom: 24px;
+  padding: 0 $indentMobilePageBorder 32px $indentMobilePageBorder;
   text-align: center;
   font-size: $fontSizeDefault;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 0 $indentTabletPageBorder 32px $indentTabletPageBorder;
+  }
 }
 
 .description {
-  padding-bottom: 24px;
+  padding: 0 $indentMobilePageBorder 24px $indentMobilePageBorder;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 0 $indentTabletPageBorder 24px $indentTabletPageBorder;
+  }
 }
 
 .descriptionName {
   padding-bottom: 8px;
   font-size: $fontSizeSmall;
   font-weight: bold;
+}
+
+.gallery {
+  padding-bottom: 40px;
+  overflow: hidden;
 }

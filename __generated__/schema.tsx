@@ -928,7 +928,7 @@ export type GetExhibitQueryVariables = Exact<{
 }>;
 
 
-export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, authorEn?: string | null, yearOfCreation?: string | null, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, authorEn?: string | null, yearOfCreation?: string | null, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null } | null> } | null };
 
 
 export const GetExhibitDocument = gql`
@@ -947,6 +947,14 @@ export const GetExhibitDocument = gql`
                 id
               }
             }
+          }
+        }
+      }
+      imagesCollection(limit: 5) {
+        items {
+          url
+          sys {
+            id
           }
         }
       }

@@ -3,6 +3,7 @@ import { useGetExhibitQuery } from '../../../../__generated__/schema.tsx'
 import Error from '../../atoms/Error/Error.tsx'
 import styles from './Exhibit.module.scss'
 import Loading from '../../atoms/Loading/Loading.tsx'
+import ImageGallery from '../../organisms/ImageGallery/ImageGallery.tsx'
 
 interface Props {
   slug: string
@@ -13,6 +14,12 @@ export default function Exhibit({ slug }: Props) {
     variables: { slug },
   })
   const exhibit = data?.exhibitCollection?.items[0]
+
+  const images =
+    exhibit?.imagesCollection?.items.map((i) => ({
+      url: i?.url || '',
+      id: i?.sys.id || '',
+    })) || []
 
   if (error || (!exhibit && !loading)) {
     return <Error message='Exhibit can not found' />
@@ -28,6 +35,12 @@ export default function Exhibit({ slug }: Props) {
 
       {exhibit?.authorEn && (
         <div className={styles.author}>{exhibit?.authorEn}</div>
+      )}
+
+      {images.length > 0 && (
+        <div className={styles.gallery}>
+          <ImageGallery images={images} />
+        </div>
       )}
 
       {exhibit?.yearOfCreation && (
