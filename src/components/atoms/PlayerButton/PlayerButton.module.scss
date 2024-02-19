@@ -1,0 +1,18 @@
+@import '../../../variables.scss';
+
+.wrapper {
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  color: $colorBlack;
+}
+
+.icon {
+  width: 12px;
+}
+
+.text {
+  margin-left: 8px;
+}

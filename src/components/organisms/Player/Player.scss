@@ -1,0 +1,62 @@
+@import '../../../variables.scss';
+
+$colorAudioMain: $colorOrange;
+$colorAudioSecondary: $colorPink;
+
+.rhap_progress-filled {
+  background-color: $colorAudioMain;
+}
+
+.rhap_progress-indicator {
+  box-shadow: #f5d4c8 0 0 5px;
+  background-color: $colorAudioMain;
+}
+
+.rhap_progress-bar {
+  background-color: $colorAudioSecondary;
+}
+
+.rhap_container {
+  padding: 0;
+  box-shadow: none;
+}
+
+.rhap_play-pause-button {
+  width: auto;
+  height: auto;
+  border: 1px solid $colorBlack;
+  font-family: $fontFamilyMain;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.rhap_main-controls-button {
+  min-width: 40px;
+  height: auto;
+  border-radius: 40px;
+}
+
+.rhap_main-controls-button:active {
+  background-color: $colorLightGray;
+}
+
+.rhap_main-controls {
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+.rhap_stacked-reverse .rhap_controls-section {
+  margin-bottom: 16px;
+}
+
+.rhap_rewind-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rhap_forward-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

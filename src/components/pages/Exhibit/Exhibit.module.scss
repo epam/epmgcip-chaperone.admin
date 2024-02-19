@@ -41,7 +41,19 @@
   font-weight: bold;
 }
 
+.descriptionContent p {
+  margin-top: 0;
+}
+
 .gallery {
   padding-bottom: 40px;
   overflow: hidden;
+}
+
+.audioPlayer {
+  padding: 0 $indentMobilePageBorder 40px $indentMobilePageBorder;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 0 $indentTabletPageBorder 40px $indentTabletPageBorder;
+  }
 }
