@@ -4,6 +4,7 @@ import Error from '../../atoms/Error/Error.tsx'
 import styles from './Exhibit.module.scss'
 import Loading from '../../atoms/Loading/Loading.tsx'
 import ImageGallery from '../../organisms/ImageGallery/ImageGallery.tsx'
+import Player from '../../organisms/Player/Player.tsx'
 
 interface Props {
   slug: string
@@ -43,6 +44,12 @@ export default function Exhibit({ slug }: Props) {
         </div>
       )}
 
+      {exhibit?.audioFileEn && (
+        <div className={styles.audioPlayer}>
+          <Player url={exhibit?.audioFileEn.url || ''} />
+        </div>
+      )}
+
       {exhibit?.yearOfCreation && (
         <div className={styles.description}>
           <div className={styles.descriptionName}>Year</div>
@@ -53,7 +60,9 @@ export default function Exhibit({ slug }: Props) {
       {exhibit?.descriptionEn?.json && (
         <div className={styles.description}>
           <div className={styles.descriptionName}>Description</div>
-          <div>{documentToReactComponents(exhibit?.descriptionEn?.json)}</div>
+          <div className={styles.descriptionContent}>
+            {documentToReactComponents(exhibit?.descriptionEn?.json)}
+          </div>
         </div>
       )}
     </article>
