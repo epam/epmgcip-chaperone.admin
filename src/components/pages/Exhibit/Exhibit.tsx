@@ -1,4 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { useTranslation } from 'react-i18next'
 import { useGetExhibitQuery } from '../../../../__generated__/schema.tsx'
 import Error from '../../atoms/Error/Error.tsx'
 import styles from './Exhibit.module.scss'
@@ -14,7 +15,31 @@ export default function Exhibit({ slug }: Props) {
   const { data, loading, error } = useGetExhibitQuery({
     variables: { slug },
   })
+  const { i18n } = useTranslation()
   const exhibit = data?.exhibitCollection?.items[0]
+
+  let exhibitName
+  let authorName
+  let description
+  let audioFile
+  let audioFileUrl
+
+  switch (i18n.language) {
+    case 'ru':
+      exhibitName = exhibit?.nameRu
+      authorName = exhibit?.authorRu
+      description = exhibit?.descriptionRu?.json
+      audioFile = exhibit?.audioFileRu
+      audioFileUrl = exhibit?.audioFileRu?.url || ''
+      break
+    default:
+      exhibitName = exhibit?.nameEn
+      authorName = exhibit?.authorEn
+      description = exhibit?.descriptionEn?.json
+      audioFile = exhibit?.audioFileEn
+      audioFileUrl = exhibit?.audioFileEn?.url || ''
+      break
+  }
 
   const images =
     exhibit?.imagesCollection?.items.map((i) => ({
@@ -22,8 +47,11 @@ export default function Exhibit({ slug }: Props) {
       id: i?.sys.id || '',
     })) || []
 
+  const exhibitTranslations =
+    i18n.getResourceBundle(i18n.language, 'exhibit') || {}
+
   if (error || (!exhibit && !loading)) {
-    return <Error message='Exhibit can not found' />
+    return <Error message={exhibitTranslations.notFound} />
   }
 
   if (loading) {
@@ -32,11 +60,9 @@ export default function Exhibit({ slug }: Props) {
 
   return (
     <article className={styles.exhibit}>
-      <h2 className={styles.title}>{exhibit?.nameEn}</h2>
+      <h2 className={styles.title}>{exhibitName}</h2>
 
-      {exhibit?.authorEn && (
-        <div className={styles.author}>{exhibit?.authorEn}</div>
-      )}
+      {exhibit?.authorEn && <div className={styles.author}>{authorName}</div>}
 
       {images.length > 0 && (
         <div className={styles.gallery}>
@@ -44,24 +70,28 @@ export default function Exhibit({ slug }: Props) {
         </div>
       )}
 
-      {exhibit?.audioFileEn && (
+      {audioFile && (
         <div className={styles.audioPlayer}>
-          <Player url={exhibit?.audioFileEn.url || ''} />
+          <Player url={audioFileUrl || ''} />
         </div>
       )}
 
       {exhibit?.yearOfCreation && (
         <div className={styles.description}>
-          <div className={styles.descriptionName}>Year</div>
+          <div className={styles.descriptionName}>
+            {exhibitTranslations.date}
+          </div>
           <div>{exhibit?.yearOfCreation}</div>
         </div>
       )}
 
-      {exhibit?.descriptionEn?.json && (
+      {description && (
         <div className={styles.description}>
-          <div className={styles.descriptionName}>Description</div>
+          <div className={styles.descriptionName}>
+            {exhibitTranslations.description}
+          </div>
           <div className={styles.descriptionContent}>
-            {documentToReactComponents(exhibit?.descriptionEn?.json)}
+            {documentToReactComponents(description)}
           </div>
         </div>
       )}

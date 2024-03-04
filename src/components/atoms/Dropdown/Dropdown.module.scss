@@ -1,0 +1,21 @@
+.select{
+    appearance: none; /* Remove default styles */
+    border: 1px solid #79747E; /* Square border */
+    width: 91px;
+    height: 40px;
+    padding: 6px 8px 6px 16px;
+    font-size: 16px; /* Adjust font size */
+    border-radius: 8px; /* Remove border radius for square corners */
+    background: #fff; /* Background color */
+    background-repeat: no-repeat;
+    background-position: 10px center; /* Adjust flag position */
+    padding-left: 45px; /* Adjust left padding to accommodate flag */
+    cursor: pointer; /* Show pointer cursor */
+  
+  }
+
+  .arrow{
+    position: absolute;
+    right: 42px;
+    top: 23px;
+  }

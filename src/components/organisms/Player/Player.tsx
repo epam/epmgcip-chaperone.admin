@@ -1,6 +1,7 @@
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player'
 import 'react-h5-audio-player/lib/styles.css'
 import './Player.scss'
+import { useTranslation } from 'react-i18next'
 import styles from './Player.module.scss'
 import PlayerButton from '../../atoms/PlayerButton/PlayerButton.tsx'
 import playIcon from '../../../assets/play.svg'
@@ -13,18 +14,22 @@ interface Props {
 }
 
 export default function Player({ url }: Props) {
+  const { i18n } = useTranslation()
+  const exhibitTranslations =
+    i18n.getResourceBundle(i18n.language, 'exhibit') || {}
+
   return (
     <AudioPlayer
       customIcons={{
         play: PlayerButton({
           iconUrl: playIcon,
           iconAlt: 'play',
-          text: 'Play audioguide',
+          text: exhibitTranslations.play,
         }),
         pause: PlayerButton({
           iconUrl: pauseIcon,
           iconAlt: 'pause',
-          text: 'Play audioguide',
+          text: exhibitTranslations.play,
         }),
         forward: (
           <img className={styles.icon} src={forwardIcon} alt='forward' />
