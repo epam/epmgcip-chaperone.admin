@@ -3,15 +3,6 @@ import styles from './Header.module.scss'
 import logo from '../../../assets/images/logo.png'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher.tsx'
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-    },
-  }),
-}))
-
 export default function Header() {
   const { t } = useTranslation()
   return (
