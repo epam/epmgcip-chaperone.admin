@@ -5,5 +5,11 @@ interface Props {
 }
 
 export default function Error({ message }: Props) {
-  return <div className={styles.error}>{message}</div>
+  return (
+    <div
+      className={styles.error}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: message }}
+    />
+  )
 }

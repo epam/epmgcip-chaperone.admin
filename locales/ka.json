@@ -1,0 +1,16 @@
+{
+    "exhibitNotFound": "Exhibit not found",
+    "exhibitNotFoundForLanguage": "Exhibit not found for the selected language, but you can view it in",
+    "exhibitNotFoundRussian": "Russian",
+    "exhibitNotFoundEnglish": "English",
+    "exhibitNotFoundUzbek": "Uzbek",
+    "exhibitNotFoundKarakalpak": "Karakalpak",
+    "exhibitNotFoundLanguage": "language",
+    "date": "Year",
+    "description": "Description",
+    "playAudioguide": "Play audioguide",
+    "pause": "Pause",
+    "forward": "Forward",
+    "rewind": "Rewind",
+    "logo": "Logo"
+}

@@ -16,10 +16,12 @@
     "@apollo/client": "^3.9.4",
     "@contentful/rich-text-html-renderer": "^16.3.4",
     "@contentful/rich-text-react-renderer": "^15.19.4",
-    "graphql": "^16.8.1",
+    "clsx": "^2.1.0",
     "fslightbox-react": "^1.7.6",
+    "graphql": "^16.8.1",
     "i": "^0.3.7",
     "i18next": "^23.8.1",
+    "i18next-browser-languagedetector": "^7.2.0",
     "npm": "^10.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -70,6 +72,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
-    "vite-plugin-checker": "^0.6.4"
+    "vite-plugin-checker": "^0.6.4",
+    "vite-plugin-svgr": "^4.2.0"
   }
 }

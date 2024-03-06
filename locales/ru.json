@@ -1,0 +1,16 @@
+{
+  "exhibitNotFound": "Экспонат не найден",
+  "exhibitNotFoundForLanguage": "Экспонат не найден для выбранного языка, но вы можете просмотреть его на",
+  "exhibitNotFoundRussian": "русском",
+  "exhibitNotFoundEnglish": "английском",
+  "exhibitNotFoundUzbek": "узбекском",
+  "exhibitNotFoundKarakalpak": "каракалпакском",
+  "exhibitNotFoundLanguage": "языке",
+  "date": "Дата",
+  "description": "Описание",
+  "playAudioguide": "Слушать аудиогид",
+  "pause": "Пауза",
+  "forward": "Вперед",
+  "rewind": "Назад",
+  "logo": "Лого"
+}

@@ -2,7 +2,13 @@ query GetExhibit($slug: String!) {
   exhibitCollection(limit: 1, where: { slug: $slug }) {
     items {
       nameEn
+      nameRu
+      nameUz
+      nameKa
       authorEn
+      authorRu
+      authorUz
+      authorKa
       yearOfCreation
       descriptionEn {
         json
@@ -16,6 +22,43 @@ query GetExhibit($slug: String!) {
           }
         }
       }
+      descriptionRu {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionUz {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionKa {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+
       imagesCollection(limit: 5) {
         items {
           url
@@ -25,6 +68,15 @@ query GetExhibit($slug: String!) {
         }
       }
       audioFileEn {
+        url
+      }
+      audioFileRu {
+        url
+      }
+      audioFileUz {
+        url
+      }
+      audioFileKa {
         url
       }
     }

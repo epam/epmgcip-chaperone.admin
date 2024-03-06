@@ -1,0 +1,78 @@
+@import '../../../variables.scss';
+
+.button {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid $colorDarkGray;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    font-size: $fontSizeLarge;
+    text-transform: uppercase;
+    
+    &:hover {
+        background-color: $colorLightGray;
+    }
+}
+
+.image {
+    height: 18px;
+    margin-right: 4px;
+}
+
+.optionImage {
+    height: 18px;
+    margin-right: 8px;
+}
+
+.arrow {
+    display: flex;
+    margin-left: 8px;
+}
+
+.arrowOpen {
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    margin: 4px 0;
+    background-color: $colorLightGray;
+    box-shadow: 0px 1px 4px 0px #ababab;
+    border-radius: 4px;
+}
+
+.option {
+    list-style: none;
+}
+
+.optionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    font-size: $fontSizeLarge;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $colorWhite;
+    }
+}

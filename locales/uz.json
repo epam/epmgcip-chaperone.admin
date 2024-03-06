@@ -1,0 +1,16 @@
+{
+  "exhibitNotFound": "Ekspozitsiya topilmadi",
+  "exhibitNotFoundForLanguage": "Tanlangan til uchun eksponat topilmadi, lekin siz uni ko'rishingiz mumkin",
+  "exhibitNotFoundRussian": "rus",
+  "exhibitNotFoundEnglish": "ingliz",
+  "exhibitNotFoundUzbek": "o'zbek",
+  "exhibitNotFoundKarakalpak": "qoraqalpoq",
+  "exhibitNotFoundLanguage": "tilida",
+  "date": "Yil",
+  "description": "Tavsif",
+  "playAudioguide": "Audiogidni ijro etish",
+  "pause": "Pauza",
+  "forward": "Oldinga",
+  "rewind": "Orqaga",
+  "logo": "Logo"
+}

@@ -5,6 +5,7 @@ import App from './App.tsx'
 import './variables.scss'
 import './index.scss'
 import CONTENTFUL_GRAPHQL_API from './constants/graphql.ts'
+import './i18n.ts'
 
 const client = new ApolloClient({
   uri: CONTENTFUL_GRAPHQL_API,

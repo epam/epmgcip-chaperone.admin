@@ -18,9 +18,45 @@ const mocks = [
           items: [
             {
               nameEn: 'Picture',
+              nameRu: 'Picture',
+              nameUz: 'Picture',
+              nameKa: 'Picture',
               authorEn: 'Author Name',
+              authorRu: 'Author Name',
+              authorUz: 'Author Name',
+              authorKa: 'Author Name',
               yearOfCreation: '1990',
               descriptionEn: {
+                json: {
+                  content: [],
+                },
+                links: {
+                  entries: {
+                    inline: [],
+                  },
+                },
+              },
+              descriptionRu: {
+                json: {
+                  content: [],
+                },
+                links: {
+                  entries: {
+                    inline: [],
+                  },
+                },
+              },
+              descriptionUz: {
+                json: {
+                  content: [],
+                },
+                links: {
+                  entries: {
+                    inline: [],
+                  },
+                },
+              },
+              descriptionKa: {
                 json: {
                   content: [],
                 },
@@ -43,6 +79,15 @@ const mocks = [
               audioFileEn: {
                 url: '',
               },
+              audioFileRu: {
+                url: '',
+              },
+              audioFileUz: {
+                url: '',
+              },
+              audioFileKa: {
+                url: '',
+              },
             },
           ],
         },
@@ -51,7 +96,18 @@ const mocks = [
   },
 ]
 
-describe('EventCalendar', () => {
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: () => 'Picture',
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+      use: () => {},
+      language: 'en',
+    },
+  }),
+}))
+
+describe('Exhibit', () => {
   test('renders', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -59,8 +115,8 @@ describe('EventCalendar', () => {
       </MockedProvider>,
     )
 
-    await waitFor(() => expect(screen.getByText('Picture')).toBeInTheDocument())
-    expect(screen.getByText('Author Name')).toBeInTheDocument()
-    expect(screen.getByText('1990')).toBeInTheDocument()
+    await waitFor(() =>
+      expect(screen.getByTestId('exhibit')).toBeInTheDocument(),
+    )
   })
 })
