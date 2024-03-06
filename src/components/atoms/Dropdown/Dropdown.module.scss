@@ -1,20 +1,78 @@
-.select {
-  appearance: none; /* Remove default styles */
-  border: 1px solid #79747e; /* Square border */
-  width: 91px;
-  height: 40px;
-  padding: 6px 8px 6px 16px;
-  font-size: 16px; /* Adjust font size */
-  border-radius: 8px; /* Remove border radius for square corners */
-  background: #fff; /* Background color */
-  background-repeat: no-repeat;
-  background-position: 10px center; /* Adjust flag position */
-  padding-left: 45px; /* Adjust left padding to accommodate flag */
-  cursor: pointer; /* Show pointer cursor */
+@import '../../../variables.scss';
+
+.button {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid $colorDarkGray;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    font-size: $fontSizeLarge;
+    text-transform: uppercase;
+    
+    &:hover {
+        background-color: $colorLightGray;
+    }
+}
+
+.image {
+    height: 18px;
+    margin-right: 4px;
+}
+
+.optionImage {
+    height: 18px;
+    margin-right: 8px;
 }
 
 .arrow {
-  position: absolute;
-  right: 42px;
-  top: 23px;
+    display: flex;
+    margin-left: 8px;
+}
+
+.arrowOpen {
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    margin: 4px 0;
+    background-color: $colorLightGray;
+    box-shadow: 0px 1px 4px 0px #ababab;
+    border-radius: 4px;
+}
+
+.option {
+    list-style: none;
+}
+
+.optionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    font-size: $fontSizeLarge;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $colorWhite;
+    }
 }

@@ -928,7 +928,7 @@ export type GetExhibitQueryVariables = Exact<{
 }>;
 
 
-export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, nameRu?: string | null, authorEn?: string | null, authorRu?: string | null, yearOfCreation?: string | null, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'ExhibitDescriptionRu', json: any, links: { __typename?: 'ExhibitDescriptionRuLinks', entries: { __typename?: 'ExhibitDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, audioFileEn?: { __typename?: 'Asset', url?: string | null }, audioFileRu?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, authorEn?: string | null, authorRu?: string | null, authorUz?: string | null, authorKa?: string | null, yearOfCreation?: string | null, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'ExhibitDescriptionRu', json: any, links: { __typename?: 'ExhibitDescriptionRuLinks', entries: { __typename?: 'ExhibitDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'ExhibitDescriptionUz', json: any, links: { __typename?: 'ExhibitDescriptionUzLinks', entries: { __typename?: 'ExhibitDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'ExhibitDescriptionKa', json: any, links: { __typename?: 'ExhibitDescriptionKaLinks', entries: { __typename?: 'ExhibitDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, audioFileEn?: { __typename?: 'Asset', url?: string | null } | null, audioFileRu?: { __typename?: 'Asset', url?: string | null } | null, audioFileUz?: { __typename?: 'Asset', url?: string | null } | null, audioFileKa?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
 
 
 export const GetExhibitDocument = gql`
@@ -937,8 +937,12 @@ export const GetExhibitDocument = gql`
     items {
       nameEn
       nameRu
+      nameUz
+      nameKa
       authorEn
       authorRu
+      authorUz
+      authorKa
       yearOfCreation
       descriptionEn {
         json
@@ -964,6 +968,30 @@ export const GetExhibitDocument = gql`
           }
         }
       }
+      descriptionUz {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionKa {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
       imagesCollection(limit: 5) {
         items {
           url
@@ -976,6 +1004,12 @@ export const GetExhibitDocument = gql`
         url
       }
       audioFileRu {
+        url
+      }
+      audioFileUz {
+        url
+      }
+      audioFileKa {
         url
       }
     }

@@ -3,8 +3,12 @@ query GetExhibit($slug: String!) {
     items {
       nameEn
       nameRu
+      nameUz
+      nameKa
       authorEn
       authorRu
+      authorUz
+      authorKa
       yearOfCreation
       descriptionEn {
         json
@@ -30,6 +34,30 @@ query GetExhibit($slug: String!) {
           }
         }
       }
+      descriptionUz {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionKa {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
 
       imagesCollection(limit: 5) {
         items {
@@ -43,6 +71,12 @@ query GetExhibit($slug: String!) {
         url
       }
       audioFileRu {
+        url
+      }
+      audioFileUz {
+        url
+      }
+      audioFileKa {
         url
       }
     }

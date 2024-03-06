@@ -1,6 +1,8 @@
 @import '../../../variables.scss';
 
 .header {
+  position: relative;
+  z-index: 10;
   padding: 8px $indentMobilePageBorder;
   border-bottom: 1px solid $colorBlack;
   display: flex;

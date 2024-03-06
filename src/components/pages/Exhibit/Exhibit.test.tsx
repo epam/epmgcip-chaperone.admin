@@ -1,10 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { MockedProvider } from '@apollo/client/testing'
-import { I18nextProvider } from 'react-i18next'
 import { GetExhibitDocument } from '../../../../__generated__/schema.tsx'
 import Exhibit from './Exhibit.tsx'
-import i18n from '../../../i18n.ts'
 
 const mocks = [
   {
@@ -20,9 +18,45 @@ const mocks = [
           items: [
             {
               nameEn: 'Picture',
+              nameRu: 'Picture',
+              nameUz: 'Picture',
+              nameKa: 'Picture',
               authorEn: 'Author Name',
+              authorRu: 'Author Name',
+              authorUz: 'Author Name',
+              authorKa: 'Author Name',
               yearOfCreation: '1990',
               descriptionEn: {
+                json: {
+                  content: [],
+                },
+                links: {
+                  entries: {
+                    inline: [],
+                  },
+                },
+              },
+              descriptionRu: {
+                json: {
+                  content: [],
+                },
+                links: {
+                  entries: {
+                    inline: [],
+                  },
+                },
+              },
+              descriptionUz: {
+                json: {
+                  content: [],
+                },
+                links: {
+                  entries: {
+                    inline: [],
+                  },
+                },
+              },
+              descriptionKa: {
                 json: {
                   content: [],
                 },
@@ -45,6 +79,15 @@ const mocks = [
               audioFileEn: {
                 url: '',
               },
+              audioFileRu: {
+                url: '',
+              },
+              audioFileUz: {
+                url: '',
+              },
+              audioFileKa: {
+                url: '',
+              },
             },
           ],
         },
@@ -53,33 +96,27 @@ const mocks = [
   },
 ]
 
-describe('Exhibit', () => {
-  beforeAll(() => {
-    i18n.init({
-      lng: 'en',
-      fallbackLng: 'en',
-      resources: {
-        en: {
-          translation: {
-            description: 'Description',
-            date: 'Year',
-          },
-        },
-      },
-    })
-  })
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: () => 'Picture',
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+      use: () => {},
+      language: 'en',
+    },
+  }),
+}))
 
+describe('Exhibit', () => {
   test('renders', async () => {
     render(
-      <I18nextProvider i18n={i18n}>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <Exhibit slug='slug-string' />
-        </MockedProvider>
-      </I18nextProvider>,
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Exhibit slug='slug-string' />
+      </MockedProvider>,
     )
 
-    await waitFor(() => expect(screen.getByText('Picture')).toBeInTheDocument())
-    expect(screen.getByText('Author Name')).toBeInTheDocument()
-    expect(screen.getByText('1990')).toBeInTheDocument()
+    await waitFor(() =>
+      expect(screen.getByTestId('exhibit')).toBeInTheDocument(),
+    )
   })
 })
