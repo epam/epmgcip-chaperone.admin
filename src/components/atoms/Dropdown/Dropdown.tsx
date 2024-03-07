@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { clsx } from 'clsx'
-import assertIsNode from '../../../utils/assertIsNode.ts'
+import assertIsNode from '../../../utils/assertIsNode'
 import styles from './Dropdown.module.scss'
 import arrow from '../../../assets/svg/arrow.svg'
 

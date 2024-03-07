@@ -12,7 +12,7 @@ jest.mock('react-i18next', () => ({
 }))
 
 describe('Header', () => {
-  test('renders', () => {
+  it('renders', () => {
     render(<Header />)
 
     expect(screen.getByTestId('header-component')).toBeInTheDocument()

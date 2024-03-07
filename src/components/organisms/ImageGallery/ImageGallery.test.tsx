@@ -1,22 +1,22 @@
 import { render } from '@testing-library/react'
-import ImageGallery from './ImageGallery.tsx'
 import '@testing-library/jest-dom'
-
-const images = [
-  {
-    url: './picture1.png',
-    id: '1',
-  },
-  {
-    url: './picture2.png',
-    id: '2',
-  },
-]
+import ImageGallery from './ImageGallery'
 
 describe('ImageGallery', () => {
-  it('renders without crashing', async () => {
+  const images = [
+    { url: 'https://example.com/image1.jpg', id: '1' },
+    { url: 'https://example.com/image2.jpg', id: '2' },
+    { url: 'https://example.com/image3.jpg', id: '3' },
+  ]
+
+  it('renders images', () => {
     const { getByTestId } = render(<ImageGallery images={images} />)
 
-    expect(getByTestId('image-gallery-image-0')).toBeInTheDocument()
+    images.forEach((image, index) => {
+      expect(getByTestId(`image-gallery-image-${index}`)).toHaveAttribute(
+        'src',
+        image.url,
+      )
+    })
   })
 })

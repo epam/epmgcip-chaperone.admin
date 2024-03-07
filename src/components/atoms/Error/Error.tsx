@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify'
 import styles from './Error.module.scss'
 
 interface Props {
@@ -9,7 +10,7 @@ export default function Error({ message }: Props) {
     <div
       className={styles.error}
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: message }}
+      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }}
     />
   )
 }

@@ -13,23 +13,44 @@ import {
   RUSSIAN_LANGUAGE_CODE,
   UZBEK_LANGUAGE_CODE,
 } from '../../../constants/languages.ts'
+import {
+  NameLanguageField,
+  AuthorLanguageField,
+  AudioLanguageField,
+  DescriptionLanguageField,
+  LanguageField,
+} from '../../../types/languages.ts'
+
+const languageFields: Record<string, Record<string, LanguageField>> = {
+  [ENGLISH_LANGUAGE_CODE]: {
+    name: 'nameEn',
+    author: 'authorEn',
+    audioFile: 'audioFileEn',
+    description: 'descriptionEn',
+  },
+  [RUSSIAN_LANGUAGE_CODE]: {
+    name: 'nameRu',
+    author: 'authorRu',
+    audioFile: 'audioFileRu',
+    description: 'descriptionRu',
+  },
+  [UZBEK_LANGUAGE_CODE]: {
+    name: 'nameUz',
+    author: 'authorUz',
+    audioFile: 'audioFileUz',
+    description: 'descriptionUz',
+  },
+  [KARAKALPAK_LANGUAGE_CODE]: {
+    name: 'nameKa',
+    author: 'authorKa',
+    audioFile: 'audioFileKa',
+    description: 'descriptionKa',
+  },
+}
 
 interface Props {
   slug: string
 }
-
-type TitleKey = 'nameEn' | 'nameUz' | 'nameRu' | 'nameKa'
-type AuthorKey = 'authorEn' | 'authorUz' | 'authorRu' | 'authorKa'
-type DescriptionKey =
-  | 'descriptionEn'
-  | 'descriptionUz'
-  | 'descriptionRu'
-  | 'descriptionKa'
-type AudioFileKey =
-  | 'audioFileEn'
-  | 'audioFileUz'
-  | 'audioFileRu'
-  | 'audioFileKa'
 
 export default function ExhibitPage({ slug }: Props) {
   const { data, loading, error } = useGetExhibitQuery({
@@ -44,47 +65,34 @@ export default function ExhibitPage({ slug }: Props) {
       id: i?.sys.id || '',
     })) || []
 
-  const titleKey = `name${capitalizeFirstLetter(i18n.language)}` as TitleKey
-  const authorKey = `author${capitalizeFirstLetter(i18n.language)}` as AuthorKey
-  const descriptionKey =
-    `description${capitalizeFirstLetter(i18n.language)}` as DescriptionKey
-  const audioFileKey =
-    `audioFile${capitalizeFirstLetter(i18n.language)}` as AudioFileKey
-
   const getExhibitNotFoundForLanguageMessage = () => {
-    let message = t('exhibitNotFoundForLanguage')
-    let count = 0
+    const messages = Object.keys(languageFields)
+      .filter((lang) => exhibit?.[languageFields[lang].name])
+      .map(
+        (lang) =>
+          `<a href="/${slug}?lng=${lang}">${t(`exhibitNotFound${capitalizeFirstLetter(lang)}`)}</a>`,
+      )
 
-    if (exhibit?.nameRu) {
-      message += `${count > 0 ? ',' : ''} <a href="/${slug}?lng=${RUSSIAN_LANGUAGE_CODE}">${t('exhibitNotFoundRussian')}</a>`
-      count += 1
-    }
-
-    if (exhibit?.nameEn) {
-      message += `${count > 0 ? ',' : ''} <a href="/${slug}?lng=${ENGLISH_LANGUAGE_CODE}">${t('exhibitNotFoundEnglish')}</a>`
-      count += 1
-    }
-
-    if (exhibit?.nameUz) {
-      message += `${count > 0 ? ',' : ''} <a href="/${slug}?lng=${UZBEK_LANGUAGE_CODE}">${t('exhibitNotFoundUzbek')}</a>`
-      count += 1
-    }
-
-    if (exhibit?.nameKa) {
-      message += `${count > 0 ? ',' : ''} <a href="/${slug}?lng=${KARAKALPAK_LANGUAGE_CODE}">${t('exhibitNotFoundKarakalpak')}</a>`
-      count += 1
-    }
-
-    message += ` ${t('exhibitNotFoundLanguage')}`
-
-    return message
+    return `${t('exhibitNotFoundForLanguage')} ${messages.join(', ')}`
   }
+
+  const title =
+    exhibit?.[languageFields[i18n.language].name as NameLanguageField]
+  const author =
+    exhibit?.[languageFields[i18n.language].author as AuthorLanguageField]
+  const audioFile =
+    exhibit?.[languageFields[i18n.language].audioFile as AudioLanguageField]
+      ?.url
+  const description =
+    exhibit?.[
+      languageFields[i18n.language].description as DescriptionLanguageField
+    ]?.json
 
   if (error || (!exhibit && !loading)) {
     return <Error message={t('exhibitNotFound')} />
   }
 
-  if (exhibit && !exhibit?.[titleKey]) {
+  if (exhibit && !title) {
     return <Error message={getExhibitNotFoundForLanguageMessage()} />
   }
 
@@ -94,11 +102,9 @@ export default function ExhibitPage({ slug }: Props) {
 
   return (
     <article className={styles.exhibit} data-testid='exhibit'>
-      <h2 className={styles.title}>{exhibit?.[titleKey]}</h2>
+      <h2 className={styles.title}>{title}</h2>
 
-      {exhibit?.authorEn && (
-        <div className={styles.author}>{exhibit?.[authorKey]}</div>
-      )}
+      {exhibit?.authorEn && <div className={styles.author}>{author}</div>}
 
       {images.length > 0 && (
         <div className={styles.gallery}>
@@ -106,9 +112,9 @@ export default function ExhibitPage({ slug }: Props) {
         </div>
       )}
 
-      {exhibit?.[audioFileKey] && exhibit?.[audioFileKey]?.url && (
+      {audioFile && (
         <div className={styles.audioPlayer}>
-          <Player url={exhibit?.[audioFileKey]?.url || ''} />
+          <Player url={audioFile || ''} />
         </div>
       )}
 
@@ -119,11 +125,11 @@ export default function ExhibitPage({ slug }: Props) {
         </div>
       )}
 
-      {exhibit?.[descriptionKey] && (
+      {description && (
         <div className={styles.description}>
           <div className={styles.descriptionName}>{t('description')}</div>
           <div className={styles.descriptionContent}>
-            {documentToReactComponents(exhibit?.[descriptionKey]?.json)}
+            {documentToReactComponents(description)}
           </div>
         </div>
       )}

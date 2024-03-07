@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import styles from './LanguageSwitcher.module.scss'
 import EnFlag from '../../../assets/images/EN.png'
 import RuFlag from '../../../assets/images/RU.png'
 import UzFlag from '../../../assets/images/UZ.png'
@@ -21,29 +20,27 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div className={styles.select_wrapper}>
-      <Dropdown
-        options={[
-          {
-            id: ENGLISH_LANGUAGE_CODE,
-            text: ENGLISH_LANGUAGE_CODE,
-            image: EnFlag,
-          },
-          { id: UZBEK_LANGUAGE_CODE, text: UZBEK_LANGUAGE_CODE, image: UzFlag },
-          {
-            id: RUSSIAN_LANGUAGE_CODE,
-            text: RUSSIAN_LANGUAGE_CODE,
-            image: RuFlag,
-          },
-          {
-            id: KARAKALPAK_LANGUAGE_CODE,
-            text: KARAKALPAK_LANGUAGE_CODE,
-            image: KaFlag,
-          },
-        ]}
-        defaultOptionId={i18n.language}
-        onChange={(optionId) => changeLanguage(optionId)}
-      />
-    </div>
+    <Dropdown
+      options={[
+        {
+          id: ENGLISH_LANGUAGE_CODE,
+          text: ENGLISH_LANGUAGE_CODE,
+          image: EnFlag,
+        },
+        { id: UZBEK_LANGUAGE_CODE, text: UZBEK_LANGUAGE_CODE, image: UzFlag },
+        {
+          id: RUSSIAN_LANGUAGE_CODE,
+          text: RUSSIAN_LANGUAGE_CODE,
+          image: RuFlag,
+        },
+        {
+          id: KARAKALPAK_LANGUAGE_CODE,
+          text: KARAKALPAK_LANGUAGE_CODE,
+          image: KaFlag,
+        },
+      ]}
+      defaultOptionId={i18n.language}
+      onChange={(optionId) => changeLanguage(optionId)}
+    />
   )
 }
