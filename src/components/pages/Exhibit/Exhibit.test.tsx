@@ -1,122 +1,78 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
+import { I18nextProvider } from 'react-i18next'
 import { MockedProvider } from '@apollo/client/testing'
-import { GetExhibitDocument } from '../../../../__generated__/schema.tsx'
+import i18n from '../../../i18n'
 import Exhibit from './Exhibit.tsx'
-
-const mocks = [
-  {
-    request: {
-      query: GetExhibitDocument,
-      variables: {
-        slug: 'slug-string',
-      },
-    },
-    result: {
-      data: {
-        exhibitCollection: {
-          items: [
-            {
-              nameEn: 'Picture',
-              nameRu: 'Picture',
-              nameUz: 'Picture',
-              nameKa: 'Picture',
-              authorEn: 'Author Name',
-              authorRu: 'Author Name',
-              authorUz: 'Author Name',
-              authorKa: 'Author Name',
-              yearOfCreation: '1990',
-              descriptionEn: {
-                json: {
-                  content: [],
-                },
-                links: {
-                  entries: {
-                    inline: [],
-                  },
-                },
-              },
-              descriptionRu: {
-                json: {
-                  content: [],
-                },
-                links: {
-                  entries: {
-                    inline: [],
-                  },
-                },
-              },
-              descriptionUz: {
-                json: {
-                  content: [],
-                },
-                links: {
-                  entries: {
-                    inline: [],
-                  },
-                },
-              },
-              descriptionKa: {
-                json: {
-                  content: [],
-                },
-                links: {
-                  entries: {
-                    inline: [],
-                  },
-                },
-              },
-              imagesCollection: {
-                items: [
-                  {
-                    url: './picture.png',
-                    sys: {
-                      id: '1',
-                    },
-                  },
-                ],
-              },
-              audioFileEn: {
-                url: '',
-              },
-              audioFileRu: {
-                url: '',
-              },
-              audioFileUz: {
-                url: '',
-              },
-              audioFileKa: {
-                url: '',
-              },
-            },
-          ],
-        },
-      },
-    },
-  },
-]
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: () => 'Picture',
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-      use: () => {},
-      language: 'en',
-    },
-  }),
-}))
+import {
+  exhibitErrorMock,
+  exhibitMock,
+  exhibitMockAnotherLanguage,
+  slug,
+} from '../../../mocks/exhibit.ts'
 
 describe('Exhibit', () => {
-  test('renders', async () => {
+  it('renders', async () => {
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Exhibit slug='slug-string' />
+      <MockedProvider mocks={exhibitMock} addTypename={false}>
+        <I18nextProvider i18n={i18n}>
+          <Exhibit slug={slug} />
+        </I18nextProvider>
       </MockedProvider>,
     )
 
     await waitFor(() =>
       expect(screen.getByTestId('exhibit')).toBeInTheDocument(),
     )
+  })
+
+  it('renders exhibit details', async () => {
+    const { getByText, container } = render(
+      <MockedProvider mocks={exhibitMock} addTypename={false}>
+        <I18nextProvider i18n={i18n}>
+          <Exhibit slug={slug} />
+        </I18nextProvider>
+      </MockedProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByText('Test Exhibit')).toBeInTheDocument()
+      expect(getByText('Test Author')).toBeInTheDocument()
+      expect(container.querySelector('audio')).toHaveAttribute(
+        'src',
+        'https://example.com/audio.mp3',
+      )
+      expect(getByText('1990')).toBeInTheDocument()
+    })
+  })
+
+  it('renders error message when exhibit not found', async () => {
+    const { getByText } = render(
+      <MockedProvider mocks={exhibitErrorMock} addTypename={false}>
+        <I18nextProvider i18n={i18n}>
+          <Exhibit slug={slug} />
+        </I18nextProvider>
+      </MockedProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByText('Exhibit not found')).toBeInTheDocument()
+    })
+  })
+
+  it('renders error message when exhibit for selected language not found', async () => {
+    const { getByText } = render(
+      <MockedProvider mocks={exhibitMockAnotherLanguage} addTypename={false}>
+        <I18nextProvider i18n={i18n}>
+          <Exhibit slug={slug} />
+        </I18nextProvider>
+      </MockedProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByText('Russian')).toBeInTheDocument()
+      expect(getByText('Uzbek')).toBeInTheDocument()
+      expect(getByText('Karakalpak')).toBeInTheDocument()
+    })
   })
 })

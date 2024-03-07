@@ -1,20 +1,31 @@
 import { render } from '@testing-library/react'
-import Player from './Player.tsx'
 import '@testing-library/jest-dom'
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: () => 'Play audioguide',
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-    },
-  }),
-}))
+import { I18nextProvider } from 'react-i18next'
+import Player from './Player.tsx'
+import i18n from '../../../i18n'
 
 describe('Player', () => {
-  it('renders without crashing', async () => {
-    const { getByText } = render(<Player url='' />)
+  const url = 'https://example.com/audio.mp3'
 
-    expect(getByText('Play audioguide')).toBeInTheDocument()
+  it('renders audio player with correct source', () => {
+    const { container } = render(
+      <I18nextProvider i18n={i18n}>
+        <Player url={url} />
+      </I18nextProvider>,
+    )
+
+    expect(container.querySelector('audio')).toHaveAttribute('src', url)
+  })
+
+  it('renders custom buttons', async () => {
+    const { getByAltText } = render(
+      <I18nextProvider i18n={i18n}>
+        <Player url={url} />
+      </I18nextProvider>,
+    )
+
+    expect(getByAltText('Play audioguide')).toBeInTheDocument()
+    expect(getByAltText('Forward')).toBeInTheDocument()
+    expect(getByAltText('Rewind')).toBeInTheDocument()
   })
 })

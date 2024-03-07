@@ -11,7 +11,7 @@ module.exports = {
     'airbnb-typescript',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**', '__generated__/schema.tsx'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '!src/**', '__generated__/schema.tsx', 'fileTransformer.js'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -54,5 +54,6 @@ module.exports = {
       },
     ],
     'react/require-default-props': 'off',
+    'import/extensions': 'off',
   },
 }

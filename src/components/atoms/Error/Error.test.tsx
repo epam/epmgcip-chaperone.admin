@@ -3,7 +3,7 @@ import Error from './Error.tsx'
 import '@testing-library/jest-dom'
 
 describe('Error', () => {
-  test('renders', () => {
+  it('renders', () => {
     render(<Error message='Not Found' />)
 
     expect(screen.getByText('Not Found')).toBeInTheDocument()
