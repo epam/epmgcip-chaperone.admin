@@ -1,3 +1,5 @@
+Instruction for setting up firebase hosting.
+
 1. Create a github account
 2. Create a firebase account
 3. Go to a Firebase Console (https://console.firebase.google.com/) and create a new project
