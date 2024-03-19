@@ -1,30 +1,16 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Create a github account
+2. Create a firebase account
+3. Go to a Firebase Console (https://console.firebase.google.com/) and create a new project
+4. On a local instance go to a console and run <b>"npm install -g firebase-tools"</b>
+5. Run <b>"firebase login"</b> to login into your account.
+6. Run <b>"firebase init hosting"</b><br>
+	a) choose "Use an existing project"<br>
+	b) select the created project<br>
+	c) "What do you want to use as your public directory" - skip, "public" by default<br>
+	d) "Configure as a single-page app" - y<br>
+	e) "Set up automatic build and deploys- with GitHub" - y<br>
+	f) type existed repository using format "user/repository"<br>
+	g) "Set up wotkflow to run a build script before every deploy" - y<br>
+	h) "What script should be run before every deploy" - choose default - "npm ci && npm run build"<br>
+	i) "Set up autpmatic deployment to your site's live channel when a PR is a merged" - y<br>
+	j) "What is the name of the GitHub branch associated with your site's live channel" - choose default - "main"<br>
