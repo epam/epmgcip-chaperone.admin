@@ -104,7 +104,7 @@ export default function ExhibitPage({ slug }: Props) {
     <article className={styles.exhibit} data-testid='exhibit'>
       <h2 className={styles.title}>{title}</h2>
 
-      {exhibit?.authorEn && <div className={styles.author}>{author}</div>}
+      {author && <div className={styles.author}>{author}</div>}
 
       {images.length > 0 && (
         <div className={styles.gallery}>
