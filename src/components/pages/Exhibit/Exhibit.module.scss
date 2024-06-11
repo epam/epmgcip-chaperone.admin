@@ -43,10 +43,12 @@
 
 .descriptionContent {
   p {
-    margin-top: 0; 
+    margin-top: 0;
   }
 
-  table, td, th {
+  table,
+  td,
+  th {
     border: 1px solid $colorBlack;
   }
 
@@ -54,7 +56,8 @@
     border-collapse: collapse;
   }
 
-  td, th {
+  td,
+  th {
     padding: 4px 8px;
   }
 }
