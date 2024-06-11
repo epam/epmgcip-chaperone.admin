@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { useTranslation } from 'react-i18next'
 import { useGetExhibitQuery } from '../../../../__generated__/schema.tsx'
@@ -20,6 +21,7 @@ import {
   DescriptionLanguageField,
   LanguageField,
 } from '../../../types/languages.ts'
+import triggerGtagVisit from '../../../gtag/visit.ts'
 
 const languageFields: Record<string, Record<string, LanguageField>> = {
   [ENGLISH_LANGUAGE_CODE]: {
@@ -87,6 +89,12 @@ export default function ExhibitPage({ slug }: Props) {
     exhibit?.[
       languageFields[i18n.language].description as DescriptionLanguageField
     ]?.json
+
+  useEffect(() => {
+    if (exhibit?.sys.id && slug && i18n.language) {
+      triggerGtagVisit(exhibit.sys.id, i18n.language, slug)
+    }
+  }, [exhibit?.sys.id, slug, i18n.language])
 
   if (error || (!exhibit && !loading)) {
     return <Error message={t('exhibitNotFound')} />

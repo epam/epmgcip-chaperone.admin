@@ -462,9 +462,24 @@ export type ExhibitDescriptionEnLinks = {
 
 export type ExhibitDescriptionEnResources = {
   __typename?: 'ExhibitDescriptionEnResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<ExhibitDescriptionEnResourcesBlock>;
+  hyperlink: Array<ExhibitDescriptionEnResourcesHyperlink>;
+  inline: Array<ExhibitDescriptionEnResourcesInline>;
+};
+
+export type ExhibitDescriptionEnResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitDescriptionEnResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionEnResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitDescriptionEnResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionEnResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitDescriptionEnResourcesInline';
+  sys: ResourceSys;
 };
 
 export type ExhibitDescriptionKa = {
@@ -495,9 +510,24 @@ export type ExhibitDescriptionKaLinks = {
 
 export type ExhibitDescriptionKaResources = {
   __typename?: 'ExhibitDescriptionKaResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<ExhibitDescriptionKaResourcesBlock>;
+  hyperlink: Array<ExhibitDescriptionKaResourcesHyperlink>;
+  inline: Array<ExhibitDescriptionKaResourcesInline>;
+};
+
+export type ExhibitDescriptionKaResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitDescriptionKaResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionKaResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitDescriptionKaResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionKaResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitDescriptionKaResourcesInline';
+  sys: ResourceSys;
 };
 
 export type ExhibitDescriptionRu = {
@@ -528,9 +558,24 @@ export type ExhibitDescriptionRuLinks = {
 
 export type ExhibitDescriptionRuResources = {
   __typename?: 'ExhibitDescriptionRuResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<ExhibitDescriptionRuResourcesBlock>;
+  hyperlink: Array<ExhibitDescriptionRuResourcesHyperlink>;
+  inline: Array<ExhibitDescriptionRuResourcesInline>;
+};
+
+export type ExhibitDescriptionRuResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitDescriptionRuResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionRuResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitDescriptionRuResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionRuResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitDescriptionRuResourcesInline';
+  sys: ResourceSys;
 };
 
 export type ExhibitDescriptionUz = {
@@ -561,9 +606,24 @@ export type ExhibitDescriptionUzLinks = {
 
 export type ExhibitDescriptionUzResources = {
   __typename?: 'ExhibitDescriptionUzResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<ExhibitDescriptionUzResourcesBlock>;
+  hyperlink: Array<ExhibitDescriptionUzResourcesHyperlink>;
+  inline: Array<ExhibitDescriptionUzResourcesInline>;
+};
+
+export type ExhibitDescriptionUzResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitDescriptionUzResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionUzResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitDescriptionUzResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitDescriptionUzResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitDescriptionUzResourcesInline';
+  sys: ResourceSys;
 };
 
 export type ExhibitFilter = {
@@ -861,14 +921,12 @@ export type QueryExhibitCollectionArgs = {
 };
 
 export type ResourceLink = {
-  __typename?: 'ResourceLink';
   sys: ResourceSys;
 };
 
 export type ResourceSys = {
   __typename?: 'ResourceSys';
   linkType: Scalars['String']['output'];
-  type: Scalars['String']['output'];
   urn: Scalars['String']['output'];
 };
 
@@ -877,6 +935,8 @@ export type Sys = {
   environmentId: Scalars['String']['output'];
   firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['String']['output'];
+  /** The locale that was requested. */
+  locale?: Maybe<Scalars['String']['output']>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   publishedVersion?: Maybe<Scalars['Int']['output']>;
   spaceId: Scalars['String']['output'];
@@ -928,13 +988,16 @@ export type GetExhibitQueryVariables = Exact<{
 }>;
 
 
-export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, authorEn?: string | null, authorRu?: string | null, authorUz?: string | null, authorKa?: string | null, yearOfCreation?: string | null, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'ExhibitDescriptionRu', json: any, links: { __typename?: 'ExhibitDescriptionRuLinks', entries: { __typename?: 'ExhibitDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'ExhibitDescriptionUz', json: any, links: { __typename?: 'ExhibitDescriptionUzLinks', entries: { __typename?: 'ExhibitDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'ExhibitDescriptionKa', json: any, links: { __typename?: 'ExhibitDescriptionKaLinks', entries: { __typename?: 'ExhibitDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, audioFileEn?: { __typename?: 'Asset', url?: string | null } | null, audioFileRu?: { __typename?: 'Asset', url?: string | null } | null, audioFileUz?: { __typename?: 'Asset', url?: string | null } | null, audioFileKa?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, authorEn?: string | null, authorRu?: string | null, authorUz?: string | null, authorKa?: string | null, yearOfCreation?: string | null, sys: { __typename?: 'Sys', id: string }, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'ExhibitDescriptionRu', json: any, links: { __typename?: 'ExhibitDescriptionRuLinks', entries: { __typename?: 'ExhibitDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'ExhibitDescriptionUz', json: any, links: { __typename?: 'ExhibitDescriptionUzLinks', entries: { __typename?: 'ExhibitDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'ExhibitDescriptionKa', json: any, links: { __typename?: 'ExhibitDescriptionKaLinks', entries: { __typename?: 'ExhibitDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, audioFileEn?: { __typename?: 'Asset', url?: string | null } | null, audioFileRu?: { __typename?: 'Asset', url?: string | null } | null, audioFileUz?: { __typename?: 'Asset', url?: string | null } | null, audioFileKa?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
 
 
 export const GetExhibitDocument = gql`
     query GetExhibit($slug: String!) {
   exhibitCollection(limit: 1, where: {slug: $slug}) {
     items {
+      sys {
+        id
+      }
       nameEn
       nameRu
       nameUz

@@ -1,6 +1,9 @@
 query GetExhibit($slug: String!) {
   exhibitCollection(limit: 1, where: { slug: $slug }) {
     items {
+      sys {
+        id
+      }
       nameEn
       nameRu
       nameUz
