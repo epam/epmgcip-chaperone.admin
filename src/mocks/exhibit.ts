@@ -1,6 +1,9 @@
 import { GetExhibitDocument } from '../../__generated__/schema'
 
 const exhibitItem = {
+  sys: {
+    id: '123',
+  },
   nameEn: 'Test Exhibit',
   nameRu: 'Picture',
   nameUz: 'Picture',
