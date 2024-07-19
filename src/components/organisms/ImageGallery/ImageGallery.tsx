@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 import Slider from 'react-slick'
-import FsLightbox from 'fslightbox-react'
+import { useShallow } from 'zustand/react/shallow'
+import clsx from 'clsx'
+import Lightbox, { ZoomRef } from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import styles from './ImageGallery.module.css'
+import styles from './ImageGallery.module.scss'
 import BREAKPOINT_TABLE from '../../../constants/breakpoints.ts'
+import useImageGalleryStore from '../../../stores/useImageGalleryStore.ts'
 
 interface Props {
   images: {
@@ -14,17 +19,42 @@ interface Props {
 }
 
 function ImageGallery({ images }: Props) {
-  const [lightboxController, setLightboxController] = useState({
-    toggler: false,
-    slide: 1,
-  })
-  const lighboxImages = images.map((i) => i.url)
+  const zoomRef = useRef<ZoomRef>(null)
+  const {
+    index: galleryIndex,
+    setIndex: setGalleryIndex,
+    isOpen,
+    setIsOpen,
+    isOpeningWithZoom,
+    setIsOpeningWithZoom,
+    zoomValue,
+    zoomOffsetX,
+    zoomOffsetY,
+    setZoom,
+  } = useImageGalleryStore(
+    useShallow((state) => ({
+      index: state.index,
+      setIndex: state.setIndex,
+      isOpeningWithZoom: state.isOpeningWithZoom,
+      isOpen: state.isOpen,
+      setIsOpen: state.setIsOpen,
+      setIsOpeningWithZoom: state.setIsOpeningWithZoom,
+      zoomValue: state.zoomValue,
+      zoomOffsetX: state.zoomOffsetX,
+      zoomOffsetY: state.zoomOffsetY,
+      setZoom: state.setZoom,
+    })),
+  )
+  const lighboxImages = images.map((i) => ({ src: i.url }))
 
-  function openLightbox(number: number) {
-    setLightboxController({
-      toggler: !lightboxController.toggler,
-      slide: number,
-    })
+  const handleOnImageClick = (index: number) => {
+    setIsOpeningWithZoom(true)
+    setGalleryIndex(index)
+    setIsOpen(true)
+  }
+
+  const handleOnCloseLightbox = () => {
+    setIsOpen(false)
   }
 
   const imagesList = images.map((image, index) => (
@@ -34,7 +64,7 @@ function ImageGallery({ images }: Props) {
         <button
           className={styles.lightboxButton}
           type='button'
-          onClick={() => openLightbox(index + 1)}
+          onClick={() => handleOnImageClick(index)}
         >
           <img
             data-testid={`image-gallery-image-${index}`}
@@ -67,10 +97,28 @@ function ImageGallery({ images }: Props) {
         {imagesList}
       </Slider>
 
-      <FsLightbox
-        toggler={lightboxController.toggler}
-        sources={lighboxImages}
-        slide={lightboxController.slide}
+      <Lightbox
+        open={isOpen}
+        close={handleOnCloseLightbox}
+        slides={lighboxImages}
+        plugins={[Zoom]}
+        zoom={{ ref: zoomRef, maxZoomPixelRatio: 3 }}
+        index={galleryIndex}
+        on={{
+          entered: () => {
+            if (isOpeningWithZoom) {
+              zoomRef.current?.changeZoom(
+                zoomValue,
+                true,
+                zoomOffsetX,
+                zoomOffsetY,
+              )
+            }
+            setZoom(0, 0, 0)
+            setIsOpeningWithZoom(false)
+          },
+        }}
+        className={clsx(isOpeningWithZoom && 'image-gallery-zooming')}
       />
     </>
   )
