@@ -1,5 +1,6 @@
 {
-  "hosting": {
+  "hosting": [{
+    "site": "savitsky-museum",
     "public": "public",
     "ignore": [
       "firebase.json",
@@ -12,5 +13,19 @@
         "destination": "/index.html"
       }
     ]
-  }
+  }, {
+    "site": "staging-savitsky-museum",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }]
 }

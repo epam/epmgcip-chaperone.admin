@@ -16,3 +16,41 @@ Instruction for setting up firebase hosting.
 	h) "What script should be run before every deploy" - choose default - "npm ci && npm run build"<br>
 	i) "Set up autpmatic deployment to your site's live channel when a PR is a merged" - y<br>
 	j) "What is the name of the GitHub branch associated with your site's live channel" - choose default - "main"<br>
+
+For handling multiple environments:
+1. Go to a Firebase Console (https://console.firebase.google.com/) -> Hosting -> Add another site ![Screenshot 2024-07-23 131226](https://github.com/user-attachments/assets/b966efbe-a70f-4448-ab4e-1d76539bc0e7)
+2. Add a website id, e.g. "staging-website"
+3. Update firebase json by adding a new site for "staging-website" and corrected main website. "site" should be equal to your site ID in firebase. e.g.
+```json
+{
+  "hosting": [{
+    "site": "production",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }, {
+    "site": "staging-website",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }]
+}
+```
