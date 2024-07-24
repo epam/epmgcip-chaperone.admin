@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { useTranslation } from 'react-i18next'
+import { useShallow } from 'zustand/react/shallow'
 import { useGetExhibitQuery } from '../../../../__generated__/schema.tsx'
 import Error from '../../atoms/Error/Error.tsx'
 import styles from './Exhibit.module.scss'
@@ -22,6 +23,7 @@ import {
   LanguageField,
 } from '../../../types/languages.ts'
 import triggerGtagVisit from '../../../gtag/visit.ts'
+import useImageGalleryStore from '../../../stores/useImageGalleryStore.ts'
 
 const languageFields: Record<string, Record<string, LanguageField>> = {
   [ENGLISH_LANGUAGE_CODE]: {
@@ -55,6 +57,19 @@ interface Props {
 }
 
 export default function ExhibitPage({ slug }: Props) {
+  const {
+    setIndex: setGalleryIndex,
+    setIsOpen: setIsOpenGallery,
+    setIsOpeningWithZoom: setIsOpeningGalleryWithZoom,
+    setZoom: setGalleryZoom,
+  } = useImageGalleryStore(
+    useShallow((state) => ({
+      setIndex: state.setIndex,
+      setIsOpen: state.setIsOpen,
+      setIsOpeningWithZoom: state.setIsOpeningWithZoom,
+      setZoom: state.setZoom,
+    })),
+  )
   const { data, loading, error } = useGetExhibitQuery({
     variables: { slug },
   })
@@ -96,6 +111,38 @@ export default function ExhibitPage({ slug }: Props) {
     }
   }, [exhibit?.sys.id, slug, i18n.language])
 
+  useEffect(() => {
+    console.log('1111', document.getElementById('exhibit-description'))
+    document
+      .getElementById('exhibit-description')
+      ?.querySelectorAll('a')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const { href } = e?.target as HTMLAnchorElement
+          if (!href.includes('imageIndex')) {
+            return
+          }
+
+          e.preventDefault()
+
+          const params = new URLSearchParams(new URL(href).search)
+          const indexString = params.get('imageIndex')
+          const xString = params.get('x')
+          const yString = params.get('y')
+          const zoomString = params.get('zoom')
+          const index = indexString ? parseInt(indexString, 10) : 0
+          const x = xString ? parseInt(xString, 10) : 0
+          const y = yString ? parseInt(yString, 10) : 0
+          const zoom = zoomString ? parseInt(zoomString, 10) : 0
+
+          setIsOpeningGalleryWithZoom(true)
+          setGalleryIndex(index)
+          setGalleryZoom(zoom, x, y)
+          setIsOpenGallery(true)
+        })
+      })
+  })
+
   if (error || (!exhibit && !loading)) {
     return <Error message={t('exhibitNotFound')} />
   }
@@ -136,7 +183,7 @@ export default function ExhibitPage({ slug }: Props) {
       {description && (
         <div className={styles.description}>
           <div className={styles.descriptionName}>{t('description')}</div>
-          <div className={styles.descriptionContent}>
+          <div id='exhibit-description' className={styles.descriptionContent}>
             {documentToReactComponents(description)}
           </div>
         </div>
