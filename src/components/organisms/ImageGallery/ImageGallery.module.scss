@@ -22,3 +22,11 @@
 .lightboxButton:focus {
   outline: none;
 }
+
+:global(.yarl__slide_image) {
+  transition: opacity 0.1s;
+}
+
+:global(.image-gallery-zooming .yarl__slide_image) {
+  opacity: 0;
+}
