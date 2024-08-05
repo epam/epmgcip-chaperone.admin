@@ -7,6 +7,16 @@ jest.mock('react-i18next', () => ({
     t: (str: string) => str,
     i18n: {
       changeLanguage: () => new Promise(() => {}),
+      store: {
+        data: {
+          en: {
+            flag: '',
+          },
+          ru: {
+            flag: '',
+          },
+        },
+      },
     },
   }),
 }))
