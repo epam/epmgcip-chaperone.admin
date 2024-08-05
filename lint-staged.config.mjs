@@ -7,13 +7,11 @@ const removeIgnoredFiles = async (files) => {
     files.map((file) => eslint.isPathIgnored(file)),
   )
   const filteredFiles = files.filter((_, i) => !ignoredFiles[i])
-  console.log('11111', ignoredFiles, files);
   return filteredFiles.join(' ')
 }
 
 export default {
   '*.{js,ts}': async (files) => {
-    console.log('44444', files);
     const filesToLint = await removeIgnoredFiles(files)
     return [`eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 ${filesToLint}`]
   },
