@@ -8,49 +8,9 @@ import styles from './Exhibit.module.scss'
 import Loading from '../../atoms/Loading/Loading.tsx'
 import ImageGallery from '../../organisms/ImageGallery/ImageGallery.tsx'
 import Player from '../../organisms/Player/Player.tsx'
-import capitalizeFirstLetter from '../../../utils/capitalizeFirstLetter.ts'
-import {
-  ENGLISH_LANGUAGE_CODE,
-  KARAKALPAK_LANGUAGE_CODE,
-  RUSSIAN_LANGUAGE_CODE,
-  UZBEK_LANGUAGE_CODE,
-} from '../../../constants/languages.ts'
-import {
-  NameLanguageField,
-  AuthorLanguageField,
-  AudioLanguageField,
-  DescriptionLanguageField,
-  LanguageField,
-} from '../../../types/languages.ts'
 import triggerGtagVisit from '../../../gtag/visit.ts'
 import useImageGalleryStore from '../../../stores/useImageGalleryStore.ts'
-
-const languageFields: Record<string, Record<string, LanguageField>> = {
-  [ENGLISH_LANGUAGE_CODE]: {
-    name: 'nameEn',
-    author: 'authorEn',
-    audioFile: 'audioFileEn',
-    description: 'descriptionEn',
-  },
-  [RUSSIAN_LANGUAGE_CODE]: {
-    name: 'nameRu',
-    author: 'authorRu',
-    audioFile: 'audioFileRu',
-    description: 'descriptionRu',
-  },
-  [UZBEK_LANGUAGE_CODE]: {
-    name: 'nameUz',
-    author: 'authorUz',
-    audioFile: 'audioFileUz',
-    description: 'descriptionUz',
-  },
-  [KARAKALPAK_LANGUAGE_CODE]: {
-    name: 'nameKa',
-    author: 'authorKa',
-    audioFile: 'audioFileKa',
-    description: 'descriptionKa',
-  },
-}
+import { LanguageCode, languages } from '../../../i18n.ts'
 
 interface Props {
   slug: string
@@ -73,7 +33,11 @@ export default function ExhibitPage({ slug }: Props) {
   const { data, loading, error } = useGetExhibitQuery({
     variables: { slug },
   })
-  const { i18n, t } = useTranslation()
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+  const currentLanguage = language as LanguageCode
   const exhibit = data?.exhibitCollection?.items[0]
 
   const images =
@@ -83,36 +47,28 @@ export default function ExhibitPage({ slug }: Props) {
     })) || []
 
   const getExhibitNotFoundForLanguageMessage = () => {
-    const messages = Object.keys(languageFields)
-      .filter((lang) => exhibit?.[languageFields[lang].name])
+    const messages = languages
+      .filter((lang) => exhibit?.[`name${lang}`])
       .map(
         (lang) =>
-          `<a href="/${slug}?lng=${lang}">${t(`exhibitNotFound${capitalizeFirstLetter(lang)}`)}</a>`,
+          `<a href="/${slug}?lng=${lang}">${t(`exhibitNotFound${lang}`)}</a>`,
       )
 
     return `${t('exhibitNotFoundForLanguage')} ${messages.join(', ')}`
   }
 
-  const title =
-    exhibit?.[languageFields[i18n.language].name as NameLanguageField]
-  const author =
-    exhibit?.[languageFields[i18n.language].author as AuthorLanguageField]
-  const audioFile =
-    exhibit?.[languageFields[i18n.language].audioFile as AudioLanguageField]
-      ?.url
-  const description =
-    exhibit?.[
-      languageFields[i18n.language].description as DescriptionLanguageField
-    ]?.json
+  const title = exhibit?.[`name${currentLanguage}`]
+  const author = exhibit?.[`author${currentLanguage}`]
+  const audioFile = exhibit?.[`audioFile${currentLanguage}`]?.url
+  const description = exhibit?.[`description${currentLanguage}`]?.json
 
   useEffect(() => {
-    if (exhibit?.sys.id && slug && i18n.language) {
-      triggerGtagVisit(exhibit.sys.id, i18n.language, slug)
+    if (exhibit?.sys.id && slug && currentLanguage) {
+      triggerGtagVisit(exhibit.sys.id, currentLanguage, slug)
     }
-  }, [exhibit?.sys.id, slug, i18n.language])
+  }, [exhibit?.sys.id, slug, currentLanguage])
 
   useEffect(() => {
-    console.log('1111', document.getElementById('exhibit-description'))
     document
       .getElementById('exhibit-description')
       ?.querySelectorAll('a')

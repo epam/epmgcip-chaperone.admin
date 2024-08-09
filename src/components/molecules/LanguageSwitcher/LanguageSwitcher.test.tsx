@@ -8,6 +8,16 @@ jest.mock('react-i18next', () => ({
     i18n: {
       language: 'en',
       changeLanguage: jest.fn(),
+      store: {
+        data: {
+          en: {
+            flag: '',
+          },
+          ru: {
+            flag: '',
+          },
+        },
+      },
     },
   }),
 }))

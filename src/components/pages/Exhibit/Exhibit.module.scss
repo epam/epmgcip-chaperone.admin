@@ -2,7 +2,7 @@
 
 .exhibit {
   padding: 40px 0;
-  font-size: $fontSizeDefault;
+  font-size: $mainFontSize;
 }
 
 .title {
@@ -10,7 +10,7 @@
   padding: 0 $indentMobilePageBorder;
   text-align: center;
   font-weight: bold;
-  font-size: $fontSizeXXLarge;
+  font-size: $titleFontSize;
 
   @media (min-width: $breakpointTablet) {
     padding: 0 $indentTabletPageBorder;
@@ -20,7 +20,7 @@
 .author {
   padding: 0 $indentMobilePageBorder 32px $indentMobilePageBorder;
   text-align: center;
-  font-size: $fontSizeDefault;
+  font-size: $mainFontSize;
 
   @media (min-width: $breakpointTablet) {
     padding: 0 $indentTabletPageBorder 32px $indentTabletPageBorder;
@@ -37,7 +37,7 @@
 
 .descriptionName {
   padding-bottom: 8px;
-  font-size: $fontSizeSmall;
+  font-size: $sectionTitleFontSize;
   font-weight: bold;
 }
 
@@ -49,7 +49,7 @@
   table,
   td,
   th {
-    border: 1px solid $colorBlack;
+    border: 1px solid $mainBorderColor;
   }
 
   table {

@@ -15,7 +15,7 @@
   text-transform: uppercase;
 
   &:hover {
-    background-color: $colorLightGray;
+    background-color: $secondaryBackgroundColor;
   }
 }
 
@@ -50,7 +50,7 @@
   width: 100%;
   padding: 8px 0;
   margin: 4px 0;
-  background-color: $colorLightGray;
+  background-color: $secondaryBackgroundColor;
   box-shadow: 0px 1px 4px 0px #ababab;
   border-radius: 4px;
 }
@@ -73,6 +73,6 @@
   text-transform: uppercase;
 
   &:hover {
-    background-color: $colorWhite;
+    background-color: $mainBackgroundColor;
   }
 }

@@ -1,8 +1,5 @@
 @import '../../../variables.scss';
 
-$colorAudioMain: $colorOrange;
-$colorAudioSecondary: $colorPink;
-
 .rhap_progress-filled {
   background-color: $colorAudioMain;
 }
@@ -24,7 +21,7 @@ $colorAudioSecondary: $colorPink;
 .rhap_play-pause-button {
   width: auto;
   height: auto;
-  border: 1px solid $colorBlack;
+  border: 1px solid $mainBorderColor;
   font-family: $fontFamilyMain;
   font-size: 14px;
   font-weight: normal;
@@ -37,7 +34,7 @@ $colorAudioSecondary: $colorPink;
 }
 
 .rhap_main-controls-button:active {
-  background-color: $colorLightGray;
+  background-color: $secondaryBackgroundColor;
 }
 
 .rhap_main-controls {
