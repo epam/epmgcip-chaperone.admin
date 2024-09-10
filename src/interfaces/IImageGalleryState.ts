@@ -1,11 +1,11 @@
 interface IImageGalleryState {
-  index: number
+  id: string | undefined
   isOpen: boolean
   isOpeningWithZoom: boolean
   zoomValue: number
   zoomOffsetX: number
   zoomOffsetY: number
-  setIndex: (index: number) => void
+  setId: (id: string) => void
   setIsOpen: (isOpen: boolean) => void
   setIsOpeningWithZoom: (i: boolean) => void
   setZoom: (value: number, xOffset: number, yOffset: number) => void

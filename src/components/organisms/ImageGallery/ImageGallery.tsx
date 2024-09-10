@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import Slider from 'react-slick'
 import { useShallow } from 'zustand/react/shallow'
 import clsx from 'clsx'
-import Lightbox, { ZoomRef } from 'yet-another-react-lightbox'
+import Lightbox, { ControllerRef, ZoomRef } from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'slick-carousel/slick/slick.css'
@@ -21,8 +21,8 @@ interface Props {
 function ImageGallery({ images }: Props) {
   const zoomRef = useRef<ZoomRef>(null)
   const {
-    index: galleryIndex,
-    setIndex: setGalleryIndex,
+    id: galleryId,
+    setId: setGalleryId,
     isOpen,
     setIsOpen,
     isOpeningWithZoom,
@@ -33,8 +33,8 @@ function ImageGallery({ images }: Props) {
     setZoom,
   } = useImageGalleryStore(
     useShallow((state) => ({
-      index: state.index,
-      setIndex: state.setIndex,
+      id: state.id,
+      setId: state.setId,
       isOpeningWithZoom: state.isOpeningWithZoom,
       isOpen: state.isOpen,
       setIsOpen: state.setIsOpen,
@@ -46,10 +46,12 @@ function ImageGallery({ images }: Props) {
     })),
   )
   const lighboxImages = images.map((i) => ({ src: i.url }))
+  const ref = useRef<ControllerRef>(null)
+  const galleryIndex = images.findIndex((i) => i.id === galleryId)
 
-  const handleOnImageClick = (index: number) => {
+  const handleOnImageClick = (index: string) => {
     setIsOpeningWithZoom(true)
-    setGalleryIndex(index)
+    setGalleryId(index)
     setIsOpen(true)
   }
 
@@ -64,7 +66,7 @@ function ImageGallery({ images }: Props) {
         <button
           className={styles.lightboxButton}
           type='button'
-          onClick={() => handleOnImageClick(index)}
+          onClick={() => handleOnImageClick(image.id)}
         >
           <img
             data-testid={`image-gallery-image-${index}`}
@@ -104,15 +106,28 @@ function ImageGallery({ images }: Props) {
         plugins={[Zoom]}
         zoom={{ ref: zoomRef, maxZoomPixelRatio: 3 }}
         index={galleryIndex}
+        controller={{ ref }}
         on={{
           entered: () => {
             if (isOpeningWithZoom) {
-              zoomRef.current?.changeZoom(
-                zoomValue,
-                true,
-                zoomOffsetX,
-                zoomOffsetY,
-              )
+              const currentImage = new Image()
+              currentImage.src =
+                images.find((i) => i.id === galleryId)?.url || ''
+              currentImage.onload = () => {
+                const wrapperX =
+                  window.innerWidth < currentImage.width
+                    ? window.innerWidth
+                    : currentImage.width
+                const wrapperY =
+                  window.innerHeight < currentImage.height
+                    ? window.innerHeight
+                    : currentImage.height
+                const offsetX =
+                  (wrapperX / 100) * (zoomOffsetX - 50) * (1 + 1 / zoomValue)
+                const offsetY =
+                  (wrapperY / 100) * (zoomOffsetY - 50) * (1 + 1 / zoomValue)
+                zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY)
+              }
             }
             setZoom(0, 0, 0)
             setIsOpeningWithZoom(false)
