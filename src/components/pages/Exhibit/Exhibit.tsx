@@ -18,13 +18,13 @@ interface Props {
 
 export default function ExhibitPage({ slug }: Props) {
   const {
-    setIndex: setGalleryIndex,
+    setId: setGalleryId,
     setIsOpen: setIsOpenGallery,
     setIsOpeningWithZoom: setIsOpeningGalleryWithZoom,
     setZoom: setGalleryZoom,
   } = useImageGalleryStore(
     useShallow((state) => ({
-      setIndex: state.setIndex,
+      setId: state.setId,
       setIsOpen: state.setIsOpen,
       setIsOpeningWithZoom: state.setIsOpeningWithZoom,
       setZoom: state.setZoom,
@@ -75,24 +75,23 @@ export default function ExhibitPage({ slug }: Props) {
       .forEach((link) => {
         link.addEventListener('click', (e) => {
           const { href } = e?.target as HTMLAnchorElement
-          if (!href.includes('imageIndex')) {
+          if (!href.includes('imageId')) {
             return
           }
 
           e.preventDefault()
 
           const params = new URLSearchParams(new URL(href).search)
-          const indexString = params.get('imageIndex')
+          const idString = params.get('imageId') || ''
           const xString = params.get('x')
           const yString = params.get('y')
           const zoomString = params.get('zoom')
-          const index = indexString ? parseInt(indexString, 10) : 0
           const x = xString ? parseInt(xString, 10) : 0
           const y = yString ? parseInt(yString, 10) : 0
           const zoom = zoomString ? parseInt(zoomString, 10) : 0
 
           setIsOpeningGalleryWithZoom(true)
-          setGalleryIndex(index)
+          setGalleryId(idString)
           setGalleryZoom(zoom, x, y)
           setIsOpenGallery(true)
         })
