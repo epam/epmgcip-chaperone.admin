@@ -48,6 +48,7 @@ function ImageGallery({ images }: Props) {
   const lighboxImages = images.map((i) => ({ src: i.url }))
   const ref = useRef<ControllerRef>(null)
   const galleryIndex = images.findIndex((i) => i.id === galleryId)
+  const carouselPadding = 16
 
   const handleOnImageClick = (index: string) => {
     setIsOpeningWithZoom(true)
@@ -104,9 +105,12 @@ function ImageGallery({ images }: Props) {
         close={handleOnCloseLightbox}
         slides={lighboxImages}
         plugins={[Zoom]}
-        zoom={{ ref: zoomRef, maxZoomPixelRatio: 3 }}
+        zoom={{ ref: zoomRef, maxZoomPixelRatio: 20 }}
         index={galleryIndex}
         controller={{ ref }}
+        carousel={{
+          padding: carouselPadding,
+        }}
         on={{
           entered: () => {
             if (isOpeningWithZoom) {
@@ -114,18 +118,26 @@ function ImageGallery({ images }: Props) {
               currentImage.src =
                 images.find((i) => i.id === galleryId)?.url || ''
               currentImage.onload = () => {
+                // determining the container size for the translate
                 const wrapperX =
                   window.innerWidth < currentImage.width
-                    ? window.innerWidth
+                    ? window.innerWidth - carouselPadding * 2
                     : currentImage.width
                 const wrapperY =
                   window.innerHeight < currentImage.height
-                    ? window.innerHeight
+                    ? window.innerHeight - carouselPadding * 2
                     : currentImage.height
-                const offsetX =
-                  (wrapperX / 100) * (zoomOffsetX - 50) * (1 + 1 / zoomValue)
-                const offsetY =
-                  (wrapperY / 100) * (zoomOffsetY - 50) * (1 + 1 / zoomValue)
+
+                // removing shifting in the zoom plagin of the yet-another-react-lightbox
+                const removeShift = 1 + 1 / zoomValue
+
+                // zoomOffset has top left corner as an origin, but translate will be from center of the screen
+                const translateX = zoomOffsetX - 50
+                const translateY = zoomOffsetY - 50
+
+                // calculating the shift, considering that 'translateX/Y' is in percentages, but the yet-another-react-lightbox deals with pixels
+                const offsetX = (wrapperX / 100) * translateX * removeShift
+                const offsetY = (wrapperY / 100) * translateY * removeShift
                 zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY)
               }
             }
