@@ -1,5 +1,5 @@
-import { create } from 'zustand'
-import IImageGalleryState from '../interfaces/IImageGalleryState'
+import { create } from "zustand";
+import IImageGalleryState from "../interfaces/IImageGalleryState";
 
 const useImageGalleryStore = create<IImageGalleryState>((set) => ({
   id: undefined,
@@ -11,8 +11,7 @@ const useImageGalleryStore = create<IImageGalleryState>((set) => ({
   setId: (i) => set(() => ({ id: i })),
   setIsOpen: (i) => set(() => ({ isOpen: i })),
   setIsOpeningWithZoom: (i) => set(() => ({ isOpeningWithZoom: i })),
-  setZoom: (v, x, y) =>
-    set(() => ({ zoomValue: v, zoomOffsetX: x, zoomOffsetY: y })),
-}))
+  setZoom: (v, x, y) => set(() => ({ zoomValue: v, zoomOffsetX: x, zoomOffsetY: y })),
+}));
 
-export default useImageGalleryStore
+export default useImageGalleryStore;

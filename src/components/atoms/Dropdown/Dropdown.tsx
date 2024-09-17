@@ -1,75 +1,58 @@
-import { useState, useRef, useEffect } from 'react'
-import { clsx } from 'clsx'
-import assertIsNode from '../../../utils/assertIsNode'
-import styles from './Dropdown.module.scss'
-import arrow from '../../../assets/svg/arrow.svg'
+"use client";
 
-interface Option {
-  id: string
-  text: string
-  image: string
+import { useState, useRef, useEffect } from "react";
+import { clsx } from "clsx";
+import assertIsNode from "../../../utils/assertIsNode";
+import styles from "./Dropdown.module.scss";
+import IDropdownOption from "@/interfaces/IDropdownOption";
+
+interface Props<Option extends IDropdownOption> {
+  options: Option[];
+  onChange?: (optionId: Option) => void;
+  defaultOptionId: string;
 }
 
-interface Props {
-  options: Option[]
-  onChange?: (optionId: string) => void
-  defaultOptionId: string
-}
-
-export default function Dropdown({
+export default function Dropdown<Option extends IDropdownOption>({
   options,
   onChange,
   defaultOptionId,
-}: Props) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedOptionId, setSelectedOptionId] = useState(defaultOptionId)
-  const toggleContainer = useRef<HTMLDivElement>(null)
-  const selectedOption = options.find(
-    (option) => option.id === selectedOptionId,
-  )
+}: Props<Option>) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptionId, setSelectedOptionId] = useState(defaultOptionId);
+  const toggleContainer = useRef<HTMLDivElement>(null);
+  const selectedOption = options.find((option) => option.id === selectedOptionId);
 
   const handleClickOutside = (event: Event) => {
-    assertIsNode(event.target)
+    assertIsNode(event.target);
 
-    if (
-      toggleContainer.current &&
-      !toggleContainer.current.contains(event.target)
-    ) {
-      setIsOpen(false)
+    if (toggleContainer.current && !toggleContainer.current.contains(event.target)) {
+      setIsOpen(false);
     }
-  }
+  };
 
-  const handleOptionClick = (optionId: string) => {
-    setSelectedOptionId(optionId)
-    setIsOpen(false)
+  const handleOptionClick = (option: Option) => {
+    setSelectedOptionId(option.id);
+    setIsOpen(false);
     if (onChange) {
-      onChange(optionId)
+      onChange(option);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('click', handleClickOutside, true)
+    window.addEventListener("click", handleClickOutside, true);
     return () => {
-      window.removeEventListener('click', handleClickOutside, true)
-    }
-  })
+      window.removeEventListener("click", handleClickOutside, true);
+    };
+  });
 
   return (
     <div ref={toggleContainer} className={styles.dropdown}>
-      <button
-        type='button'
-        className={styles.button}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button type="button" className={styles.button} onClick={() => setIsOpen(!isOpen)}>
+        <img className={styles.image} src={selectedOption?.image} alt={selectedOption?.text} />
+        {selectedOption?.text}{" "}
         <img
-          className={styles.image}
-          src={selectedOption?.image}
-          alt={selectedOption?.text}
-        />
-        {selectedOption?.text}{' '}
-        <img
-          src={arrow}
-          alt='arrow'
+          src="/svg/arrow.svg"
+          alt="arrow"
           className={clsx(styles.arrow, isOpen && styles.arrowOpen)}
         />
       </button>
@@ -78,15 +61,11 @@ export default function Dropdown({
           {options.map((option) => (
             <li key={option.id} className={styles.option}>
               <button
-                type='button'
-                onClick={() => handleOptionClick(option.id)}
+                type="button"
+                onClick={() => handleOptionClick(option)}
                 className={styles.optionButton}
               >
-                <img
-                  src={option.image}
-                  alt={option.text}
-                  className={styles.optionImage}
-                />
+                <img src={option.image} alt={option.text} className={styles.optionImage} />
                 {option.text}
               </button>
             </li>
@@ -94,5 +73,5 @@ export default function Dropdown({
         </ul>
       )}
     </div>
-  )
+  );
 }

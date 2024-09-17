@@ -1,19 +1,26 @@
-import { CodegenConfig } from '@graphql-codegen/cli'
-import CONTENTFUL_GRAPHQL_API from './src/constants/graphql.ts'
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: CONTENTFUL_GRAPHQL_API,
-  documents: ['./src/**/*.gql'],
+  overwrite: true,
+  schema: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}?access_token=${process.env.CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN}`,
+  //documents: ["src/components/**/*.gql"],
+  /*generates: {
+    "src/components/types.generated.ts": { plugins: ["typescript"] },
+    "src/components/": {
+      preset: "near-operation-file",
+      presetConfig: {
+        extension: ".generated.ts",
+        baseTypesPath: "types.generated.ts",
+      },
+      plugins: ["typescript-operations", "typed-document-node"],
+    },
+  },*/
+  documents: ["src/components/**/*.gql"],
   generates: {
-    './__generated__/schema.tsx': {
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        'typescript-react-apollo',
-      ],
+    "src/__generated__/": {
+      preset: "client-preset",
     },
   },
-  ignoreNoDocuments: true,
-}
+};
 
-export default config
+export default config;

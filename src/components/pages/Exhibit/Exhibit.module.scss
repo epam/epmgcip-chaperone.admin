@@ -1,4 +1,4 @@
-@import '../../../variables.scss';
+@import "../../../variables.scss";
 
 .exhibit {
   padding: 40px 0;
@@ -72,5 +72,24 @@
 
   @media (min-width: $breakpointTablet) {
     padding: 0 $indentTabletPageBorder 40px $indentTabletPageBorder;
+  }
+}
+
+.error {
+  padding: 16px;
+  text-align: center;
+  font-size: $fontSizeXLarge;
+}
+
+.link {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: $colorLink;
+  cursor: pointer;
+  font-size: $fontSizeXLarge;
+
+  &:hover {
+    color: darken($colorLink, 10%);
   }
 }

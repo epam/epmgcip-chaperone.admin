@@ -1,18 +1,18 @@
-import { GetExhibitDocument } from '../../__generated__/schema'
+import { GetExhibitDocument } from "@/__generated__/graphql";
 
-const exhibitItem = {
+export const exhibitItem = {
   sys: {
-    id: '123',
+    id: "123",
   },
-  nameEn: 'Test Exhibit',
-  nameRu: 'Picture',
-  nameUz: 'Picture',
-  nameKa: 'Picture',
-  authorEn: 'Test Author',
-  authorRu: 'Author Name',
-  authorUz: 'Author Name',
-  authorKa: 'Author Name',
-  yearOfCreation: '1990',
+  nameEn: "Test Exhibit",
+  nameRu: "Picture",
+  nameUz: "Picture",
+  nameKa: "Picture",
+  authorEn: "Test Author",
+  authorRu: "Author Name",
+  authorUz: "Author Name",
+  authorKa: "Author Name",
+  yearOfCreation: "1990",
   descriptionEn: {
     json: {
       content: [],
@@ -56,89 +56,34 @@ const exhibitItem = {
   imagesCollection: {
     items: [
       {
-        url: './picture.png',
+        url: "./picture.png",
         sys: {
-          id: '1',
+          id: "1",
         },
       },
     ],
   },
   audioFileEn: {
-    url: 'https://example.com/audio.mp3',
+    url: "https://example.com/audio.mp3",
   },
   audioFileRu: {
-    url: '',
+    url: "",
   },
   audioFileUz: {
-    url: '',
+    url: "",
   },
   audioFileKa: {
-    url: '',
+    url: "",
   },
-}
+};
 
-export const slug = 'slug-string'
+export const slug = "slug-string";
 
-export const exhibitMock = [
-  {
-    request: {
-      query: GetExhibitDocument,
-      variables: {
-        slug,
-      },
-    },
-    result: {
-      data: {
-        exhibitCollection: {
-          items: [exhibitItem],
-        },
-      },
-    },
+export const exhibitMockAnotherLanguage = {
+  sys: {
+    id: "123",
   },
-]
-
-export const exhibitErrorMock = [
-  {
-    request: {
-      query: GetExhibitDocument,
-      variables: { slug },
-    },
-    error: new Error('Exhibit not found'),
-  },
-]
-
-export const exhibitMockAnotherLanguage = [
-  {
-    request: {
-      query: GetExhibitDocument,
-      variables: {
-        slug,
-      },
-    },
-    result: {
-      data: {
-        exhibitCollection: {
-          items: [{ ...exhibitItem, nameEn: '' }],
-        },
-      },
-    },
-  },
-]
-
-export const exhibitMockEmptySlug = [
-  {
-    request: {
-      query: GetExhibitDocument,
-      variables: {
-        slug: '',
-      },
-    },
-    result: {
-      data: {
-        exhibitCollection: {
-          items: [{ ...exhibitItem, nameEn: '' }],
-        },
-      },
-    },
-  },
-]
+  nameRu: "Test Exhibit",
+  nameUz: "Test Exhibit",
+  nameKa: "Test Exhibit",
+};

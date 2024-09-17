@@ -1,0 +1,17 @@
+{
+  "pageNotFound": "Sahifa topilmadi",
+  "exhibitNotFound": "Ekspozitsiya topilmadi",
+  "exhibitNotFoundForLanguage": "Tanlangan til uchun eksponat topilmadi, lekin siz uni ko'rishingiz mumkin",
+  "exhibitNotFoundRu": "rus",
+  "exhibitNotFoundEn": "ingliz",
+  "exhibitNotFoundUz": "o'zbek",
+  "exhibitNotFoundKa": "qoraqalpoq",
+  "exhibitNotFoundLanguage": "tilida",
+  "date": "Yil",
+  "description": "Tavsif",
+  "playAudioguide": "Audiogidni ijro etish",
+  "pause": "Pauza",
+  "forward": "Oldinga",
+  "rewind": "Orqaga",
+  "logo": "Logo"
+}
