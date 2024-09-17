@@ -80,6 +80,47 @@ function ImageGallery({ images }: Props) {
     </div>
   ));
 
+  const loadImage = (url: string) => {
+    const image = new Image();
+    image.src = url;
+    return new Promise<HTMLImageElement>((resolve) => {
+      image.onload = () => resolve(image);
+    });
+  };
+
+  const determineWrapperDimensions = (
+    image: { width: number; height: number },
+    carouselPadding: number,
+  ) => {
+    const { innerWidth, innerHeight } = window;
+    const aspectRatio = image.width / image.height;
+    let wrapperX = 0;
+    let wrapperY = 0;
+
+    if (image.height > window.innerHeight && image.width < window.innerWidth) {
+      wrapperY = Math.min(innerHeight - carouselPadding * 2, image.height);
+      wrapperX = wrapperY * aspectRatio;
+    } else {
+      wrapperX = Math.min(innerWidth - carouselPadding * 2, image.width);
+      wrapperY = wrapperX / aspectRatio;
+    }
+
+    return { wrapperX, wrapperY };
+  };
+
+  function calculateTranslationOffsets(
+    wrapperX: number,
+    wrapperY: number,
+    translateX: number,
+    translateY: number,
+    zoomValue: number,
+  ) {
+    const removeShift = 1 + 1 / zoomValue;
+    const offsetX = (wrapperX / 100) * (translateX - 50) * removeShift;
+    const offsetY = (wrapperY / 100) * (translateY - 50) * removeShift;
+    return { offsetX, offsetY };
+  }
+
   return (
     <>
       <Slider
@@ -112,30 +153,28 @@ function ImageGallery({ images }: Props) {
           padding: carouselPadding,
         }}
         on={{
-          entered: () => {
+          entered: async () => {
             if (isOpeningWithZoom) {
-              const currentImage = new Image();
-              currentImage.src = images.find((i) => i.id === galleryId)?.url || "";
-              currentImage.onload = () => {
-                // determining the container size for the translate
-                const wrapperX = window.innerWidth - carouselPadding * 2;
-                const wrapperY =
-                  window.innerHeight < currentImage.height
-                    ? window.innerHeight - carouselPadding * 2
-                    : currentImage.height;
+              const imageUrl = images.find((image) => image.id === galleryId)?.url || "";
+              if (!imageUrl) {
+                console.error("Image URL not found.");
+                return;
+              }
 
-                // removing shifting in the zoom plagin of the yet-another-react-lightbox
-                const removeShift = 1 + 1 / zoomValue;
+              const currentImage = await loadImage(imageUrl);
+              const { wrapperX, wrapperY } = determineWrapperDimensions(
+                currentImage,
+                carouselPadding,
+              );
+              const { offsetX, offsetY } = calculateTranslationOffsets(
+                wrapperX,
+                wrapperY,
+                zoomOffsetX,
+                zoomOffsetY,
+                zoomValue,
+              );
 
-                // zoomOffset has top left corner as an origin, but translate will be from center of the screen
-                const translateX = zoomOffsetX - 50;
-                const translateY = zoomOffsetY - 50;
-
-                // calculating the shift, considering that 'translateX/Y' is in percentages, but the yet-another-react-lightbox deals with pixels
-                const offsetX = (wrapperX / 100) * translateX * removeShift;
-                const offsetY = (wrapperY / 100) * translateY * removeShift;
-                zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY);
-              };
+              zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY);
             }
             setZoom(0, 0, 0);
             setIsOpeningWithZoom(false);
