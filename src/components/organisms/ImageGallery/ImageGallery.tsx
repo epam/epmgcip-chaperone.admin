@@ -90,7 +90,7 @@ function ImageGallery({ images }: Props) {
 
   const determineWrapperDimensions = (
     image: { width: number; height: number },
-    carouselPadding: number,
+    padding: number,
   ) => {
     const { innerWidth, innerHeight } = window
     const aspectRatio = image.width / image.height
@@ -98,10 +98,10 @@ function ImageGallery({ images }: Props) {
     let wrapperY = 0
 
     if (image.height > window.innerHeight && image.width < window.innerWidth) {
-      wrapperY = Math.min(innerHeight - carouselPadding * 2, image.height)
+      wrapperY = Math.min(innerHeight - padding * 2, image.height)
       wrapperX = wrapperY * aspectRatio
     } else {
-      wrapperX = Math.min(innerWidth - carouselPadding * 2, image.width)
+      wrapperX = Math.min(innerWidth - padding * 2, image.width)
       wrapperY = wrapperX / aspectRatio
     }
 
@@ -113,11 +113,13 @@ function ImageGallery({ images }: Props) {
     wrapperY: number,
     translateX: number,
     translateY: number,
-    zoomValue: number,
+    zoom: number,
   ) {
-    const removeShift = 1 + 1 / zoomValue
-    const offsetX = (wrapperX / 100) * (translateX - 50) * removeShift
-    const offsetY = (wrapperY / 100) * (translateY - 50) * removeShift
+    const yetAnotherReactLightboxShift = 1 - 1 / zoom
+    const offsetX =
+      ((wrapperX / 100) * (translateX - 50)) / yetAnotherReactLightboxShift
+    const offsetY =
+      ((wrapperY / 100) * (translateY - 50)) / yetAnotherReactLightboxShift
     return { offsetX, offsetY }
   }
 
