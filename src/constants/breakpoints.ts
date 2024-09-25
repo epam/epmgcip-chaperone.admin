@@ -1,2 +1,2 @@
-const BREAKPOINT_TABLE = 834
-export default BREAKPOINT_TABLE
+const BREAKPOINT_TABLE = 834;
+export default BREAKPOINT_TABLE;

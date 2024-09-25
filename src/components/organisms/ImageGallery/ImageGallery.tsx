@@ -1,25 +1,25 @@
-import { useRef } from 'react'
-import Slider from 'react-slick'
-import { useShallow } from 'zustand/react/shallow'
-import clsx from 'clsx'
-import Lightbox, { ControllerRef, ZoomRef } from 'yet-another-react-lightbox'
-import 'yet-another-react-lightbox/styles.css'
-import Zoom from 'yet-another-react-lightbox/plugins/zoom'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import styles from './ImageGallery.module.scss'
-import BREAKPOINT_TABLE from '../../../constants/breakpoints.ts'
-import useImageGalleryStore from '../../../stores/useImageGalleryStore.ts'
+import { useRef } from "react";
+import Slider from "react-slick";
+import { useShallow } from "zustand/react/shallow";
+import clsx from "clsx";
+import Lightbox, { ControllerRef, ZoomRef } from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styles from "./ImageGallery.module.scss";
+import BREAKPOINT_TABLE from "../../../constants/breakpoints";
+import useImageGalleryStore from "../../../stores/useImageGalleryStore";
 
 interface Props {
   images: {
-    url: string
-    id: string
-  }[]
+    url: string;
+    id: string;
+  }[];
 }
 
 function ImageGallery({ images }: Props) {
-  const zoomRef = useRef<ZoomRef>(null)
+  const zoomRef = useRef<ZoomRef>(null);
   const {
     id: galleryId,
     setId: setGalleryId,
@@ -44,21 +44,21 @@ function ImageGallery({ images }: Props) {
       zoomOffsetY: state.zoomOffsetY,
       setZoom: state.setZoom,
     })),
-  )
-  const lighboxImages = images.map((i) => ({ src: i.url }))
-  const ref = useRef<ControllerRef>(null)
-  const galleryIndex = images.findIndex((i) => i.id === galleryId)
-  const carouselPadding = 16
+  );
+  const lighboxImages = images.map((i) => ({ src: i.url }));
+  const ref = useRef<ControllerRef>(null);
+  const galleryIndex = images.findIndex((i) => i.id === galleryId);
+  const carouselPadding = 16;
 
   const handleOnImageClick = (index: string) => {
-    setIsOpeningWithZoom(true)
-    setGalleryId(index)
-    setIsOpen(true)
-  }
+    setIsOpeningWithZoom(true);
+    setGalleryId(index);
+    setIsOpen(true);
+  };
 
   const handleOnCloseLightbox = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   const imagesList = images.map((image, index) => (
     <div key={image.id}>
@@ -66,19 +66,19 @@ function ImageGallery({ images }: Props) {
         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
         <button
           className={styles.lightboxButton}
-          type='button'
+          type="button"
           onClick={() => handleOnImageClick(image.id)}
         >
           <img
             data-testid={`image-gallery-image-${index}`}
             className={styles.image}
             src={image.url}
-            alt=''
+            alt=""
           />
         </button>
       </div>
     </div>
-  ))
+  ));
 
   const loadImage = (url: string) => {
     const image = new Image()
@@ -128,7 +128,7 @@ function ImageGallery({ images }: Props) {
       <Slider
         swipeToSlide
         infinite={false}
-        centerPadding='28px'
+        centerPadding="28px"
         slidesToShow={3}
         responsive={[
           {
@@ -179,14 +179,14 @@ function ImageGallery({ images }: Props) {
 
               zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY)
             }
-            setZoom(0, 0, 0)
-            setIsOpeningWithZoom(false)
+            setZoom(0, 0, 0);
+            setIsOpeningWithZoom(false);
           },
         }}
-        className={clsx(isOpeningWithZoom && 'image-gallery-zooming')}
+        className={clsx(isOpeningWithZoom && "image-gallery-zooming")}
       />
     </>
-  )
+  );
 }
 
-export default ImageGallery
+export default ImageGallery;

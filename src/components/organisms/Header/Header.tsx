@@ -1,14 +1,14 @@
-import { useTranslation } from 'react-i18next'
-import styles from './Header.module.scss'
-import logo from '../../../assets/images/logo.png'
-import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher.tsx'
+import { useTranslations } from "next-intl";
+import styles from "./Header.module.scss";
+import LanguageSwitcher from "@/components/molecules/LanguageSwitcher/LanguageSwitcher";
 
 export default function Header() {
-  const { t } = useTranslation()
+  const t = useTranslations();
+
   return (
-    <div className={styles.header} data-testid='header-component'>
-      <img className={styles.logo} src={logo.toString()} alt={t('logo')} />
+    <div className={styles.header} data-testid="header-component">
+      <img className={styles.logo} src="/images/logo.png" alt={t("logo")} />
       <LanguageSwitcher />
     </div>
-  )
+  );
 }

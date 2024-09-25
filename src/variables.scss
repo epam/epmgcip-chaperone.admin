@@ -8,7 +8,7 @@ $colorWhite: #ffffff;
 
 $breakpointTablet: 834px;
 
-$fontFamilyMain: 'Montserrat', sans-serif;
+$fontFamilyMain: var(--font-montserrat), sans-serif;
 
 $fontSizeXXLarge: 32px;
 $fontSizeXLarge: 20px;
@@ -26,6 +26,7 @@ $mainBackgroundColor: $colorWhite;
 $secondaryBackgroundColor: $colorLightGray;
 $colorAudioMain: $colorOrange;
 $colorAudioSecondary: $colorPink;
+$colorLink: $colorOrange;
 
 $mainFontSize: $fontSizeDefault;
 $titleFontSize: $fontSizeXXLarge;

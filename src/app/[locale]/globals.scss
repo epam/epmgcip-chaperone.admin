@@ -1,0 +1,19 @@
+@import "./../../variables.scss";
+
+:root {
+  font-family: $fontFamilyMain;
+  color: $mainFontColor;
+}
+
+.yarl__slide_image {
+  transition: opacity 0.1s;
+}
+
+.image-gallery-zooming .yarl__slide_image {
+  opacity: 0;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+}

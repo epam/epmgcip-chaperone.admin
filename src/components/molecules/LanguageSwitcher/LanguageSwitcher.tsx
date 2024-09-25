@@ -1,25 +1,34 @@
-import { useTranslation } from 'react-i18next'
-import Dropdown from '../../atoms/Dropdown/Dropdown.tsx'
+"use client";
+
+import { useLocale } from "next-intl";
+import Dropdown from "../../atoms/Dropdown/Dropdown";
+import { LocaleCode, locales } from "@/locales";
+import { usePathname, useRouter } from "@/navigation";
+import { useTransition } from "react";
 
 export default function LanguageSwitcher() {
-  const { i18n } = useTranslation()
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-    localStorage.setItem('i18nextLng', lng)
-  }
+  const changeLanguage = (lng: LocaleCode) => {
+    startTransition(() => {
+      router.replace(pathname, { locale: lng });
+    });
+  };
 
-  const options = Object.entries(i18n.store.data).map(([lang, data]) => ({
+  const options = locales.map((lang) => ({
     id: lang,
     text: lang,
-    image: data.flag as string,
-  }))
+    image: `/images/${lang}.png`,
+  }));
 
   return (
     <Dropdown
       options={options}
-      defaultOptionId={i18n.language}
-      onChange={(optionId) => changeLanguage(optionId)}
+      defaultOptionId={locale}
+      onChange={(option) => changeLanguage(option.id)}
     />
-  )
+  );
 }
