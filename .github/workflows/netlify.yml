@@ -21,22 +21,6 @@ jobs:
         run: npm ci
       - name: Run Jest tests
         run: npm run test
-      - name: Set environment variables for Staging and Dev
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'pull_request'
-        run: |
-          echo "CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_STAGING_SPACE_ID }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=${{ secrets.CONTENTFUL_STAGING_CONTENT_DELIVERY_ACCESS_TOKEN }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_CONTENT_PREVIEW_ACCESS_TOKEN=${{ secrets.CONTENTFUL_STAGING_CONTENT_PREVIEW_ACCESS_TOKEN }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_ENVIRONMENT=${{ secrets.CONTENTFUL_STAGING_ENVIRONMENT }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_GTAG_ID=${{ secrets.CONTENTFUL_STAGING_GTAG_ID }}" >> $GITHUB_ENV
-      - name: Set environment variables for Release
-        if: github.event_name == 'release' && github.event.action == 'released'
-        run: |
-          echo "CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_PRODUCTION_SPACE_ID }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=${{ secrets.CONTENTFUL_PRODUCTION_CONTENT_DELIVERY_ACCESS_TOKEN }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_CONTENT_PREVIEW_ACCESS_TOKEN=${{ secrets.CONTENTFUL_PRODUCTION_CONTENT_PREVIEW_ACCESS_TOKEN }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_ENVIRONMENT=${{ secrets.CONTENTFUL_PRODUCTION_ENVIRONMENT }}" >> $GITHUB_ENV
-          echo "CONTENTFUL_GTAG_ID=${{ secrets.CONTENTFUL_PRODUCTION_GTAG_ID }}" >> $GITHUB_ENV
       - name: Deploy Preview to Netlify
         if: github.event_name == 'pull_request'
         run: |
