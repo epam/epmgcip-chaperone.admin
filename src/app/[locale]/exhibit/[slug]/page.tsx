@@ -9,6 +9,6 @@ interface Props {
 
 export default async function ExhibitPage({ params: { slug } }: Props) {
   const exhibit = await getExhibit(slug);
-
+  console.log("test");
   return <>{exhibit && <Exhibit exhibit={exhibit} slug={slug} />}</>;
 }
