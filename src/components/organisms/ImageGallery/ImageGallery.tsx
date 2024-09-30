@@ -81,32 +81,32 @@ function ImageGallery({ images }: Props) {
   ));
 
   const loadImage = (url: string) => {
-    const image = new Image()
-    image.src = url
+    const image = new Image();
+    image.src = url;
     return new Promise<HTMLImageElement>((resolve) => {
-      image.onload = () => resolve(image)
-    })
-  }
+      image.onload = () => resolve(image);
+    });
+  };
 
   const determineWrapperDimensions = (
     image: { width: number; height: number },
     padding: number,
   ) => {
-    const { innerWidth, innerHeight } = window
-    const aspectRatio = image.width / image.height
-    let wrapperX = 0
-    let wrapperY = 0
+    const { innerWidth, innerHeight } = window;
+    const aspectRatio = image.width / image.height;
+    let wrapperX = 0;
+    let wrapperY = 0;
 
     if (image.height > window.innerHeight && image.width < window.innerWidth) {
-      wrapperY = Math.min(innerHeight - padding * 2, image.height)
-      wrapperX = wrapperY * aspectRatio
+      wrapperY = Math.min(innerHeight - padding * 2, image.height);
+      wrapperX = wrapperY * aspectRatio;
     } else {
-      wrapperX = Math.min(innerWidth - padding * 2, image.width)
-      wrapperY = wrapperX / aspectRatio
+      wrapperX = Math.min(innerWidth - padding * 2, image.width);
+      wrapperY = wrapperX / aspectRatio;
     }
 
-    return { wrapperX, wrapperY }
-  }
+    return { wrapperX, wrapperY };
+  };
 
   function calculateTranslationOffsets(
     wrapperX: number,
@@ -115,12 +115,10 @@ function ImageGallery({ images }: Props) {
     translateY: number,
     zoom: number,
   ) {
-    const yetAnotherReactLightboxShift = 1 - 1 / zoom
-    const offsetX =
-      ((wrapperX / 100) * (translateX - 50)) / yetAnotherReactLightboxShift
-    const offsetY =
-      ((wrapperY / 100) * (translateY - 50)) / yetAnotherReactLightboxShift
-    return { offsetX, offsetY }
+    const yetAnotherReactLightboxShift = 1 - 1 / zoom;
+    const offsetX = ((wrapperX / 100) * (translateX - 50)) / yetAnotherReactLightboxShift;
+    const offsetY = ((wrapperY / 100) * (translateY - 50)) / yetAnotherReactLightboxShift;
+    return { offsetX, offsetY };
   }
 
   return (
@@ -157,27 +155,26 @@ function ImageGallery({ images }: Props) {
         on={{
           entered: async () => {
             if (isOpeningWithZoom) {
-              const imageUrl =
-                images.find((image) => image.id === galleryId)?.url || ''
+              const imageUrl = images.find((image) => image.id === galleryId)?.url || "";
               if (!imageUrl) {
-                console.error('Image URL not found.')
-                return
+                console.error("Image URL not found.");
+                return;
               }
 
-              const currentImage = await loadImage(imageUrl)
+              const currentImage = await loadImage(imageUrl);
               const { wrapperX, wrapperY } = determineWrapperDimensions(
                 currentImage,
                 carouselPadding,
-              )
+              );
               const { offsetX, offsetY } = calculateTranslationOffsets(
                 wrapperX,
                 wrapperY,
                 zoomOffsetX,
                 zoomOffsetY,
                 zoomValue,
-              )
+              );
 
-              zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY)
+              zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY);
             }
             setZoom(0, 0, 0);
             setIsOpeningWithZoom(false);
