@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { clsx } from "clsx";
 import assertIsNode from "../../../utils/assertIsNode";
 import styles from "./Dropdown.module.scss";
 import IDropdownOption from "@/interfaces/IDropdownOption";
+import ArrowIcon from "../../../assets/svg/arrow.svg";
 
 interface Props<Option extends IDropdownOption> {
   options: Option[];
@@ -50,11 +52,7 @@ export default function Dropdown<Option extends IDropdownOption>({
       <button type="button" className={styles.button} onClick={() => setIsOpen(!isOpen)}>
         <img className={styles.image} src={selectedOption?.image} alt={selectedOption?.text} />
         {selectedOption?.text}{" "}
-        <img
-          src="/svg/arrow.svg"
-          alt="arrow"
-          className={clsx(styles.arrow, isOpen && styles.arrowOpen)}
-        />
+        <ArrowIcon className={clsx(styles.arrow, isOpen && styles.arrowOpen)} />
       </button>
       {isOpen && (
         <ul className={styles.options}>
@@ -65,7 +63,15 @@ export default function Dropdown<Option extends IDropdownOption>({
                 onClick={() => handleOptionClick(option)}
                 className={styles.optionButton}
               >
-                <img src={option.image} alt={option.text} className={styles.optionImage} />
+                {option.image && (
+                  <Image
+                    className={styles.optionImage}
+                    src={option.image}
+                    height={18}
+                    width={18}
+                    alt={option.text}
+                  />
+                )}
                 {option.text}
               </button>
             </li>

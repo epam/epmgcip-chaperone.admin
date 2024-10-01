@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import Slider from "react-slick";
+import Image from "next/image";
 import { useShallow } from "zustand/react/shallow";
 import clsx from "clsx";
 import Lightbox, { ControllerRef, ZoomRef } from "yet-another-react-lightbox";
@@ -69,11 +70,12 @@ function ImageGallery({ images }: Props) {
           type="button"
           onClick={() => handleOnImageClick(image.id)}
         >
-          <img
+          <Image
             data-testid={`image-gallery-image-${index}`}
             className={styles.image}
             src={image.url}
-            alt=""
+            alt="picture"
+            fill
           />
         </button>
       </div>
@@ -81,7 +83,7 @@ function ImageGallery({ images }: Props) {
   ));
 
   const loadImage = (url: string) => {
-    const image = new Image();
+    const image = new window.Image();
     image.src = url;
     return new Promise<HTMLImageElement>((resolve) => {
       image.onload = () => resolve(image);

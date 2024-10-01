@@ -4,9 +4,9 @@ import Dropdown from "./Dropdown";
 
 describe("Dropdown", () => {
   const options = [
-    { id: "1", text: "Option 1", image: "image1.png" },
-    { id: "2", text: "Option 2", image: "image2.png" },
-    { id: "3", text: "Option 3", image: "image3.png" },
+    { id: "1", text: "Option 1", image: "/image1.png" },
+    { id: "2", text: "Option 2", image: "/image2.png" },
+    { id: "3", text: "Option 3", image: "/image3.png" },
   ];
 
   it("displays the default option", () => {
@@ -34,7 +34,7 @@ describe("Dropdown", () => {
     fireEvent.click(option2);
     expect(onChange).toHaveBeenCalledWith({
       id: "2",
-      image: "image2.png",
+      image: "/image2.png",
       text: "Option 2",
     });
   });

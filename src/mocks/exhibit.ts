@@ -56,7 +56,7 @@ export const exhibitItem = {
   imagesCollection: {
     items: [
       {
-        url: "./picture.png",
+        url: "/picture.png",
         sys: {
           id: "1",
         },
