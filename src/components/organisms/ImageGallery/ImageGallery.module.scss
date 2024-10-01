@@ -1,6 +1,4 @@
 .image {
-  width: 100%;
-  height: 380px;
   object-fit: cover;
   object-position: center;
 }
@@ -13,7 +11,9 @@
 }
 
 .lightboxButton {
+  position: relative;
   width: 100%;
+  height: 380px;
   padding: 0;
   border: none;
   background-color: transparent;

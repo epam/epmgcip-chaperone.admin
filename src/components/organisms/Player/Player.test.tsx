@@ -18,14 +18,14 @@ describe("Player", () => {
   });
 
   it("renders custom buttons", async () => {
-    const { getByAltText } = render(
+    const { getByLabelText, getByText } = render(
       <NextIntlClientProvider locale="en" messages={messages}>
         <Player url={url} />
       </NextIntlClientProvider>,
     );
 
-    expect(getByAltText("Play audioguide")).toBeInTheDocument();
-    expect(getByAltText("Forward")).toBeInTheDocument();
-    expect(getByAltText("Rewind")).toBeInTheDocument();
+    expect(getByText("Play audioguide")).toBeInTheDocument();
+    expect(getByLabelText("Forward")).toBeInTheDocument();
+    expect(getByLabelText("Rewind")).toBeInTheDocument();
   });
 });
