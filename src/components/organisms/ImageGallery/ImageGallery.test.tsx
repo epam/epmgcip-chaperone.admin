@@ -2,8 +2,6 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ImageGallery from "./ImageGallery";
 
-type ZoomRef = {};
-
 jest.mock("yet-another-react-lightbox", () => jest.fn());
 jest.mock("yet-another-react-lightbox/plugins/zoom", () => ({}));
 
@@ -15,6 +13,6 @@ describe("ImageGallery", () => {
   ];
 
   it("renders gallery", () => {
-    render(<ImageGallery images={images} />);
+    render(<ImageGallery images={images} isZoomEnabled={true} />);
   });
 });
