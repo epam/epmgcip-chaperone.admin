@@ -11,15 +11,15 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./ImageGallery.module.scss";
 import BREAKPOINT_TABLE from "../../../constants/breakpoints";
 import useImageGalleryStore from "../../../stores/useImageGalleryStore";
+import { IImageGalleryImage } from "@/interfaces/IImageGalleryImage";
 
 interface Props {
-  images: {
-    url: string;
-    id: string;
-  }[];
+  images: IImageGalleryImage[];
+  isZoomEnabled: boolean;
+  onClickImage?: (id: string) => void;
 }
 
-function ImageGallery({ images }: Props) {
+function ImageGallery({ images, isZoomEnabled, onClickImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
   const {
     id: galleryId,
@@ -46,15 +46,19 @@ function ImageGallery({ images }: Props) {
       setZoom: state.setZoom,
     })),
   );
-  const lighboxImages = images.map((i) => ({ src: i.url }));
+  const lightboxImages = images.map((i) => ({ src: i.url }));
   const ref = useRef<ControllerRef>(null);
   const galleryIndex = images.findIndex((i) => i.id === galleryId);
   const carouselPadding = 16;
 
   const handleOnImageClick = (index: string) => {
-    setIsOpeningWithZoom(true);
-    setGalleryId(index);
-    setIsOpen(true);
+    if (isZoomEnabled) {
+      setIsOpeningWithZoom(true);
+      setGalleryId(index);
+      setIsOpen(true);
+    }
+
+    onClickImage?.(index);
   };
 
   const handleOnCloseLightbox = () => {
@@ -146,7 +150,7 @@ function ImageGallery({ images }: Props) {
       <Lightbox
         open={isOpen}
         close={handleOnCloseLightbox}
-        slides={lighboxImages}
+        slides={lightboxImages}
         plugins={[Zoom]}
         zoom={{ ref: zoomRef, maxZoomPixelRatio: 20 }}
         index={galleryIndex}

@@ -1,5 +1,13 @@
-import styles from "./page.module.scss";
+import HomePage from "../../components/pages/Home/Home";
+import { getTopLatestExhibits } from "@/lib/exhibit";
+import { ITopLatestExhibit } from "@/interfaces/ITopLatestExhibit";
 
-export default function Home() {
-  return <div>Coming soon</div>;
+const topLatestExhibitsLimit = 10;
+
+export default async function Home() {
+  const topLatestExhibits = (await getTopLatestExhibits(
+    topLatestExhibitsLimit,
+  )) as ITopLatestExhibit[];
+
+  return <HomePage exhibits={topLatestExhibits} />;
 }

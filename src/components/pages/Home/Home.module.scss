@@ -1,0 +1,18 @@
+@import "../../../variables.scss";
+
+.title {
+  margin: 50px 0 20px 0;
+  padding: 0 $indentMobilePageBorder;
+  text-align: center;
+  font-weight: bold;
+  font-size: $titleFontSize;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 0 $indentTabletPageBorder;
+  }
+}
+
+.gallery {
+  padding-bottom: 40px;
+  overflow: hidden;
+}
