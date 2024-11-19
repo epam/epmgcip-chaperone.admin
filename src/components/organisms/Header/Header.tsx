@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "./Header.module.scss";
 import LanguageSwitcher from "@/components/molecules/LanguageSwitcher/LanguageSwitcher";
 import logo from "@/assets/image/logo.png";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 
 export default function Header() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function Header() {
   const t = useTranslations();
 
   const onClickLogo = (): void => {
-    router.push(`/${locale}`);
+    router.push("/");
   };
 
   return (

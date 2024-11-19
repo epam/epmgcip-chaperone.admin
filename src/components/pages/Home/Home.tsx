@@ -2,11 +2,12 @@
 
 import React, { useMemo } from "react";
 
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { ITopLatestExhibit } from "@/interfaces/ITopLatestExhibit";
 import { IImageGalleryImage } from "@/interfaces/IImageGalleryImage";
+
+import { useRouter } from "@/navigation";
 
 import ImageGallery from "@/components/organisms/ImageGallery/ImageGallery";
 
