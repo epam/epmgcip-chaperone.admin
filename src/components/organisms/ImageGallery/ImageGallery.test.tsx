@@ -13,6 +13,6 @@ describe("ImageGallery", () => {
   ];
 
   it("renders gallery", () => {
-    render(<ImageGallery images={images} isZoomEnabled={true} />);
+    render(<ImageGallery images={images} isZoomEnabled={true} displayArrows={false} />);
   });
 });
