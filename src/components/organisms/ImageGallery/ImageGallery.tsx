@@ -12,14 +12,16 @@ import styles from "./ImageGallery.module.scss";
 import BREAKPOINT_TABLE from "../../../constants/breakpoints";
 import useImageGalleryStore from "../../../stores/useImageGalleryStore";
 import { IImageGalleryImage } from "@/interfaces/IImageGalleryImage";
+import ImageGalleryArrow, { ArrowDirection } from "./ImageGalleryArrow";
 
 interface Props {
+  displayArrows: boolean;
   images: IImageGalleryImage[];
   isZoomEnabled: boolean;
   onClickImage?: (id: string) => void;
 }
 
-function ImageGallery({ images, isZoomEnabled, onClickImage }: Props) {
+function ImageGallery({ images, isZoomEnabled, displayArrows, onClickImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
   const {
     id: galleryId,
@@ -134,6 +136,9 @@ function ImageGallery({ images, isZoomEnabled, onClickImage }: Props) {
         infinite={false}
         centerPadding="28px"
         slidesToShow={3}
+        arrows={displayArrows}
+        prevArrow={<ImageGalleryArrow direction={ArrowDirection.Previous} />}
+        nextArrow={<ImageGalleryArrow direction={ArrowDirection.Next} />}
         responsive={[
           {
             breakpoint: BREAKPOINT_TABLE,

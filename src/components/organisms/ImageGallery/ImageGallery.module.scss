@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 .image {
   object-fit: cover;
   object-position: center;
@@ -22,4 +24,25 @@
 
 .lightboxButton:focus {
   outline: none;
+}
+
+.slickCustomArrow {
+  display: block;
+  z-index: 1;
+  width: auto;
+  height: auto;
+
+  &:before {
+    color: $colorDarkGray;
+    opacity: 0.8 !important;
+    font-size: 30px;
+  }
+}
+
+.slickCustomArrowPrevious {
+  left: 15px;
+}
+
+.slickCustomArrowNext {
+  right: 15px;
 }

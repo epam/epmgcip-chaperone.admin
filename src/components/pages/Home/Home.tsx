@@ -52,7 +52,12 @@ export default function Home(props: Props): React.ReactElement {
 
       {images.length > 0 && (
         <div className={styles.gallery}>
-          <ImageGallery images={images} isZoomEnabled={false} onClickImage={onClickImage} />
+          <ImageGallery
+            images={images}
+            isZoomEnabled={false}
+            displayArrows={true}
+            onClickImage={onClickImage}
+          />
         </div>
       )}
     </div>
