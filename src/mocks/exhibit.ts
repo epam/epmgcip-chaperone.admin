@@ -1,4 +1,4 @@
-import { GetExhibitDocument } from "@/__generated__/graphql";
+import { ITopLatestExhibit } from "@/interfaces/ITopLatestExhibit";
 
 export const exhibitItem = {
   sys: {
@@ -87,3 +87,26 @@ export const exhibitMockAnotherLanguage = {
   nameUz: "Test Exhibit",
   nameKa: "Test Exhibit",
 };
+
+export const topLatestExhibits: ITopLatestExhibit[] = [
+  {
+    sys: {
+      id: "12345",
+    },
+    slug: "test-exhibit",
+    nameRu: "Test Exhibit",
+    nameUz: "Test Exhibit",
+    nameKa: "Test Exhibit",
+    nameEn: "Test Exhibit",
+    imagesCollection: {
+      items: [
+        {
+          url: "http://example.com",
+          sys: {
+            id: "1",
+          },
+        },
+      ],
+    },
+  },
+];

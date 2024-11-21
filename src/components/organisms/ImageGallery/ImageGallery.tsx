@@ -136,6 +136,7 @@ function ImageGallery({ images, isZoomEnabled, displayArrows, onClickImage }: Pr
         infinite={false}
         centerPadding="28px"
         slidesToShow={3}
+        className="image-gallery"
         arrows={displayArrows}
         prevArrow={<ImageGalleryArrow direction={ArrowDirection.Previous} />}
         nextArrow={<ImageGalleryArrow direction={ArrowDirection.Next} />}

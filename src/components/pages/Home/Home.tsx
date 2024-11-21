@@ -23,14 +23,16 @@ export default function Home(props: Props): React.ReactElement {
 
   const images: IImageGalleryImage[] = useMemo(
     () =>
-      props.exhibits.map((exhibit) => {
-        const firstImageItem = exhibit.imagesCollection.items[0];
+      props.exhibits
+        .filter((exhibit) => !!exhibit.imagesCollection.items.length)
+        .map((exhibit) => {
+          const firstImageItem = exhibit.imagesCollection.items[0];
 
-        return {
-          url: firstImageItem.url,
-          id: firstImageItem.sys.id,
-        };
-      }),
+          return {
+            url: firstImageItem.url,
+            id: firstImageItem.sys.id,
+          };
+        }),
     [props.exhibits],
   );
 

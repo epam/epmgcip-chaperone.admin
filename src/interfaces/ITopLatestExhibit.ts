@@ -8,13 +8,11 @@ export interface ITopLatestExhibit {
   nameUz?: string | null;
   nameKa?: string | null;
   imagesCollection: {
-    items: [
-      {
-        url: string;
-        sys: {
-          id: string;
-        };
-      },
-    ];
+    items: {
+      url: string;
+      sys: {
+        id: string;
+      };
+    }[];
   };
 }
