@@ -14,6 +14,7 @@ jest.mock("@/navigation", () => ({
   useRouter: jest.fn().mockReturnValue({
     replace: jest.fn(),
   }),
+  Link: jest.fn().mockReturnValue(<img src={"/test"} alt={"test"} />),
 }));
 
 jest.mock("yet-another-react-lightbox", () => jest.fn());

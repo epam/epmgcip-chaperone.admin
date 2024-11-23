@@ -9,6 +9,7 @@ jest.mock("@/navigation", () => ({
     replace: jest.fn(),
   }),
   usePathname: jest.fn().mockReturnValue("/test"),
+  Link: jest.fn().mockReturnValue(<img src={"/test"} alt={"test"} />),
 }));
 
 describe("Header", () => {

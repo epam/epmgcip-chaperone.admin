@@ -5,6 +5,13 @@ import ImageGallery from "./ImageGallery";
 jest.mock("yet-another-react-lightbox", () => jest.fn());
 jest.mock("yet-another-react-lightbox/plugins/zoom", () => ({}));
 
+jest.mock("@/navigation", () => ({
+  useRouter: jest.fn().mockReturnValue({
+    replace: jest.fn(),
+  }),
+  Link: jest.fn().mockReturnValue(<img src={"/test"} alt={"test"} />),
+}));
+
 describe("ImageGallery", () => {
   const images = [
     { url: "https://example.com/image1.jpg", id: "1" },
@@ -13,6 +20,6 @@ describe("ImageGallery", () => {
   ];
 
   it("renders gallery", () => {
-    render(<ImageGallery images={images} isZoomEnabled={true} displayArrows={false} />);
+    render(<ImageGallery images={images} isLinkImage={false} displayArrows={false} />);
   });
 });
