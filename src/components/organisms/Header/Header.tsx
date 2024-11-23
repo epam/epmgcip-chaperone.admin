@@ -1,24 +1,21 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import styles from "./Header.module.scss";
 import LanguageSwitcher from "@/components/molecules/LanguageSwitcher/LanguageSwitcher";
 import logo from "@/assets/image/logo.png";
-import { useRouter } from "@/navigation";
-import { BASE_URL } from "@/constants/routes";
+import { Link } from "@/navigation";
 
 export default function Header() {
-  const router = useRouter();
   const t = useTranslations();
-
-  const onClickLogo = (): void => {
-    router.push(BASE_URL);
-  };
+  const locale = useLocale();
 
   return (
     <div className={styles.header} data-testid="header-component">
-      <Image src={logo} width={68} alt={t("logo")} className={styles.logo} onClick={onClickLogo} />
+      <Link href={locale}>
+        <Image src={logo} width={68} alt={t("logo")} className={styles.logo} />
+      </Link>
 
       <LanguageSwitcher />
     </div>
