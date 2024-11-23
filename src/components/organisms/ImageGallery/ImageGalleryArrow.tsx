@@ -1,6 +1,6 @@
 import React from "react";
 
-import classnames from "classnames";
+import clsx from "clsx";
 import { CustomArrowProps } from "react-slick";
 
 import styles from "./ImageGallery.module.scss";
@@ -17,7 +17,7 @@ interface Props extends CustomArrowProps {
 function ImageGalleryArrow(props: Props): React.ReactElement {
   return (
     <div
-      className={classnames(
+      className={clsx(
         props.className,
         styles.slickCustomArrow,
         props.direction == ArrowDirection.Next
