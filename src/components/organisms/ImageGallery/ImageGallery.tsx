@@ -13,15 +13,15 @@ import BREAKPOINT_TABLE from "../../../constants/breakpoints";
 import useImageGalleryStore from "../../../stores/useImageGalleryStore";
 import { IImageGalleryImage } from "@/interfaces/IImageGalleryImage";
 import ImageGalleryArrow, { ArrowDirection } from "./ImageGalleryArrow";
+import Link from "next/link";
 
 interface Props {
   displayArrows: boolean;
   images: IImageGalleryImage[];
-  isZoomEnabled: boolean;
-  onClickImage?: (id: string) => void;
+  isLinkImage: boolean;
 }
 
-function ImageGallery({ images, isZoomEnabled, displayArrows, onClickImage }: Props) {
+function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
   const {
     id: galleryId,
@@ -53,40 +53,47 @@ function ImageGallery({ images, isZoomEnabled, displayArrows, onClickImage }: Pr
   const galleryIndex = images.findIndex((i) => i.id === galleryId);
   const carouselPadding = 16;
 
-  const handleOnImageClick = (index: string) => {
-    if (isZoomEnabled) {
-      setIsOpeningWithZoom(true);
-      setGalleryId(index);
-      setIsOpen(true);
-    }
-
-    onClickImage?.(index);
+  const handleOnImageClick = (index: string) => (): void => {
+    setIsOpeningWithZoom(true);
+    setGalleryId(index);
+    setIsOpen(true);
   };
 
   const handleOnCloseLightbox = () => {
     setIsOpen(false);
   };
 
-  const imagesList = images.map((image, index) => (
-    <div key={image.id}>
-      <div className={styles.imageWrapper}>
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button
-          className={styles.lightboxButton}
-          type="button"
-          onClick={() => handleOnImageClick(image.id)}
-        >
-          <Image
-            data-testid={`image-gallery-image-${index}`}
-            className={styles.image}
-            src={image.url}
-            alt="picture"
-            fill
-          />
-        </button>
+  const imagesList = images.map((image, index) => {
+    const galleryImage = (
+      <Image
+        data-testid={`image-gallery-image-${index}`}
+        className={styles.image}
+        src={image.url}
+        alt="picture"
+        fill
+      />
+    );
+
+    return (
+      <div key={image.id}>
+        <div className={styles.imageWrapper}>
+          {isLinkImage ? (
+            <Link className={styles.lightboxImage} href={image.clickUrl!}>
+              {galleryImage}
+            </Link>
+          ) : (
+            <button
+              className={styles.lightboxButton}
+              type="button"
+              onClick={handleOnImageClick(image.id)}
+            >
+              {galleryImage}
+            </button>
+          )}
+        </div>
       </div>
-    </div>
-  ));
+    );
+  });
 
   const loadImage = (url: string) => {
     const image = new window.Image();

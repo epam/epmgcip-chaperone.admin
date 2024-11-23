@@ -22,6 +22,11 @@
   cursor: pointer;
 }
 
+.lightboxImage {
+  @extend .lightboxButton;
+  display: block;
+}
+
 .lightboxButton:focus {
   outline: none;
 }

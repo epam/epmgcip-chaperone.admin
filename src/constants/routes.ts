@@ -1,3 +1,3 @@
-export const baseUrl = "/";
+export const BASE_URL = "/";
 
-export const exhibitUrl = `/exhibit`;
+export const EXHIBIT_URL = `/exhibit`;

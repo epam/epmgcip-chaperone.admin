@@ -2,25 +2,23 @@
 
 import React, { useMemo } from "react";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { ITopLatestExhibit } from "@/interfaces/ITopLatestExhibit";
 import { IImageGalleryImage } from "@/interfaces/IImageGalleryImage";
 
-import { useRouter } from "@/navigation";
-
 import ImageGallery from "@/components/organisms/ImageGallery/ImageGallery";
 
 import styles from "./Home.module.scss";
-import { exhibitUrl } from "@/constants/routes";
+import { EXHIBIT_URL } from "@/constants/routes";
 
 interface Props {
   exhibits: ITopLatestExhibit[];
 }
 
 export default function Home(props: Props): React.ReactElement {
-  const router = useRouter();
   const t = useTranslations();
+  const locale = useLocale();
 
   const images: IImageGalleryImage[] = useMemo(
     () =>
@@ -32,22 +30,11 @@ export default function Home(props: Props): React.ReactElement {
           return {
             url: firstImageItem.url,
             id: firstImageItem.sys.id,
+            clickUrl: `${locale}${EXHIBIT_URL}/${exhibit.slug}`,
           };
         }),
-    [props.exhibits],
+    [props.exhibits, locale],
   );
-
-  const onClickImage = (id: string): void => {
-    const exhibit = props.exhibits.find(
-      (topLatestExhibit) => topLatestExhibit.imagesCollection.items[0].sys.id === id,
-    );
-
-    if (!exhibit) {
-      return;
-    }
-
-    router.push(`${exhibitUrl}/${exhibit.slug}`);
-  };
 
   return (
     <div>
@@ -55,12 +42,7 @@ export default function Home(props: Props): React.ReactElement {
 
       {images.length > 0 && (
         <div className={styles.gallery}>
-          <ImageGallery
-            images={images}
-            isZoomEnabled={false}
-            displayArrows={true}
-            onClickImage={onClickImage}
-          />
+          <ImageGallery images={images} isLinkImage={true} displayArrows={true} />
         </div>
       )}
     </div>

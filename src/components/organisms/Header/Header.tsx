@@ -6,14 +6,14 @@ import styles from "./Header.module.scss";
 import LanguageSwitcher from "@/components/molecules/LanguageSwitcher/LanguageSwitcher";
 import logo from "@/assets/image/logo.png";
 import { useRouter } from "@/navigation";
-import { baseUrl } from "@/constants/routes";
+import { BASE_URL } from "@/constants/routes";
 
 export default function Header() {
   const router = useRouter();
   const t = useTranslations();
 
   const onClickLogo = (): void => {
-    router.push(baseUrl);
+    router.push(BASE_URL);
   };
 
   return (
