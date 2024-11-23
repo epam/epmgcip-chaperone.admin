@@ -12,6 +12,7 @@ import { useRouter } from "@/navigation";
 import ImageGallery from "@/components/organisms/ImageGallery/ImageGallery";
 
 import styles from "./Home.module.scss";
+import { exhibitUrl } from "@/constants/routes";
 
 interface Props {
   exhibits: ITopLatestExhibit[];
@@ -45,7 +46,7 @@ export default function Home(props: Props): React.ReactElement {
       return;
     }
 
-    router.push(`exhibit/${exhibit.slug}`);
+    router.push(`${exhibitUrl}/${exhibit.slug}`);
   };
 
   return (
