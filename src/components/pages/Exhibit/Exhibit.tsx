@@ -1,17 +1,20 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { useShallow } from "zustand/react/shallow";
-import styles from "./Exhibit.module.scss";
-import ImageGallery from "../../organisms/ImageGallery/ImageGallery";
-import Player from "../../organisms/Player/Player";
-import triggerGtagVisit from "../../../gtag/visit";
-import useImageGalleryStore from "../../../stores/useImageGalleryStore";
-import { LocaleCodeCamelcase, localesCamelcase } from "@/locales";
-import IExhibit from "@/interfaces/IExhibit";
-import { useLocale, useTranslations } from "next-intl";
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+import { useEffect, useState } from 'react';
+
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { useLocale, useTranslations } from 'next-intl';
+import { useShallow } from 'zustand/react/shallow';
+
+import IExhibit from '@/interfaces/IExhibit';
+import { LocaleCodeCamelcase, localesCamelcase } from '@/locales';
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
+
+import styles from './Exhibit.module.scss';
+import triggerGtagVisit from '../../../gtag/visit';
+import useImageGalleryStore from '../../../stores/useImageGalleryStore';
+import ImageGallery from '../../organisms/ImageGallery/ImageGallery';
+import Player from '../../organisms/Player/Player';
 
 interface Props {
   exhibit: IExhibit;
@@ -38,8 +41,8 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
 
   const images =
     exhibit?.imagesCollection?.items?.map((i) => ({
-      url: i?.url || "",
-      id: i?.sys.id || "",
+      url: i?.url || '',
+      id: i?.sys.id || '',
     })) || [];
 
   const title = exhibit?.[`name${currentLocale}`];
@@ -55,22 +58,22 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
 
   useEffect(() => {
     document
-      .getElementById("exhibit-description")
-      ?.querySelectorAll("a")
+      .getElementById('exhibit-description')
+      ?.querySelectorAll('a')
       .forEach((link) => {
-        link.addEventListener("click", (e) => {
+        link.addEventListener('click', (e) => {
           const { href } = e?.target as HTMLAnchorElement;
-          if (!href.includes("imageId")) {
+          if (!href.includes('imageId')) {
             return;
           }
 
           e.preventDefault();
 
           const params = new URLSearchParams(new URL(href).search);
-          const idString = params.get("imageId") || "";
-          const xString = params.get("x");
-          const yString = params.get("y");
-          const zoomString = params.get("zoom");
+          const idString = params.get('imageId') || '';
+          const xString = params.get('x');
+          const yString = params.get('y');
+          const zoomString = params.get('zoom');
           const x = xString ? parseInt(xString, 10) : 0;
           const y = yString ? parseInt(yString, 10) : 0;
           const zoom = zoomString ? parseInt(zoomString, 10) : 0;
@@ -93,7 +96,7 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
       <span key={lang}>
         <button className={styles.link} onClick={() => handleLinkOnClick(lang)}>
           {t(`exhibitNotFound${lang}`)}
-        </button>{" "}
+        </button>{' '}
       </span>
     ));
 
@@ -101,7 +104,7 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
     <>
       {!title && (
         <div className={styles.error}>
-          {t("exhibitNotFoundForLanguage")} {links}
+          {t('exhibitNotFoundForLanguage')} {links}
         </div>
       )}
 
@@ -119,20 +122,20 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
 
           {audioFile && (
             <div className={styles.audioPlayer}>
-              <Player url={audioFile || ""} />
+              <Player url={audioFile || ''} />
             </div>
           )}
 
           {exhibit?.yearOfCreation && (
             <div className={styles.description}>
-              <div className={styles.descriptionName}>{t("date")}</div>
+              <div className={styles.descriptionName}>{t('date')}</div>
               <div>{exhibit?.yearOfCreation}</div>
             </div>
           )}
 
           {description && (
             <div className={styles.description}>
-              <div className={styles.descriptionName}>{t("description")}</div>
+              <div className={styles.descriptionName}>{t('description')}</div>
               <div id="exhibit-description" className={styles.descriptionContent}>
                 {documentToReactComponents(description)}
               </div>

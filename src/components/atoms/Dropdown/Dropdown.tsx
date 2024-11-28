@@ -1,12 +1,15 @@
-"use client";
+'use client';
 
-import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
-import { clsx } from "clsx";
-import assertIsNode from "../../../utils/assertIsNode";
-import styles from "./Dropdown.module.scss";
-import IDropdownOption from "@/interfaces/IDropdownOption";
-import ArrowIcon from "../../../assets/svg/arrow.svg";
+import { useState, useRef, useEffect } from 'react';
+
+import { clsx } from 'clsx';
+import Image from 'next/image';
+
+import IDropdownOption from '@/interfaces/IDropdownOption';
+
+import styles from './Dropdown.module.scss';
+import ArrowIcon from '../../../assets/svg/arrow.svg';
+import assertIsNode from '../../../utils/assertIsNode';
 
 interface Props<Option extends IDropdownOption> {
   options: Option[];
@@ -41,9 +44,9 @@ export default function Dropdown<Option extends IDropdownOption>({
   };
 
   useEffect(() => {
-    window.addEventListener("click", handleClickOutside, true);
+    window.addEventListener('click', handleClickOutside, true);
     return () => {
-      window.removeEventListener("click", handleClickOutside, true);
+      window.removeEventListener('click', handleClickOutside, true);
     };
   });
 
@@ -51,7 +54,7 @@ export default function Dropdown<Option extends IDropdownOption>({
     <div ref={toggleContainer} className={styles.dropdown}>
       <button type="button" className={styles.button} onClick={() => setIsOpen(!isOpen)}>
         <img className={styles.image} src={selectedOption?.image} alt={selectedOption?.text} />
-        {selectedOption?.text}{" "}
+        {selectedOption?.text}{' '}
         <ArrowIcon className={clsx(styles.arrow, isOpen && styles.arrowOpen)} />
       </button>
       {isOpen && (

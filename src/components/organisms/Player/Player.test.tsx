@@ -1,31 +1,32 @@
-import { render } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { NextIntlClientProvider } from "next-intl";
-import messages from "../../../../messages/en.json";
-import Player from "./Player";
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { NextIntlClientProvider } from 'next-intl';
 
-describe("Player", () => {
-  const url = "https://example.com/audio.mp3";
+import Player from './Player';
+import messages from '../../../../messages/en.json';
 
-  it("renders audio player with correct source", () => {
+describe('Player', () => {
+  const url = 'https://example.com/audio.mp3';
+
+  it('renders audio player with correct source', () => {
     const { container } = render(
       <NextIntlClientProvider locale="en" messages={messages}>
         <Player url={url} />
       </NextIntlClientProvider>,
     );
 
-    expect(container.querySelector("audio")).toHaveAttribute("src", url);
+    expect(container.querySelector('audio')).toHaveAttribute('src', url);
   });
 
-  it("renders custom buttons", async () => {
+  it('renders custom buttons', async () => {
     const { getByLabelText, getByText } = render(
       <NextIntlClientProvider locale="en" messages={messages}>
         <Player url={url} />
       </NextIntlClientProvider>,
     );
 
-    expect(getByText("Play audioguide")).toBeInTheDocument();
-    expect(getByLabelText("Forward")).toBeInTheDocument();
-    expect(getByLabelText("Rewind")).toBeInTheDocument();
+    expect(getByText('Play audioguide')).toBeInTheDocument();
+    expect(getByLabelText('Forward')).toBeInTheDocument();
+    expect(getByLabelText('Rewind')).toBeInTheDocument();
   });
 });

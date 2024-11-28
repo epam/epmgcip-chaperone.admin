@@ -1,4 +1,4 @@
-import styles from "./PlayerButton.module.scss";
+import styles from './PlayerButton.module.scss';
 
 export interface Props {
   icon: React.ElementType;

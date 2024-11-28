@@ -15,10 +15,37 @@
       "jsx": true
     }
   },
-  "plugins": ["@typescript-eslint", "eslint-plugin-import", "unused-imports"],
+  "plugins": ["@typescript-eslint", "eslint-plugin-import", "unused-imports", "import"],
   "rules": {
     "@next/next/no-img-element": "off",
-    "unused-imports/no-unused-imports": "error",
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array-simple"
+      }
+    ],
+    "@typescript-eslint/consistent-return": "warn",
+    "@typescript-eslint/no-empty-function": [
+      "warn",
+      {
+        "allow": ["arrowFunctions"]
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-implied-eval": "error",
+    "@typescript-eslint/no-mixed-enums": "error",
+    "@typescript-eslint/only-throw-error": "error",
+    "@typescript-eslint/prefer-enum-initializers": "warn",
+    "@typescript-eslint/prefer-for-of": "error",
+    "@typescript-eslint/return-await": "error",
+    "@typescript-eslint/unified-signatures": "error",
+    "complexity": [
+      "warn",
+      {
+        "max": 5
+      }
+    ],
+    "consistent-return": "off",
     "import/order": [
       "error",
       {
@@ -26,7 +53,7 @@
           "order": "asc",
           "caseInsensitive": true
         },
-        "groups": [["external", "internal"]],
+        "groups": ["external", "internal"],
         "newlines-between": "always",
         "pathGroups": [
           {
@@ -42,6 +69,35 @@
         ],
         "pathGroupsExcludedImportTypes": ["react"]
       }
-    ]
+    ],
+    "no-case-declarations": "warn",
+    "no-implied-eval": "off",
+    "no-nested-ternary": "error",
+    "no-return-await": "off",
+    "no-throw-literal": "off",
+    "no-warning-comments": "warn",
+    "react/display-name": "warn",
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/sort-comp": "warn",
+    "sort-keys": "warn",
+    "unused-imports/no-unused-imports": "error"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alias": {
+          "map": ["@", "./src"],
+          "extensions": [".ts", ".tsx", ".js", ".jsx"]
+        }
+      }
+    }
   }
 }

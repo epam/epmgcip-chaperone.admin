@@ -1,4 +1,4 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
+import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
@@ -15,10 +15,10 @@ const config: CodegenConfig = {
       plugins: ["typescript-operations", "typed-document-node"],
     },
   },*/
-  documents: ["src/components/**/*.gql"],
+  documents: ['src/components/**/*.gql'],
   generates: {
-    "src/__generated__/": {
-      preset: "client-preset",
+    'src/__generated__/': {
+      preset: 'client-preset',
     },
   },
 };
