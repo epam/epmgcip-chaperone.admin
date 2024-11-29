@@ -41,8 +41,8 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
 
   const images =
     exhibit?.imagesCollection?.items?.map((i) => ({
-      url: i?.url || '',
       id: i?.sys.id || '',
+      url: i?.url || '',
     })) || [];
 
   const title = exhibit?.[`name${currentLocale}`];

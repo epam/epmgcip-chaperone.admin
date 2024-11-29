@@ -23,8 +23,8 @@ export default function LanguageSwitcher() {
 
   const options = locales.map((lang) => ({
     id: lang,
-    text: lang,
     image: `/images/${lang}.png`,
+    text: lang,
   }));
 
   return (

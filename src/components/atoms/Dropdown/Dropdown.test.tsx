@@ -5,9 +5,9 @@ import Dropdown from './Dropdown';
 
 describe('Dropdown', () => {
   const options = [
-    { id: '1', text: 'Option 1', image: '/image1.png' },
-    { id: '2', text: 'Option 2', image: '/image2.png' },
-    { id: '3', text: 'Option 3', image: '/image3.png' },
+    { id: '1', image: '/image1.png', text: 'Option 1' },
+    { id: '2', image: '/image2.png', text: 'Option 2' },
+    { id: '3', image: '/image3.png', text: 'Option 3' },
   ];
 
   it('displays the default option', () => {

@@ -10,10 +10,10 @@ Storage.prototype.setItem = jest.fn();
 const replaceMock = jest.fn();
 
 jest.mock('@/navigation', () => ({
+  usePathname: jest.fn().mockReturnValue('/test'),
   useRouter: jest.fn().mockReturnValue({
     replace: (a: string, b: string) => replaceMock(a, b),
   }),
-  usePathname: jest.fn().mockReturnValue('/test'),
 }));
 
 describe('LanguageSwitcher', () => {

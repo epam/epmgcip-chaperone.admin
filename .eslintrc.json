@@ -77,12 +77,6 @@
     "no-throw-literal": "off",
     "no-warning-comments": "warn",
     "react/display-name": "warn",
-    "react/function-component-definition": [
-      "warn",
-      {
-        "namedComponents": "arrow-function"
-      }
-    ],
     "react/sort-comp": "warn",
     "sort-keys": "warn",
     "unused-imports/no-unused-imports": "error"
