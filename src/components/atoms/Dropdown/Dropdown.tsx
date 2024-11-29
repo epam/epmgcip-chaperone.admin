@@ -45,6 +45,7 @@ export default function Dropdown<Option extends IDropdownOption>({
 
   useEffect(() => {
     window.addEventListener('click', handleClickOutside, true);
+
     return () => {
       window.removeEventListener('click', handleClickOutside, true);
     };

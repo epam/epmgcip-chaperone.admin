@@ -34,6 +34,7 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-implied-eval": "error",
     "@typescript-eslint/no-mixed-enums": "error",
+    "@typescript-eslint/no-useless-constructor": "error",
     "@typescript-eslint/only-throw-error": "error",
     "@typescript-eslint/prefer-enum-initializers": "warn",
     "@typescript-eslint/prefer-for-of": "error",
@@ -71,12 +72,41 @@
         "pathGroupsExcludedImportTypes": ["react"]
       }
     ],
+    "max-depth": ["warn", 1],
+    "max-lines": ["warn", 200],
+    "max-nested-callbacks": ["warn", 3],
+    "max-params": ["warn", 3],
+    "max-statements-per-line": [
+      "warn",
+      {
+        "max": 1
+      }
+    ],
+    "newline-before-return": "error",
     "no-case-declarations": "warn",
-    "no-implied-eval": "off",
+    "no-else-return": "error",
+    "no-magic-numbers": [
+      "warn",
+      {
+        "detectObjects": false,
+        "enforceConst": true,
+        "ignore": [-1, 0, 1, 2, 10, 100],
+        "ignoreArrayIndexes": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
     "no-nested-ternary": "error",
     "no-return-await": "off",
     "no-throw-literal": "off",
+    "no-unneeded-ternary": "error",
     "no-warning-comments": "warn",
+    "one-var-declaration-per-line": ["warn", "always"],
     "react/display-name": "warn",
     "react/sort-comp": "warn",
     "sort-keys": "warn",

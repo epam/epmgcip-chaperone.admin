@@ -87,6 +87,7 @@ const ImageGallery = ({ images }: Props) => {
   const loadImage = (url: string) => {
     const image = new window.Image();
     image.src = url;
+
     return new Promise<HTMLImageElement>((resolve) => {
       image.onload = () => resolve(image);
     });
@@ -122,6 +123,7 @@ const ImageGallery = ({ images }: Props) => {
     const yetAnotherReactLightboxShift = 1 - 1 / zoom;
     const offsetX = ((wrapperX / 100) * (translateX - 50)) / yetAnotherReactLightboxShift;
     const offsetY = ((wrapperY / 100) * (translateY - 50)) / yetAnotherReactLightboxShift;
+
     return { offsetX, offsetY };
   }
 
@@ -162,6 +164,7 @@ const ImageGallery = ({ images }: Props) => {
               const imageUrl = images.find((image) => image.id === galleryId)?.url || '';
               if (!imageUrl) {
                 console.error('Image URL not found.');
+
                 return;
               }
 

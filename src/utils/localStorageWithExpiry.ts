@@ -20,6 +20,7 @@ export function getLocalStorageWithExpiry(key: string) {
 
   if (now.getTime() > item.expiry) {
     localStorage.removeItem(key);
+
     return null;
   }
 
