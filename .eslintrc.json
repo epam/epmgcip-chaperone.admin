@@ -46,6 +46,7 @@
       }
     ],
     "consistent-return": "off",
+    "import/no-unresolved": "error",
     "import/order": [
       "error",
       {
@@ -87,10 +88,8 @@
     },
     "import/resolver": {
       "typescript": {
-        "alias": {
-          "map": ["@", "./src"],
-          "extensions": [".ts", ".tsx", ".js", ".jsx"]
-        }
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
       }
     }
   }

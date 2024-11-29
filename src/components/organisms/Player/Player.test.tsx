@@ -2,8 +2,9 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { NextIntlClientProvider } from 'next-intl';
 
+import messages from 'messages/en.json';
+
 import Player from './Player';
-import messages from '../../../../messages/en.json';
 
 describe('Player', () => {
   const url = 'https://example.com/audio.mp3';

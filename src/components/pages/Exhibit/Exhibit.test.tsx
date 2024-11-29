@@ -2,8 +2,9 @@ import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 
+import messages from 'messages/en.json';
+
 import Exhibit from './Exhibit';
-import messages from '../../../../messages/en.json';
 import { slug, exhibitItem, exhibitMockAnotherLanguage } from '../../../mocks/exhibit';
 
 jest.mock('yet-another-react-lightbox', () => jest.fn());

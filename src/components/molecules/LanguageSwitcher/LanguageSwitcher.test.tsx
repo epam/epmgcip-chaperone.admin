@@ -2,8 +2,9 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 
+import messages from 'messages/en.json';
+
 import LanguageSwitcher from './LanguageSwitcher';
-import messages from '../../../../messages/en.json';
 
 Storage.prototype.setItem = jest.fn();
 
