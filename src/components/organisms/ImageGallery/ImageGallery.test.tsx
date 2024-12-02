@@ -14,6 +14,10 @@ describe('ImageGallery', () => {
   ];
 
   it('renders gallery', () => {
-    render(<ImageGallery images={images} />);
+    const { container } = render(<ImageGallery images={images} />);
+
+    const imageGallery = container.querySelector('.image-gallery');
+
+    expect(imageGallery).toBeInTheDocument();
   });
 });

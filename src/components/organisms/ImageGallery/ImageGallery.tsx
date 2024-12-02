@@ -130,6 +130,7 @@ const ImageGallery = ({ images }: Props) => {
   return (
     <>
       <Slider
+        className="image-gallery"
         swipeToSlide
         infinite={false}
         centerPadding="28px"

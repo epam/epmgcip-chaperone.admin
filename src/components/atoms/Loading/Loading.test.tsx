@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Loading from './Loading.tsx';
+import Loading from './Loading';
 import '@testing-library/jest-dom';
 
 describe('Loading', () => {
