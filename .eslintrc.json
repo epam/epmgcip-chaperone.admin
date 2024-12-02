@@ -4,7 +4,9 @@
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "ignorePatterns": ["node_modules", "src/__generated__", "build", "coverage"],
   "parser": "@typescript-eslint/parser",
