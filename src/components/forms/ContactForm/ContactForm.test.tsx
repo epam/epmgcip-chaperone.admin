@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { sendContactForm } from "@/actions";
+import { NotificationType } from "@/enums/Notification";
 import { useShowNotification } from "@/hooks";
 import ContactForm from "./ContactForm";
 
@@ -130,7 +131,7 @@ describe("ContactForm", () => {
     await userEvent.click(getByRole("button", { name: "submit" }));
 
     expect(showNotification).toHaveBeenCalledWith({
-      type: "error",
+      type: NotificationType.Error,
       message: "test-error",
     });
   });

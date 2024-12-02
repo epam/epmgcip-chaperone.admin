@@ -2,6 +2,7 @@ import { showNotification } from "@mantine/notifications";
 import { renderHook } from "@testing-library/react";
 import { useTranslations } from "next-intl";
 
+import { NotificationType } from "@/enums/Notification";
 import { useShowNotification } from "./useShowNotification";
 
 jest.mock("@mantine/notifications", () => ({
@@ -27,7 +28,7 @@ describe("useShowNotification", () => {
     const { result } = renderHook(() => useShowNotification());
 
     result.current({
-      type: "success",
+      type: NotificationType.Success,
       message: "Success message",
     });
 
@@ -44,7 +45,7 @@ describe("useShowNotification", () => {
     const { result } = renderHook(() => useShowNotification());
 
     result.current({
-      type: "error",
+      type: NotificationType.Error,
       message: "Error message",
     });
 
@@ -61,7 +62,7 @@ describe("useShowNotification", () => {
     const { result } = renderHook(() => useShowNotification());
 
     result.current({
-      type: "success",
+      type: NotificationType.Success,
       message: "Success message",
       title: "Custom title",
     });
@@ -79,7 +80,7 @@ describe("useShowNotification", () => {
     const { result } = renderHook(() => useShowNotification());
 
     result.current({
-      type: "success",
+      type: NotificationType.Success,
       message: "Success message",
       autoClose: 3000,
     });

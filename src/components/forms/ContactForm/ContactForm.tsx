@@ -7,6 +7,7 @@ import { FC, useMemo, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { sendContactForm } from "@/actions";
+import { NotificationType } from "@/enums/Notification";
 import { useShowNotification } from "@/hooks";
 
 import styles from "./ContactForm.module.scss";
@@ -60,7 +61,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
 
     if (!captchaToken) {
       showNotification({
-        type: "error",
+        type: NotificationType.Error,
         message: t("reCaptcha.message"),
       });
 
@@ -74,7 +75,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
 
     if (result.success) {
       showNotification({
-        type: "success",
+        type: NotificationType.Success,
         message: t("action.sendEmail.success"),
       });
       form.reset();
@@ -82,7 +83,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
       reCaptchaRef.current?.reset();
     } else {
       showNotification({
-        type: "error",
+        type: NotificationType.Error,
         message: result.message || t("action.sendEmail.error"),
       });
     }

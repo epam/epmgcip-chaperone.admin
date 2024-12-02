@@ -2,23 +2,23 @@ import { NotificationData, showNotification } from "@mantine/notifications";
 import { MessageKeys, NestedKeyOf, useTranslations } from "next-intl";
 import { useCallback } from "react";
 
-type NotificationType = "success" | "error";
+import { NotificationType } from "@/enums/Notification";
 
 interface ShowNotificationProps extends NotificationData {
   type: NotificationType;
 }
 
 const colorsMap: Record<NotificationType, string> = {
-  success: "green",
-  error: "red",
+  [NotificationType.Success]: "green",
+  [NotificationType.Error]: "red",
 };
 
 const titleKeysMap: Record<
   NotificationType,
   MessageKeys<IntlMessages, NestedKeyOf<IntlMessages>>
 > = {
-  success: "popup.title.success",
-  error: "popup.title.error",
+  [NotificationType.Success]: "popup.title.success",
+  [NotificationType.Error]: "popup.title.error",
 };
 
 const POPUP_AUTO_CLOSE_TIMEOUT = 5000;
@@ -28,9 +28,8 @@ export const useShowNotification = () => {
 
   const handler = useCallback(
     ({ autoClose, message, title, type, ...params }: ShowNotificationProps) => {
-      const tk = titleKeysMap[type];
       showNotification({
-        autoClose: type === "error" ? false : autoClose || POPUP_AUTO_CLOSE_TIMEOUT,
+        autoClose: type === NotificationType.Error ? false : autoClose || POPUP_AUTO_CLOSE_TIMEOUT,
         message,
         title: title || t(titleKeysMap[type]),
         withBorder: true,
