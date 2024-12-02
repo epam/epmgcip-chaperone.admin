@@ -34,7 +34,7 @@
       },
       "message": {
         "label": "Сообщение",
-        "validation": "",
+        "validation": "Текст сообщения обязателен",
         "placeholder": "Текст сообщения"
       }
     },

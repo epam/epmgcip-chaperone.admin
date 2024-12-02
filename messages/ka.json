@@ -34,7 +34,7 @@
       },
       "message": {
         "label": "Message",
-        "validation": "",
+        "validation": "Message is required",
         "placeholder": "Your message"
       }
     },

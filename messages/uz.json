@@ -34,7 +34,7 @@
       },
       "message": {
         "label": "Xabar",
-        "validation": "",
+        "validation": "Xabar kerak",
         "placeholder": "Xabaringizni yozing"
       }
     },

@@ -1,20 +1,19 @@
 "use server";
 
 import nodemailer from "nodemailer";
+import { ZodError } from "zod";
+
+import { ContactFormValidationErrors } from "@/enums";
+import { contactFormDataSchema } from "@/schemas/shared";
 
 interface SendEmailProps {
   name: string;
   email: string;
   subject: string;
   message: string;
-  token: string;
 }
 
-export async function sendContactForm({ name, email, subject, message, token }: SendEmailProps) {
-  if (!token) {
-    return { success: false, message: "CAPTCHA verification failed" };
-  }
-
+export async function sendContactForm({ name, email, subject, message }: SendEmailProps) {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT),
@@ -25,7 +24,11 @@ export async function sendContactForm({ name, email, subject, message, token }: 
     secure: true,
   });
 
+  const schema = contactFormDataSchema();
+
   try {
+    schema.parse({ name, email, subject, message });
+
     await transporter.sendMail({
       from: name,
       to: process.env.CONTACTS_EMAIL,
@@ -47,6 +50,11 @@ export async function sendContactForm({ name, email, subject, message, token }: 
   } catch (error) {
     console.error("Error sending email:", error);
 
-    return { success: false, message: "Failed to send email" };
+    const messages =
+      error instanceof ZodError
+        ? error.errors.map(({ message }) => message)
+        : [ContactFormValidationErrors.GeneralError];
+
+    return { success: false, messages };
   }
 }

@@ -16,22 +16,6 @@ describe("sendContactForm", () => {
     jest.clearAllMocks();
   });
 
-  it("should return an error if token is missing", async () => {
-    const result = await sendContactForm({
-      name: "John Doe",
-      email: "john@example.com",
-      subject: "Test Subject",
-      message: "Test Message",
-      token: "",
-    });
-
-    expect(result).toEqual({
-      success: false,
-      message: "CAPTCHA verification failed",
-    });
-    expect(mockedSendMail).not.toHaveBeenCalled();
-  });
-
   it("should send an email successfully", async () => {
     mockedSendMail.mockResolvedValueOnce(true);
 
@@ -40,7 +24,6 @@ describe("sendContactForm", () => {
       email: "john@example.com",
       subject: "Test Subject",
       message: "Test Message",
-      token: "valid-token",
     });
 
     expect(result).toEqual({ success: true });
@@ -61,12 +44,11 @@ describe("sendContactForm", () => {
       email: "jane@example.com",
       subject: "Error Test",
       message: "Error Message",
-      token: "valid-token",
     });
 
     expect(result).toEqual({
       success: false,
-      message: "Failed to send email",
+      messages: ["Failed to send email"],
     });
     expect(mockedSendMail).toHaveBeenCalledTimes(1);
   });

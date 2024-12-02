@@ -99,7 +99,6 @@ describe("ContactForm", () => {
       message: "test-message",
       name: "test-name",
       subject: "contactForm.subjects.other",
-      token: "test-token",
     });
   });
 
@@ -107,7 +106,7 @@ describe("ContactForm", () => {
     const showNotification = jest.fn();
 
     (useShowNotification as jest.Mock).mockReturnValue(showNotification);
-    (sendContactForm as jest.Mock).mockReturnValue({ success: false, message: "test-error" });
+    (sendContactForm as jest.Mock).mockReturnValue({ success: false, messages: ["test-error"] });
 
     const { getByRole } = renderComponent();
 

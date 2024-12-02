@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, Fieldset, Loader, Select, Textarea, TextInput } from "@mantine/core";
-import { isNotEmpty, useForm } from "@mantine/form";
+import { useForm, zodResolver } from "@mantine/form";
 import { useTranslations } from "next-intl";
 import { FC, useMemo, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -9,6 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { sendContactForm } from "@/actions";
 import { NotificationType } from "@/enums";
 import { useShowNotification } from "@/hooks";
+import { contactFormDataSchema } from "@/schemas/shared";
 
 import styles from "./ContactForm.module.scss";
 
@@ -42,12 +43,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
       subject: "",
       message: "",
     },
-    validate: {
-      name: isNotEmpty(t("contactForm.fields.name.validation")),
-      email: isNotEmpty(t("contactForm.fields.email.validation")),
-      subject: isNotEmpty(t("contactForm.fields.subject.validation")),
-      message: isNotEmpty(t("contactForm.fields.message.validation")),
-    },
+    validate: zodResolver(contactFormDataSchema(t)),
   });
 
   const isSubmitEnabled = form.isDirty() && Boolean(captchaToken) && !isSubmitting;
@@ -68,10 +64,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
       return;
     }
 
-    const result = await sendContactForm({
-      ...values,
-      token: captchaToken,
-    });
+    const result = await sendContactForm(values);
 
     if (result.success) {
       showNotification({
@@ -82,10 +75,19 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
       setCaptchaToken(null);
       reCaptchaRef.current?.reset();
     } else {
-      showNotification({
-        type: NotificationType.Error,
-        message: result.message || t("action.sendEmail.error"),
-      });
+      if (result.messages?.length) {
+        result.messages.forEach((message) => {
+          showNotification({
+            type: NotificationType.Error,
+            message,
+          });
+        });
+      } else {
+        showNotification({
+          type: NotificationType.Error,
+          message: t("action.sendEmail.error"),
+        });
+      }
     }
 
     setIsSubmitting(false);
