@@ -7,7 +7,7 @@ import { FC, useMemo, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { sendContactForm } from "@/actions";
-import { NotificationType } from "@/enums/Notification";
+import { NotificationType } from "@/enums";
 import { useShowNotification } from "@/hooks";
 
 import styles from "./ContactForm.module.scss";

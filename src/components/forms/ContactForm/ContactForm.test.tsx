@@ -5,7 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { sendContactForm } from "@/actions";
-import { NotificationType } from "@/enums/Notification";
+import { NotificationType } from "@/enums";
 import { useShowNotification } from "@/hooks";
 import ContactForm from "./ContactForm";
 

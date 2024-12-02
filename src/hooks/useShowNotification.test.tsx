@@ -2,7 +2,7 @@ import { showNotification } from "@mantine/notifications";
 import { renderHook } from "@testing-library/react";
 import { useTranslations } from "next-intl";
 
-import { NotificationType } from "@/enums/Notification";
+import { NotificationType } from "@/enums";
 import { useShowNotification } from "./useShowNotification";
 
 jest.mock("@mantine/notifications", () => ({

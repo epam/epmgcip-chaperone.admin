@@ -2,7 +2,7 @@ import { NotificationData, showNotification } from "@mantine/notifications";
 import { MessageKeys, NestedKeyOf, useTranslations } from "next-intl";
 import { useCallback } from "react";
 
-import { NotificationType } from "@/enums/Notification";
+import { NotificationType } from "@/enums";
 
 interface ShowNotificationProps extends NotificationData {
   type: NotificationType;
