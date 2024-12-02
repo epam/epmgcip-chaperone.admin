@@ -6,6 +6,11 @@ This guide provides instructions on how to register the necessary services, conf
 
 ## **1. Registration and API Keys**
 
+### **Contentful**
+[Full instruction](https://github.com/epam/epmgcip-chaperone.contentful/blob/main/README.md)
+
+---
+
 ### **Google reCAPTCHA**
 1. Go to the [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin/create).
 2. Register your site:
@@ -36,6 +41,11 @@ You will need an SMTP provider for sending emails: **Gmail**
 Create a `.env.local` file in your project root directory (if it doesn't exist) and add the following environment variables:
 
 ```env
+# Contentful
+CONTENTFUL_SPACE_ID=your_contentful_space_id
+CONTENTFUL_ENVIRONMENT=your_contentful_environment
+CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=your_contentful_delivery_access_token
+
 # Google reCAPTCHA
 RE_CAPTCHA_SITE_KEY=your_recaptcha_site_key
 RE_CAPTCHA_SECRET_KEY=your_recaptcha_secret_key
@@ -52,6 +62,11 @@ SYSTEM_EMAIL_PASSWORD=your_system_email_password
 
 ### Example Configuration (using Gmail):
 ```env
+# Contentful
+CONTENTFUL_SPACE_ID=abcd1234efgh
+CONTENTFUL_ENVIRONMENT=master
+CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+
 # Google reCAPTCHA
 RE_CAPTCHA_SITE_KEY=6LcXXXXUAAAAANXXXXmQXXXfJXXXX
 RE_CAPTCHA_SECRET_KEY=6LcXXXXUAAAAAXXXXXo_XXXXeGXXXX

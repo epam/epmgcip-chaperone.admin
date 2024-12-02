@@ -8,12 +8,12 @@ interface ShowNotificationProps extends NotificationData {
   type: NotificationType;
 }
 
-const colorsMap: Record<NotificationType, string> = {
+const notificationColorsDict: Record<NotificationType, string> = {
   [NotificationType.Success]: "green",
   [NotificationType.Error]: "red",
 };
 
-const titleKeysMap: Record<
+const titleKeysDict: Record<
   NotificationType,
   MessageKeys<IntlMessages, NestedKeyOf<IntlMessages>>
 > = {
@@ -31,9 +31,9 @@ export const useShowNotification = () => {
       showNotification({
         autoClose: type === NotificationType.Error ? false : autoClose || POPUP_AUTO_CLOSE_TIMEOUT,
         message,
-        title: title || t(titleKeysMap[type]),
+        title: title || t(titleKeysDict[type]),
         withBorder: true,
-        color: colorsMap[type],
+        color: notificationColorsDict[type],
         ...params,
       });
     },
