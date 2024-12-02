@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../../variables.scss";
 
 .exhibit {
@@ -12,7 +13,7 @@
   font-weight: bold;
   font-size: $titleFontSize;
 
-  @media (min-width: $breakpointTablet) {
+  @media (min-width: map.get($breakpoints, tablet)) {
     padding: 0 $indentTabletPageBorder;
   }
 }
@@ -22,7 +23,7 @@
   text-align: center;
   font-size: $mainFontSize;
 
-  @media (min-width: $breakpointTablet) {
+  @media (min-width: map.get($breakpoints, tablet)) {
     padding: 0 $indentTabletPageBorder 32px $indentTabletPageBorder;
   }
 }
@@ -30,7 +31,7 @@
 .description {
   padding: 0 $indentMobilePageBorder 24px $indentMobilePageBorder;
 
-  @media (min-width: $breakpointTablet) {
+  @media (min-width: map.get($breakpoints, tablet)) {
     padding: 0 $indentTabletPageBorder 24px $indentTabletPageBorder;
   }
 }
@@ -70,7 +71,7 @@
 .audioPlayer {
   padding: 0 $indentMobilePageBorder 40px $indentMobilePageBorder;
 
-  @media (min-width: $breakpointTablet) {
+  @media (min-width: map.get($breakpoints, tablet)) {
     padding: 0 $indentTabletPageBorder 40px $indentTabletPageBorder;
   }
 }

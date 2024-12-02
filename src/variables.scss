@@ -6,7 +6,14 @@ $colorOrange: #d95323;
 $colorPink: #f5d4c8;
 $colorWhite: #ffffff;
 
-$breakpointTablet: 834px;
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1400px,
+  tablet: 834px,
+);
 
 $fontFamilyMain: var(--font-montserrat), sans-serif;
 

@@ -30,7 +30,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isCaptchaLoaded, setIsCaptchaLoaded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const reCaptchaRef: any = useRef();
+  const reCaptchaRef = useRef<ReCAPTCHA | null>(null);
   const t = useTranslations();
   const showNotification = useShowNotification();
 
@@ -63,8 +63,6 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
         type: "error",
         message: t("reCaptcha.message"),
       });
-
-      reCaptchaRef.current?.focus();
 
       return;
     }
