@@ -72,7 +72,7 @@
         "pathGroupsExcludedImportTypes": ["react"]
       }
     ],
-    "max-depth": ["warn", 1],
+    "max-depth": ["warn", 2],
     "max-lines": ["warn", 200],
     "max-nested-callbacks": ["warn", 3],
     "max-params": ["warn", 3],
