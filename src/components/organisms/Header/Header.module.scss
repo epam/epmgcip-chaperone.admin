@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
 
-  @media (min-width: map.get($breakpoints, tablet)) {
+  @media (min-width: map.get($breakpoints, sm)) {
     padding: 8px $indentTabletPageBorder;
   }
 }
