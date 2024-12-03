@@ -1,38 +1,38 @@
-"use server";
+'use server';
 
-import nodemailer from "nodemailer";
-import { ZodError } from "zod";
+import nodemailer from 'nodemailer';
+import { ZodError } from 'zod';
 
-import { ContactFormValidationErrors } from "@/enums";
-import { contactFormDataSchema } from "@/schemas/shared";
+import { ContactFormValidationErrors } from '@/enums';
+import { contactFormDataSchema } from '@/schemas/shared';
 
 interface SendEmailProps {
-  name: string;
   email: string;
-  subject: string;
   message: string;
+  name: string;
+  subject: string;
 }
 
-export async function sendContactForm({ name, email, subject, message }: SendEmailProps) {
+export async function sendContactForm({ email, message, name, subject }: SendEmailProps) {
   const transporter = nodemailer.createTransport({
+    auth: {
+      pass: process.env.SYSTEM_EMAIL_PASSWORD,
+      user: process.env.SYSTEM_EMAIL,
+    },
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT),
-    auth: {
-      user: process.env.SYSTEM_EMAIL,
-      pass: process.env.SYSTEM_EMAIL_PASSWORD,
-    },
     secure: true,
   });
 
   const schema = contactFormDataSchema();
 
   try {
-    schema.parse({ name, email, subject, message });
+    schema.parse({ email, message, name, subject });
 
     await transporter.sendMail({
       from: name,
-      to: process.env.CONTACTS_EMAIL,
       subject,
+      to: process.env.CONTACTS_EMAIL,
       html: `
         <header>
           <p><strong>Name:</strong> ${name}</p>
@@ -48,13 +48,13 @@ export async function sendContactForm({ name, email, subject, message }: SendEma
 
     return { success: true };
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Error sending email:', error);
 
     const messages =
       error instanceof ZodError
         ? error.errors.map(({ message }) => message)
         : [ContactFormValidationErrors.GeneralError];
 
-    return { success: false, messages };
+    return { messages, success: false };
   }
 }

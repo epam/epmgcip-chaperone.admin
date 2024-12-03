@@ -1,1 +1,1 @@
-export { contactFormDataSchema } from "./contact-form-data";
+export { contactFormDataSchema } from './contact-form-data';

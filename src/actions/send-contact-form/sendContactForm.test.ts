@@ -1,8 +1,8 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
-import { sendContactForm } from "./sendContactForm";
+import { sendContactForm } from './sendContactForm';
 
-jest.mock("nodemailer");
+jest.mock('nodemailer');
 
 const mockedCreateTransport = nodemailer.createTransport as jest.Mock;
 const mockedSendMail = jest.fn();
@@ -11,44 +11,44 @@ mockedCreateTransport.mockReturnValue({
   sendMail: mockedSendMail,
 });
 
-describe("sendContactForm", () => {
+describe('sendContactForm', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should send an email successfully", async () => {
+  it('should send an email successfully', async () => {
     mockedSendMail.mockResolvedValueOnce(true);
 
     const result = await sendContactForm({
-      name: "John Doe",
-      email: "john@example.com",
-      subject: "Test Subject",
-      message: "Test Message",
+      email: 'john@example.com',
+      message: 'Test Message',
+      name: 'John Doe',
+      subject: 'Test Subject',
     });
 
     expect(result).toEqual({ success: true });
     expect(mockedSendMail).toHaveBeenCalledTimes(1);
     expect(mockedSendMail).toHaveBeenCalledWith({
-      from: "John Doe",
+      from: 'John Doe',
+      html: expect.stringContaining('John Doe'),
+      subject: 'Test Subject',
       to: process.env.CONTACTS_EMAIL,
-      subject: "Test Subject",
-      html: expect.stringContaining("John Doe"),
     });
   });
 
-  it("should handle errors when sending email fails", async () => {
-    mockedSendMail.mockRejectedValueOnce(new Error("SMTP Error"));
+  it('should handle errors when sending email fails', async () => {
+    mockedSendMail.mockRejectedValueOnce(new Error('SMTP Error'));
 
     const result = await sendContactForm({
-      name: "Jane Doe",
-      email: "jane@example.com",
-      subject: "Error Test",
-      message: "Error Message",
+      email: 'jane@example.com',
+      message: 'Error Message',
+      name: 'Jane Doe',
+      subject: 'Error Test',
     });
 
     expect(result).toEqual({
+      messages: ['Failed to send email'],
       success: false,
-      messages: ["Failed to send email"],
     });
     expect(mockedSendMail).toHaveBeenCalledTimes(1);
   });
