@@ -1,27 +1,27 @@
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { Notifications } from "@mantine/notifications";
-import { GoogleTagManager } from "@next/third-parties/google";
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import { GoogleTagManager } from '@next/third-parties/google';
+import type { Metadata } from 'next';
+import { Montserrat } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
-import Header from "@/components/organisms/Header/Header";
+import Header from '@/components/organisms/Header/Header';
 
-import "@mantine/core/styles.css";
-import "@mantine/notifications/styles.css";
-import "./globals.scss";
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import './globals.scss';
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-  variable: "--font-montserrat",
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['400', '700'],
 });
 
 export const metadata: Metadata = {
-  title: "Museum",
-  description: "Museum",
+  description: 'Museum',
+  title: 'Museum',
 };
 
 export default async function RootLayout({
@@ -38,7 +38,7 @@ export default async function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <GoogleTagManager gtmId={process.env.CONTENTFUL_GTAG_ID || ""} />
+      <GoogleTagManager gtmId={process.env.CONTENTFUL_GTAG_ID || ''} />
       <body>
         <MantineProvider>
           <Notifications />

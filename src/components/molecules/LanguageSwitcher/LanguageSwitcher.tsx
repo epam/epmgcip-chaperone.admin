@@ -1,16 +1,19 @@
-"use client";
+'use client';
 
-import { useLocale } from "next-intl";
-import Dropdown from "../../atoms/Dropdown/Dropdown";
-import { LocaleCode, locales } from "@/locales";
-import { usePathname, useRouter } from "@/navigation";
-import { useTransition } from "react";
+import { useTransition } from 'react';
+
+import { useLocale } from 'next-intl';
+
+import { LocaleCode, locales } from '@/locales';
+import { usePathname, useRouter } from '@/navigation';
+
+import Dropdown from '../../atoms/Dropdown/Dropdown';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   const changeLanguage = (lng: LocaleCode) => {
     startTransition(() => {
@@ -20,8 +23,8 @@ export default function LanguageSwitcher() {
 
   const options = locales.map((lang) => ({
     id: lang,
-    text: lang,
     image: `/images/${lang}.png`,
+    text: lang,
   }));
 
   return (

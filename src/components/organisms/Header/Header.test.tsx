@@ -1,24 +1,27 @@
-import { render, screen } from "@testing-library/react";
-import Header from "./Header";
-import "@testing-library/jest-dom";
-import { NextIntlClientProvider } from "next-intl";
-import messages from "../../../../messages/en.json";
+import '@testing-library/jest-dom';
 
-jest.mock("@/navigation", () => ({
+import { render, screen } from '@testing-library/react';
+import { NextIntlClientProvider } from 'next-intl';
+
+import messages from 'messages/en.json';
+
+import Header from './Header';
+
+jest.mock('@/navigation', () => ({
+  usePathname: jest.fn().mockReturnValue('/test'),
   useRouter: jest.fn().mockReturnValue({
     replace: jest.fn(),
   }),
-  usePathname: jest.fn().mockReturnValue("/test"),
 }));
 
-describe("Header", () => {
-  it("renders", () => {
+describe('Header', () => {
+  it('renders', () => {
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
         <Header />
       </NextIntlClientProvider>,
     );
 
-    expect(screen.getByTestId("header-component")).toBeInTheDocument();
+    expect(screen.getByTestId('header-component')).toBeInTheDocument();
   });
 });

@@ -2,8 +2,8 @@ export function setLocalStorageWithExpiry(key: string, value: string, ttl: numbe
   const now = new Date();
 
   const item = {
-    value,
     expiry: now.getTime() + ttl,
+    value,
   };
   localStorage.setItem(key, JSON.stringify(item));
 }
@@ -20,6 +20,7 @@ export function getLocalStorageWithExpiry(key: string) {
 
   if (now.getTime() > item.expiry) {
     localStorage.removeItem(key);
+
     return null;
   }
 

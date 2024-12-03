@@ -1,5 +1,5 @@
-import { GetExhibitDocument } from "../__generated__/graphql";
-import { getClient } from "./ApolloClient";
+import { getClient } from './ApolloClient';
+import { GetExhibitDocument } from '../__generated__/graphql';
 
 export async function getExhibit(slug: string) {
   try {
@@ -10,6 +10,6 @@ export async function getExhibit(slug: string) {
 
     return data.exhibitCollection?.items[0];
   } catch (error) {
-    console.error("Failed to fetch exhibit");
+    console.error('Failed to fetch exhibit', error);
   }
 }

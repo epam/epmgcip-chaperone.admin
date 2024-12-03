@@ -24,14 +24,12 @@ export default interface IExhibit {
     json: any;
   } | null;
   imagesCollection?: {
-    items:
-      | ({
-          url?: string | null;
-          sys: {
-            id: string;
-          };
-        } | null)[]
-      | null;
+    items: Array<{
+      url?: string | null;
+      sys: {
+        id: string;
+      };
+    } | null> | null;
   } | null;
   audioFileEn?: {
     url?: string | null;
