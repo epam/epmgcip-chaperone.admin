@@ -1,19 +1,33 @@
-import { ITopLatestExhibit } from "@/interfaces/ITopLatestExhibit";
+import { ITopLatestExhibit } from '@/interfaces/ITopLatestExhibit';
 
 export const exhibitItem = {
-  sys: {
-    id: "123",
+  audioFileEn: {
+    url: 'https://example.com/audio.mp3',
   },
-  nameEn: "Test Exhibit",
-  nameRu: "Picture",
-  nameUz: "Picture",
-  nameKa: "Picture",
-  authorEn: "Test Author",
-  authorRu: "Author Name",
-  authorUz: "Author Name",
-  authorKa: "Author Name",
-  yearOfCreation: "1990",
+  audioFileKa: {
+    url: '',
+  },
+  audioFileRu: {
+    url: '',
+  },
+  audioFileUz: {
+    url: '',
+  },
+  authorEn: 'Test Author',
+  authorKa: 'Author Name',
+  authorRu: 'Author Name',
+  authorUz: 'Author Name',
   descriptionEn: {
+    json: {
+      content: [],
+    },
+    links: {
+      entries: {
+        inline: [],
+      },
+    },
+  },
+  descriptionKa: {
     json: {
       content: [],
     },
@@ -43,70 +57,56 @@ export const exhibitItem = {
       },
     },
   },
-  descriptionKa: {
-    json: {
-      content: [],
-    },
-    links: {
-      entries: {
-        inline: [],
-      },
-    },
-  },
   imagesCollection: {
     items: [
       {
-        url: "/picture.png",
         sys: {
-          id: "1",
+          id: '1',
         },
+        url: '/picture.png',
       },
     ],
   },
-  audioFileEn: {
-    url: "https://example.com/audio.mp3",
+  nameEn: 'Test Exhibit',
+  nameKa: 'Picture',
+  nameRu: 'Picture',
+  nameUz: 'Picture',
+  sys: {
+    id: '123',
   },
-  audioFileRu: {
-    url: "",
-  },
-  audioFileUz: {
-    url: "",
-  },
-  audioFileKa: {
-    url: "",
-  },
+  yearOfCreation: '1990',
 };
 
-export const slug = "slug-string";
+export const slug = 'slug-string';
 
 export const exhibitMockAnotherLanguage = {
+  nameKa: 'Test Exhibit',
+  nameRu: 'Test Exhibit',
+  nameUz: 'Test Exhibit',
   sys: {
-    id: "123",
+    id: '123',
   },
-  nameRu: "Test Exhibit",
-  nameUz: "Test Exhibit",
-  nameKa: "Test Exhibit",
 };
 
 export const topLatestExhibits: ITopLatestExhibit[] = [
   {
-    sys: {
-      id: "12345",
-    },
-    slug: "test-exhibit",
-    nameRu: "Test Exhibit",
-    nameUz: "Test Exhibit",
-    nameKa: "Test Exhibit",
-    nameEn: "Test Exhibit",
     imagesCollection: {
       items: [
         {
-          url: "http://example.com",
           sys: {
-            id: "1",
+            id: '1',
           },
+          url: 'http://example.com',
         },
       ],
+    },
+    nameEn: 'Test Exhibit',
+    nameKa: 'Test Exhibit',
+    nameRu: 'Test Exhibit',
+    nameUz: 'Test Exhibit',
+    slug: 'test-exhibit',
+    sys: {
+      id: '12345',
     },
   },
 ];

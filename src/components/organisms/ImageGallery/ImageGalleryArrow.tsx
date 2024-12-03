@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import clsx from "clsx";
-import { CustomArrowProps } from "react-slick";
+import clsx from 'clsx';
+import { CustomArrowProps } from 'react-slick';
 
-import styles from "./ImageGallery.module.scss";
+import styles from './ImageGallery.module.scss';
 
 export enum ArrowDirection {
-  Previous = "previous",
-  Next = "next",
+  Previous = 'previous',
+  Next = 'next',
 }
 
 interface Props extends CustomArrowProps {

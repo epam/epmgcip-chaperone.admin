@@ -1,3 +1,2 @@
-export const ReactComponent = "div";
-const SvgUrl = () => "";
+const SvgUrl = () => '';
 export default SvgUrl;

@@ -1,6 +1,7 @@
-import HomePage from "../../components/pages/Home/Home";
-import { getTopLatestExhibits } from "@/lib/exhibit";
-import { ITopLatestExhibit } from "@/interfaces/ITopLatestExhibit";
+import { ITopLatestExhibit } from '@/interfaces/ITopLatestExhibit';
+import { getTopLatestExhibits } from '@/lib/exhibit';
+
+import HomePage from '../../components/pages/Home/Home';
 
 const topLatestExhibitsLimit = 10;
 

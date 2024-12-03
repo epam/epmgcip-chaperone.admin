@@ -1,5 +1,5 @@
-import { GetExhibitDocument, GetTopLatestExhibitsDocument } from "../__generated__/graphql";
-import { getClient } from "./ApolloClient";
+import { getClient } from './ApolloClient';
+import { GetExhibitDocument, GetTopLatestExhibitsDocument } from '../__generated__/graphql';
 
 export async function getExhibit(slug: string) {
   try {
@@ -10,7 +10,7 @@ export async function getExhibit(slug: string) {
 
     return data.exhibitCollection?.items[0];
   } catch (error) {
-    console.error("Failed to fetch exhibit");
+    console.error('Failed to fetch exhibit', error);
   }
 }
 
@@ -23,6 +23,6 @@ export async function getTopLatestExhibits(limit: number) {
 
     return data.exhibitCollection?.items ?? [];
   } catch (error) {
-    console.error("Failed to fetch exhibit: ", error);
+    console.error('Failed to fetch exhibit: ', error);
   }
 }

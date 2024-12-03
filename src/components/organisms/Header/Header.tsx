@@ -1,11 +1,13 @@
-"use client";
+'use client';
 
-import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
-import styles from "./Header.module.scss";
-import LanguageSwitcher from "@/components/molecules/LanguageSwitcher/LanguageSwitcher";
-import logo from "@/assets/image/logo.png";
-import { Link } from "@/navigation";
+import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
+
+import logo from '@/assets/image/logo.png';
+import LanguageSwitcher from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
+import { Link } from '@/navigation';
+
+import styles from './Header.module.scss';
 
 export default function Header() {
   const t = useTranslations();
@@ -14,7 +16,7 @@ export default function Header() {
   return (
     <div className={styles.header} data-testid="header-component">
       <Link href={locale}>
-        <Image src={logo} width={68} alt={t("logo")} className={styles.logo} />
+        <Image src={logo} width={68} alt={t('logo')} className={styles.logo} />
       </Link>
 
       <LanguageSwitcher />

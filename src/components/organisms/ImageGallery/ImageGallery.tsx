@@ -1,19 +1,26 @@
-import { useRef } from "react";
-import Slider from "react-slick";
-import Image from "next/image";
-import { useShallow } from "zustand/react/shallow";
-import clsx from "clsx";
-import Lightbox, { ControllerRef, ZoomRef } from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import styles from "./ImageGallery.module.scss";
-import BREAKPOINT_TABLE from "../../../constants/breakpoints";
-import useImageGalleryStore from "../../../stores/useImageGalleryStore";
-import { IImageGalleryImage } from "@/interfaces/IImageGalleryImage";
-import ImageGalleryArrow, { ArrowDirection } from "./ImageGalleryArrow";
-import Link from "next/link";
+import { useRef } from 'react';
+
+import 'yet-another-react-lightbox/styles.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import 'yet-another-react-lightbox/styles.css';
+import clsx from 'clsx';
+import Image from 'next/image';
+import Link from 'next/link';
+import Slider from 'react-slick';
+import Lightbox, { ControllerRef, ZoomRef } from 'yet-another-react-lightbox';
+import Zoom from 'yet-another-react-lightbox/plugins/zoom';
+import { useShallow } from 'zustand/react/shallow';
+
+import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import styles from './ImageGallery.module.scss';
+import ImageGalleryArrow, { ArrowDirection } from './ImageGalleryArrow';
+import BREAKPOINT_TABLE from '../../../constants/breakpoints';
+import useImageGalleryStore from '../../../stores/useImageGalleryStore';
 
 interface Props {
   displayArrows: boolean;
@@ -37,15 +44,15 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   } = useImageGalleryStore(
     useShallow((state) => ({
       id: state.id,
-      setId: state.setId,
-      isOpeningWithZoom: state.isOpeningWithZoom,
       isOpen: state.isOpen,
+      isOpeningWithZoom: state.isOpeningWithZoom,
+      setId: state.setId,
       setIsOpen: state.setIsOpen,
       setIsOpeningWithZoom: state.setIsOpeningWithZoom,
-      zoomValue: state.zoomValue,
+      setZoom: state.setZoom,
       zoomOffsetX: state.zoomOffsetX,
       zoomOffsetY: state.zoomOffsetY,
-      setZoom: state.setZoom,
+      zoomValue: state.zoomValue,
     })),
   );
   const lightboxImages = images.map((i) => ({ src: i.url }));
@@ -98,6 +105,7 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   const loadImage = (url: string) => {
     const image = new window.Image();
     image.src = url;
+
     return new Promise<HTMLImageElement>((resolve) => {
       image.onload = () => resolve(image);
     });
@@ -133,6 +141,7 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
     const yetAnotherReactLightboxShift = 1 - 1 / zoom;
     const offsetX = ((wrapperX / 100) * (translateX - 50)) / yetAnotherReactLightboxShift;
     const offsetY = ((wrapperY / 100) * (translateY - 50)) / yetAnotherReactLightboxShift;
+
     return { offsetX, offsetY };
   }
 
@@ -151,8 +160,8 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
           {
             breakpoint: BREAKPOINT_TABLE,
             settings: {
-              slidesToShow: 1,
               centerMode: true,
+              slidesToShow: 1,
             },
           },
         ]}
@@ -165,7 +174,7 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
         close={handleOnCloseLightbox}
         slides={lightboxImages}
         plugins={[Zoom]}
-        zoom={{ ref: zoomRef, maxZoomPixelRatio: 20 }}
+        zoom={{ maxZoomPixelRatio: 20, ref: zoomRef }}
         index={galleryIndex}
         controller={{ ref }}
         carousel={{
@@ -174,9 +183,10 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
         on={{
           entered: async () => {
             if (isOpeningWithZoom) {
-              const imageUrl = images.find((image) => image.id === galleryId)?.url || "";
+              const imageUrl = images.find((image) => image.id === galleryId)?.url || '';
               if (!imageUrl) {
-                console.error("Image URL not found.");
+                console.error('Image URL not found.');
+
                 return;
               }
 
@@ -199,7 +209,7 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
             setIsOpeningWithZoom(false);
           },
         }}
-        className={clsx(isOpeningWithZoom && "image-gallery-zooming")}
+        className={clsx(isOpeningWithZoom && 'image-gallery-zooming')}
       />
     </>
   );
