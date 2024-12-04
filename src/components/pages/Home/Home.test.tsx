@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 
-import { ITopLatestExhibit } from '@/interfaces/ITopLatestExhibit';
+import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
 import { topLatestExhibits } from '@/mocks/exhibit';
 
 import Home from './Home';
@@ -19,7 +19,7 @@ jest.mock('yet-another-react-lightbox', () => jest.fn());
 jest.mock('yet-another-react-lightbox/plugins/zoom', () => ({}));
 
 describe('Home component', () => {
-  const renderComponent = (exhibits: ITopLatestExhibit[]) =>
+  const renderComponent = (exhibits: IPreviewExhibit[]) =>
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
         <Home exhibits={exhibits} />

@@ -7,12 +7,12 @@ import { useLocale, useTranslations } from 'next-intl';
 import ImageGallery from '@/components/organisms/ImageGallery/ImageGallery';
 import { EXHIBIT_URL } from '@/constants/routes';
 import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
-import { ITopLatestExhibit } from '@/interfaces/ITopLatestExhibit';
+import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
 
 import styles from './Home.module.scss';
 
 interface Props {
-  exhibits: ITopLatestExhibit[];
+  exhibits: IPreviewExhibit[];
 }
 
 export default function Home(props: Props): React.ReactElement {

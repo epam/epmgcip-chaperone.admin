@@ -1,4 +1,4 @@
-import { ITopLatestExhibit } from '@/interfaces/ITopLatestExhibit';
+import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
 
 export const exhibitItem = {
   audioFileEn: {
@@ -88,7 +88,7 @@ export const exhibitMockAnotherLanguage = {
   },
 };
 
-export const topLatestExhibits: ITopLatestExhibit[] = [
+export const topLatestExhibits: IPreviewExhibit[] = [
   {
     imagesCollection: {
       items: [

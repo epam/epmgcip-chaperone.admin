@@ -1,4 +1,4 @@
-export interface ITopLatestExhibit {
+export interface IPreviewExhibit {
   sys: {
     id: string;
   };
