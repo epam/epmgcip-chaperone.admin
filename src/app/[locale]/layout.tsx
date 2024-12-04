@@ -1,3 +1,5 @@
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
@@ -6,6 +8,8 @@ import { getMessages } from 'next-intl/server';
 
 import Header from '@/components/organisms/Header/Header';
 
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import './globals.scss';
 
 const montserrat = Montserrat({
@@ -31,12 +35,18 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={montserrat.variable}>
+      <head>
+        <ColorSchemeScript />
+      </head>
       <GoogleTagManager gtmId={process.env.CONTENTFUL_GTAG_ID || ''} />
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
-        </NextIntlClientProvider>
+        <MantineProvider>
+          <Notifications />
+          <NextIntlClientProvider messages={messages}>
+            <Header />
+            {children}
+          </NextIntlClientProvider>
+        </MantineProvider>
       </body>
     </html>
   );

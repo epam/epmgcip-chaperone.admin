@@ -15,5 +15,53 @@
   "rewind": "Назад",
   "logo": "Лого",
   "homeLink": "Главная",
-  "homePageTitle": "Добро пожаловать на нашу главную страницу!"
+  "homePageTitle": "Добро пожаловать на нашу главную страницу!",
+  "contactForm": {
+    "title": "Форма обратной связи",
+    "fields": {
+      "name": {
+        "label": "Имя",
+        "validation": "Имя обязательно",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "E-mail",
+        "validation": "E-mail обязателен",
+        "placeholder": "user@example.com"
+      },
+      "subject": {
+        "label": "Тема",
+        "validation": "Выберите тему",
+        "placeholder": "Выберите тему"
+      },
+      "message": {
+        "label": "Сообщение",
+        "validation": "Текст сообщения обязателен",
+        "placeholder": "Текст сообщения"
+      }
+    },
+    "subjects": {
+      "aboutSite": "Вопрос по сайту",
+      "order": "Заказ продукции",
+      "requestTour": "Заказ экскурсии",
+      "cooperation": "Сотрудничество",
+      "other": "Другое"
+    }
+  },
+  "submit": "Подтвердить",
+  "popup": {
+    "title": {
+      "success": "Успех",
+      "error": "Ошибка"
+    }
+  },
+  "reCaptcha": {
+    "message": "Пожалуйста подтвердите, что вы не робот"
+  },
+  "action": {
+    "sendEmail": {
+      "success": "Электронное письмо успешно отправлено",
+      "error": "Не удалось отправить электронное письмо"
+    }
+  }
 }
