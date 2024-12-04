@@ -16,7 +16,7 @@ interface Props extends CustomArrowProps {
 
 function ImageGalleryArrow(props: Props): React.ReactElement {
   return (
-    <div
+    <button
       className={clsx(
         props.className,
         styles.slickCustomArrow,
