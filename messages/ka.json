@@ -13,5 +13,53 @@
   "pause": "Pause",
   "forward": "Forward",
   "rewind": "Rewind",
-  "logo": "Logo"
+  "logo": "Logo",
+  "contactForm": {
+    "title": "Feedback form",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "validation": "Name is required",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "E-mail",
+        "validation": "E-mail is required",
+        "placeholder": "user@example.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "validation": "Select subject",
+        "placeholder": "Select subject"
+      },
+      "message": {
+        "label": "Message",
+        "validation": "Message is required",
+        "placeholder": "Your message"
+      }
+    },
+    "subjects": {
+      "aboutSite": "About website",
+      "order": "Order",
+      "requestTour": "Request a tour",
+      "cooperation": "Cooperation",
+      "other": "Other"
+    }
+  },
+  "submit": "Submit",
+  "popup": {
+    "title": {
+      "success": "Success",
+      "error": "Error"
+    }
+  },
+  "reCaptcha": {
+    "message": "Please confirm that you are not a robot"
+  },
+  "action": {
+    "sendEmail": {
+      "success": "Email sent successfully",
+      "error": "Failed to send email"
+    }
+  }
 }

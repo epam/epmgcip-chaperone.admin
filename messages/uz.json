@@ -13,5 +13,53 @@
   "pause": "Pauza",
   "forward": "Oldinga",
   "rewind": "Orqaga",
-  "logo": "Logo"
+  "logo": "Logo",
+  "contactForm": {
+    "title": "Fikr-mulohaza shakli",
+    "fields": {
+      "name": {
+        "label": "Ism",
+        "validation": "Ism majburiy",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Elektron pochta",
+        "validation": "Elektron pochta majburiy",
+        "placeholder": "user@example.com"
+      },
+      "subject": {
+        "label": "Mavzu",
+        "validation": "Mavzuni tanlang",
+        "placeholder": "Mavzuni tanlang"
+      },
+      "message": {
+        "label": "Xabar",
+        "validation": "Xabar kerak",
+        "placeholder": "Xabaringizni yozing"
+      }
+    },
+    "subjects": {
+      "aboutSite": "Veb-sayt haqida",
+      "order": "Buyurtma",
+      "requestTour": "Ekskursiya so'rovi",
+      "cooperation": "Hamkorlik",
+      "other": "Boshqa"
+    }
+  },
+  "submit": "Yuborish",
+  "popup": {
+    "title": {
+      "success": "Muvaffaqiyat",
+      "error": "Xatolik"
+    }
+  },
+  "reCaptcha": {
+    "message": "Iltimos, robot emasligingizni tasdiqlang"
+  },
+  "action": {
+    "sendEmail": {
+      "success": "Elektron pochta muvaffaqiyatli yuborildi",
+      "error": "Elektron pochtani yuborib bo'lmadi"
+    }
+  }
 }

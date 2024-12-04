@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../../variables.scss";
 
 .header {
@@ -9,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
 
-  @media (min-width: $breakpointTablet) {
+  @media (min-width: map.get($breakpoints, sm)) {
     padding: 8px $indentTabletPageBorder;
   }
 }
