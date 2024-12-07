@@ -1,4 +1,4 @@
-@import "../../../variables.scss";
+@import '../../../variables.scss';
 
 .image {
   object-fit: cover;
@@ -38,9 +38,14 @@
   height: auto;
 
   &:before {
-    color: $colorDarkGray;
-    opacity: 0.8 !important;
+    color: $colorLightGray;
+    opacity: 0.4 !important;
     font-size: 30px;
+  }
+
+  &:hover:before {
+    color: $colorLightGray;
+    opacity: 1 !important;
   }
 }
 
