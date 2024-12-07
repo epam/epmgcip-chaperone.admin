@@ -178,7 +178,6 @@ export type AssetLinkingCollections = {
   __typename?: "AssetLinkingCollections";
   entryCollection?: Maybe<EntryCollection>;
   exhibitCollection?: Maybe<ExhibitCollection>;
-  linksCollection?: Maybe<LinksCollection>;
 };
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
@@ -189,13 +188,6 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 };
 
 export type AssetLinkingCollectionsExhibitCollectionArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  locale?: InputMaybe<Scalars["String"]["input"]>;
-  preview?: InputMaybe<Scalars["Boolean"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
-export type AssetLinkingCollectionsLinksCollectionArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -227,10 +219,26 @@ export enum AssetOrder {
 
 export type ContentfulMetadata = {
   __typename?: "ContentfulMetadata";
+  concepts: Array<Maybe<TaxonomyConcept>>;
   tags: Array<Maybe<ContentfulTag>>;
 };
 
+export type ContentfulMetadataConceptsDescendantsFilter = {
+  id_contains_all?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  id_contains_none?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  id_contains_some?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type ContentfulMetadataConceptsFilter = {
+  descendants?: InputMaybe<ContentfulMetadataConceptsDescendantsFilter>;
+  id_contains_all?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  id_contains_none?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  id_contains_some?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
 export type ContentfulMetadataFilter = {
+  concepts?: InputMaybe<ContentfulMetadataConceptsFilter>;
+  concepts_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
   tags?: InputMaybe<ContentfulMetadataTagsFilter>;
   tags_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
@@ -282,7 +290,7 @@ export enum EntryOrder {
   SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type Exhibit = Entry &
   _Node & {
     __typename?: "Exhibit";
@@ -311,71 +319,71 @@ export type Exhibit = Entry &
     yearOfCreation?: Maybe<Scalars["String"]["output"]>;
   };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAudioFileEnArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAudioFileKaArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAudioFileRuArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAudioFileUzArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAuthorEnArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAuthorKaArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAuthorRuArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitAuthorUzArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitDescriptionEnArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitDescriptionKaArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitDescriptionRuArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitDescriptionUzArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitImagesCollectionArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   locale?: InputMaybe<Scalars["String"]["input"]>;
@@ -383,37 +391,37 @@ export type ExhibitImagesCollectionArgs = {
   skip?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitNameEnArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitNameKaArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitNameRuArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitNameUzArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitSlugArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibit) */
+/** [See type definition](https://app.contentful.com/spaces/yr8vqo1e1y1l/content_types/exhibit) */
 export type ExhibitYearOfCreationArgs = {
   locale?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -623,7 +631,7 @@ export type ExhibitFilter = {
   OR?: InputMaybe<Array<InputMaybe<ExhibitFilter>>>;
   audioFileEn_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
   audioFileKa_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
-  audioFileRU_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
+  audioFileRu_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
   audioFileUz_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
   authorEn?: InputMaybe<Scalars["String"]["input"]>;
   authorEn_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -850,82 +858,6 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars["Dimension"]["input"]>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/links) */
-export type Links = Entry &
-  _Node & {
-    __typename?: "Links";
-    _id: Scalars["ID"]["output"];
-    contentfulMetadata: ContentfulMetadata;
-    image?: Maybe<Asset>;
-    linkedFrom?: Maybe<LinksLinkingCollections>;
-    sys: Sys;
-    text?: Maybe<Scalars["String"]["output"]>;
-  };
-
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/links) */
-export type LinksImageArgs = {
-  locale?: InputMaybe<Scalars["String"]["input"]>;
-  preview?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/links) */
-export type LinksLinkedFromArgs = {
-  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/links) */
-export type LinksTextArgs = {
-  locale?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type LinksCollection = {
-  __typename?: "LinksCollection";
-  items: Array<Maybe<Links>>;
-  limit: Scalars["Int"]["output"];
-  skip: Scalars["Int"]["output"];
-  total: Scalars["Int"]["output"];
-};
-
-export type LinksFilter = {
-  AND?: InputMaybe<Array<InputMaybe<LinksFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<LinksFilter>>>;
-  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  image_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
-  sys?: InputMaybe<SysFilter>;
-  text?: InputMaybe<Scalars["String"]["input"]>;
-  text_contains?: InputMaybe<Scalars["String"]["input"]>;
-  text_exists?: InputMaybe<Scalars["Boolean"]["input"]>;
-  text_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  text_not?: InputMaybe<Scalars["String"]["input"]>;
-  text_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  text_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-};
-
-export type LinksLinkingCollections = {
-  __typename?: "LinksLinkingCollections";
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-export type LinksLinkingCollectionsEntryCollectionArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  locale?: InputMaybe<Scalars["String"]["input"]>;
-  preview?: InputMaybe<Scalars["Boolean"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
-export enum LinksOrder {
-  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
-  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
-  SysIdAsc = "sys_id_ASC",
-  SysIdDesc = "sys_id_DESC",
-  SysPublishedAtAsc = "sys_publishedAt_ASC",
-  SysPublishedAtDesc = "sys_publishedAt_DESC",
-  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
-  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
-  TextAsc = "text_ASC",
-  TextDesc = "text_DESC",
-}
-
 export type Query = {
   __typename?: "Query";
   _node?: Maybe<_Node>;
@@ -934,8 +866,6 @@ export type Query = {
   entryCollection?: Maybe<EntryCollection>;
   exhibit?: Maybe<Exhibit>;
   exhibitCollection?: Maybe<ExhibitCollection>;
-  links?: Maybe<Links>;
-  linksCollection?: Maybe<LinksCollection>;
 };
 
 export type Query_NodeArgs = {
@@ -981,21 +911,6 @@ export type QueryExhibitCollectionArgs = {
   preview?: InputMaybe<Scalars["Boolean"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where?: InputMaybe<ExhibitFilter>;
-};
-
-export type QueryLinksArgs = {
-  id: Scalars["String"]["input"];
-  locale?: InputMaybe<Scalars["String"]["input"]>;
-  preview?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type QueryLinksCollectionArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  locale?: InputMaybe<Scalars["String"]["input"]>;
-  order?: InputMaybe<Array<InputMaybe<LinksOrder>>>;
-  preview?: InputMaybe<Scalars["Boolean"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  where?: InputMaybe<LinksFilter>;
 };
 
 export type ResourceLink = {
@@ -1057,6 +972,15 @@ export type SysFilter = {
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
 };
 
+/**
+ * Represents a tag entity for finding and organizing content easily.
+ *         Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
+ */
+export type TaxonomyConcept = {
+  __typename?: "TaxonomyConcept";
+  id?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type _Node = {
   _id: Scalars["ID"]["output"];
 };
@@ -1081,7 +1005,20 @@ export type GetExhibitQuery = {
       authorKa?: string | null;
       yearOfCreation?: string | null;
       sys: { __typename?: "Sys"; id: string };
-      descriptionEn?: { __typename?: "ExhibitDescriptionEn"; json: any } | null;
+      descriptionEn?: {
+        __typename?: "ExhibitDescriptionEn";
+        json: any;
+        links: {
+          __typename?: "ExhibitDescriptionEnLinks";
+          entries: {
+            __typename?: "ExhibitDescriptionEnEntries";
+            inline: Array<{
+              __typename?: "Exhibit";
+              sys: { __typename?: "Sys"; id: string };
+            } | null>;
+          };
+        };
+      } | null;
       descriptionRu?: {
         __typename?: "ExhibitDescriptionRu";
         json: any;
@@ -1089,11 +1026,10 @@ export type GetExhibitQuery = {
           __typename?: "ExhibitDescriptionRuLinks";
           entries: {
             __typename?: "ExhibitDescriptionRuEntries";
-            inline: Array<
-              | { __typename?: "Exhibit"; sys: { __typename?: "Sys"; id: string } }
-              | { __typename?: "Links"; sys: { __typename?: "Sys"; id: string } }
-              | null
-            >;
+            inline: Array<{
+              __typename?: "Exhibit";
+              sys: { __typename?: "Sys"; id: string };
+            } | null>;
           };
         };
       } | null;
@@ -1104,11 +1040,10 @@ export type GetExhibitQuery = {
           __typename?: "ExhibitDescriptionUzLinks";
           entries: {
             __typename?: "ExhibitDescriptionUzEntries";
-            inline: Array<
-              | { __typename?: "Exhibit"; sys: { __typename?: "Sys"; id: string } }
-              | { __typename?: "Links"; sys: { __typename?: "Sys"; id: string } }
-              | null
-            >;
+            inline: Array<{
+              __typename?: "Exhibit";
+              sys: { __typename?: "Sys"; id: string };
+            } | null>;
           };
         };
       } | null;
@@ -1119,11 +1054,10 @@ export type GetExhibitQuery = {
           __typename?: "ExhibitDescriptionKaLinks";
           entries: {
             __typename?: "ExhibitDescriptionKaEntries";
-            inline: Array<
-              | { __typename?: "Exhibit"; sys: { __typename?: "Sys"; id: string } }
-              | { __typename?: "Links"; sys: { __typename?: "Sys"; id: string } }
-              | null
-            >;
+            inline: Array<{
+              __typename?: "Exhibit";
+              sys: { __typename?: "Sys"; id: string };
+            } | null>;
           };
         };
       } | null;
@@ -1139,6 +1073,34 @@ export type GetExhibitQuery = {
       audioFileRu?: { __typename?: "Asset"; url?: string | null } | null;
       audioFileUz?: { __typename?: "Asset"; url?: string | null } | null;
       audioFileKa?: { __typename?: "Asset"; url?: string | null } | null;
+    } | null>;
+  } | null;
+};
+
+export type GetTopLatestExhibitsQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+}>;
+
+export type GetTopLatestExhibitsQuery = {
+  __typename?: "Query";
+  exhibitCollection?: {
+    __typename?: "ExhibitCollection";
+    items: Array<{
+      __typename?: "Exhibit";
+      slug?: string | null;
+      nameEn?: string | null;
+      nameRu?: string | null;
+      nameUz?: string | null;
+      nameKa?: string | null;
+      sys: { __typename?: "Sys"; id: string };
+      imagesCollection?: {
+        __typename?: "AssetCollection";
+        items: Array<{
+          __typename?: "Asset";
+          url?: string | null;
+          sys: { __typename?: "Sys"; id: string };
+        } | null>;
+      } | null;
     } | null>;
   } | null;
 };
@@ -1218,7 +1180,49 @@ export const GetExhibitDocument = {
                         name: { kind: "Name", value: "descriptionEn" },
                         selectionSet: {
                           kind: "SelectionSet",
-                          selections: [{ kind: "Field", name: { kind: "Name", value: "json" } }],
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "json" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "links" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "entries" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "inline" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: { kind: "Name", value: "sys" },
+                                                selectionSet: {
+                                                  kind: "SelectionSet",
+                                                  selections: [
+                                                    {
+                                                      kind: "Field",
+                                                      name: { kind: "Name", value: "id" },
+                                                    },
+                                                  ],
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
                         },
                       },
                       {
@@ -1450,3 +1454,118 @@ export const GetExhibitDocument = {
     },
   ],
 } as unknown as DocumentNode<GetExhibitQuery, GetExhibitQueryVariables>;
+export const GetTopLatestExhibitsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetTopLatestExhibits" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "exhibitCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "order" },
+                value: { kind: "EnumValue", value: "sys_publishedAt_DESC" },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "imagesCollection_exists" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "sys" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                      { kind: "Field", name: { kind: "Name", value: "nameEn" } },
+                      { kind: "Field", name: { kind: "Name", value: "nameRu" } },
+                      { kind: "Field", name: { kind: "Name", value: "nameUz" } },
+                      { kind: "Field", name: { kind: "Name", value: "nameKa" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "imagesCollection" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "limit" },
+                            value: { kind: "IntValue", value: "1" },
+                          },
+                        ],
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "items" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "url" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "sys" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetTopLatestExhibitsQuery, GetTopLatestExhibitsQueryVariables>;

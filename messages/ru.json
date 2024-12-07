@@ -14,6 +14,8 @@
   "forward": "Вперед",
   "rewind": "Назад",
   "logo": "Лого",
+  "homeLink": "Главная",
+  "homePageTitle": "Добро пожаловать на нашу главную страницу!",
   "contactForm": {
     "title": "Форма обратной связи",
     "fields": {
