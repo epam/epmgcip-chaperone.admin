@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 import ImageGallery from '@/components/organisms/ImageGallery/ImageGallery';
 import { EXHIBIT_URL } from '@/constants/routes';
@@ -17,7 +17,6 @@ interface Props {
 
 export default function Home(props: Props): React.ReactElement {
   const t = useTranslations();
-  const locale = useLocale();
 
   const images: IImageGalleryImage[] = useMemo(
     () =>
@@ -27,7 +26,7 @@ export default function Home(props: Props): React.ReactElement {
           const firstImageItem = exhibit.imagesCollection.items[0];
 
           return {
-            clickUrl: `${locale}${EXHIBIT_URL}/${exhibit.slug}`,
+            clickUrl: `${EXHIBIT_URL}/${exhibit.slug}`,
             id: firstImageItem.sys.id,
             url: firstImageItem.url,
           };
