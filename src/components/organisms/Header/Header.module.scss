@@ -1,5 +1,6 @@
-@use "sass:map";
-@import "../../../variables.scss";
+@use 'sass:map';
+
+@import '../../../variables.scss';
 
 .header {
   position: relative;
@@ -7,7 +8,8 @@
   padding: 8px $indentMobilePageBorder;
   border-bottom: 1px solid $mainBorderColor;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 
   @media (min-width: map.get($breakpoints, sm)) {
@@ -18,4 +20,26 @@
 .logo {
   width: 68px;
   padding-top: 4px;
+}
+
+.dropdownContainer {
+  margin: 0 0 0 auto;
+}
+
+.desktopContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.link {
+  color: #4a444f;
+  text-decoration: none;
+  outline: none;
+}
+
+.activeLink {
+  color: $colorOrange;
+  font-weight: 600;
 }
