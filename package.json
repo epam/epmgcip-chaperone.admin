@@ -1,5 +1,8 @@
 {
   "name": "epmgcip-chaperone.admin",
+  "engines": {
+    "node": ">= 20"
+  },
   "version": "2.0.0",
   "private": true,
   "scripts": {
