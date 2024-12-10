@@ -116,7 +116,7 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
 
           {images.length > 0 && (
             <div className={styles.gallery}>
-              <ImageGallery images={images} />
+              <ImageGallery images={images} isLinkImage={false} displayArrows={false} />
             </div>
           )}
 

@@ -1,0 +1,26 @@
+query GetTopLatestExhibits($limit: Int) {
+  exhibitCollection(
+    limit: $limit
+    order: sys_publishedAt_DESC
+    where: { imagesCollection_exists: true }
+  ) {
+    items {
+      sys {
+        id
+      }
+      slug
+      nameEn
+      nameRu
+      nameUz
+      nameKa
+      imagesCollection(limit: 1) {
+        items {
+          url
+          sys {
+            id
+          }
+        }
+      }
+    }
+  }
+}
