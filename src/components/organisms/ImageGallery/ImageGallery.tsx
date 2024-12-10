@@ -1,27 +1,34 @@
 import { useRef } from 'react';
 
 import 'yet-another-react-lightbox/styles.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import 'yet-another-react-lightbox/styles.css';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import Slider from 'react-slick';
 import Lightbox, { ControllerRef, ZoomRef } from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import { useShallow } from 'zustand/react/shallow';
 
+import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './ImageGallery.module.scss';
+import ImageGalleryArrow, { ArrowDirection } from './ImageGalleryArrow';
 import BREAKPOINT_TABLE from '../../../constants/breakpoints';
 import useImageGalleryStore from '../../../stores/useImageGalleryStore';
 
 interface Props {
-  images: Array<{
-    url: string;
-    id: string;
-  }>;
+  displayArrows: boolean;
+  images: IImageGalleryImage[];
+  isLinkImage: boolean;
 }
 
-const ImageGallery = ({ images }: Props) => {
+function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
   const {
     id: galleryId,
@@ -48,12 +55,12 @@ const ImageGallery = ({ images }: Props) => {
       zoomValue: state.zoomValue,
     })),
   );
-  const lighboxImages = images.map((i) => ({ src: i.url }));
+  const lightboxImages = images.map((i) => ({ src: i.url }));
   const ref = useRef<ControllerRef>(null);
   const galleryIndex = images.findIndex((i) => i.id === galleryId);
   const carouselPadding = 16;
 
-  const handleOnImageClick = (index: string) => {
+  const handleOnImageClick = (index: string) => (): void => {
     setIsOpeningWithZoom(true);
     setGalleryId(index);
     setIsOpen(true);
@@ -63,26 +70,37 @@ const ImageGallery = ({ images }: Props) => {
     setIsOpen(false);
   };
 
-  const imagesList = images.map((image, index) => (
-    <div key={image.id}>
-      <div className={styles.imageWrapper}>
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button
-          className={styles.lightboxButton}
-          type="button"
-          onClick={() => handleOnImageClick(image.id)}
-        >
-          <Image
-            data-testid={`image-gallery-image-${index}`}
-            className={styles.image}
-            src={image.url}
-            alt="picture"
-            fill
-          />
-        </button>
+  const imagesList = images.map((image, index) => {
+    const galleryImage = (
+      <Image
+        data-testid={`image-gallery-image-${index}`}
+        className={styles.image}
+        src={image.url}
+        alt="picture"
+        fill
+      />
+    );
+
+    return (
+      <div key={image.id}>
+        <div className={styles.imageWrapper}>
+          {isLinkImage ? (
+            <Link className={styles.lightboxImage} href={image.clickUrl!}>
+              {galleryImage}
+            </Link>
+          ) : (
+            <button
+              className={styles.lightboxButton}
+              type="button"
+              onClick={handleOnImageClick(image.id)}
+            >
+              {galleryImage}
+            </button>
+          )}
+        </div>
       </div>
-    </div>
-  ));
+    );
+  });
 
   const loadImage = (url: string) => {
     const image = new window.Image();
@@ -130,11 +148,14 @@ const ImageGallery = ({ images }: Props) => {
   return (
     <>
       <Slider
-        className="image-gallery"
         swipeToSlide
         infinite={false}
         centerPadding="28px"
         slidesToShow={3}
+        className="image-gallery"
+        arrows={displayArrows}
+        prevArrow={<ImageGalleryArrow direction={ArrowDirection.Previous} />}
+        nextArrow={<ImageGalleryArrow direction={ArrowDirection.Next} />}
         responsive={[
           {
             breakpoint: BREAKPOINT_TABLE,
@@ -151,7 +172,7 @@ const ImageGallery = ({ images }: Props) => {
       <Lightbox
         open={isOpen}
         close={handleOnCloseLightbox}
-        slides={lighboxImages}
+        slides={lightboxImages}
         plugins={[Zoom]}
         zoom={{ maxZoomPixelRatio: 20, ref: zoomRef }}
         index={galleryIndex}
@@ -192,6 +213,6 @@ const ImageGallery = ({ images }: Props) => {
       />
     </>
   );
-};
+}
 
 export default ImageGallery;

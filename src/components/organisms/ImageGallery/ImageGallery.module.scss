@@ -1,3 +1,5 @@
+@import '../../../variables.scss';
+
 .image {
   object-fit: cover;
   object-position: center;
@@ -17,8 +19,40 @@
   padding: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.lightboxImage {
+  @extend .lightboxButton;
+  display: block;
 }
 
 .lightboxButton:focus {
   outline: none;
+}
+
+.slickCustomArrow {
+  display: block;
+  z-index: 1;
+  width: auto;
+  height: auto;
+
+  &:before {
+    color: $colorLightGray;
+    opacity: 0.4 !important;
+    font-size: 30px;
+  }
+
+  &:hover:before {
+    color: $colorLightGray;
+    opacity: 1 !important;
+  }
+}
+
+.slickCustomArrowPrevious {
+  left: 15px;
+}
+
+.slickCustomArrowNext {
+  right: 15px;
 }
