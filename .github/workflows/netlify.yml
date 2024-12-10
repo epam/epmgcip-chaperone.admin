@@ -24,14 +24,14 @@ jobs:
       - name: Deploy Preview to Netlify
         if: github.event_name == 'pull_request'
         run: |
-          netlify deploy \
+          npx netlify deploy \
             --build \
             --site ${{ secrets.NETLIFY_STAGING_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }}
       - name: Deploy Staging to Netlify
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          netlify deploy \
+          npx netlify deploy \
             --build \
             --prod \
             --site ${{ secrets.NETLIFY_STAGING_SITE_ID }} \
@@ -39,7 +39,7 @@ jobs:
       - name: Deploy Production to Netlify
         if: github.event_name == 'release' && github.event.action == 'released'
         run: |
-          netlify deploy \
+          npx netlify deploy \
             --build \
             --prod \
             --site ${{ secrets.NETLIFY_PRODUCTION_SITE_ID }} \
