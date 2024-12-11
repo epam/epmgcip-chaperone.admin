@@ -39,7 +39,44 @@
   outline: none;
 }
 
+.subLink {
+  @extend .link;
+
+  font-size: 14px;
+  font-weight: normal;
+
+  &:hover {
+    font-weight: 600;
+  }
+}
+
 .activeLink {
   color: $colorOrange;
   font-weight: 600;
+}
+
+.burgerMenuIcon {
+  margin-left: 15px;
+}
+
+.subLinksDropdown {
+  top: 60px !important;
+  border: 1px solid $colorDarkGray;
+  min-width: 150px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.subLinksContainer {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.subLinkItem {
+  line-height: normal;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

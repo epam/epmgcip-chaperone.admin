@@ -1,51 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import { Burger, Container, Group } from '@mantine/core';
+import { Burger, Container, Drawer, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { clsx } from 'clsx';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import logo from '@/assets/image/logo.png';
 import LanguageSwitcher from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
-import { Link } from '@/navigation';
+import { Routes } from '@/constants/routes';
 
+import DesktopHeaderMenu from './DesktopHeaderMenu';
 import styles from './Header.module.scss';
-
-const links = [
-  {
-    label: 'Home',
-    link: '/',
-  },
-  {
-    label: 'Museum',
-    link: 'museum',
-  },
-  {
-    label: 'Exposition',
-    link: 'exposition',
-  },
-  {
-    label: 'News',
-    link: 'news',
-  },
-];
 
 export default function Header() {
   const t = useTranslations();
 
-  const [opened, { toggle }] = useDisclosure(false);
-  const [activeLink, setActiveLink] = useState(links[0].link);
+  const links = useMemo(() => Routes.filter((link) => link.isEnabled), []);
 
-  const onClickLink =
-    (link: string) =>
-    (e: React.MouseEvent<HTMLAnchorElement>): void => {
-      e.preventDefault();
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  const [activeLink, setActiveLink] = useState(links[0].url);
 
-      setActiveLink(link);
-    };
+  const onClickLink = (link: string): void => {
+    setActiveLink(link);
+  };
 
   return (
     <header className={styles.header} data-testid="header-component">
@@ -53,16 +32,7 @@ export default function Header() {
 
       <Container size="sm" className={styles.desktopContainer}>
         <Group visibleFrom="sm" gap="50px">
-          {links.map((link) => (
-            <Link
-              key={link.label}
-              href={link.link}
-              onClick={onClickLink(link.link)}
-              className={clsx(styles.link, { [styles.activeLink]: activeLink === link.link })}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <DesktopHeaderMenu activeLink={activeLink} links={links} onClickLink={onClickLink} />
         </Group>
       </Container>
 
@@ -70,7 +40,25 @@ export default function Header() {
         <LanguageSwitcher />
       </div>
 
-      <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+      <Burger
+        opened={drawerOpened}
+        className={styles.burgerMenuIcon}
+        onClick={toggleDrawer}
+        hiddenFrom="sm"
+        size="sm"
+      />
+
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="Navigation"
+        hiddenFrom="sm"
+        zIndex={1000}
+      >
+        <h1>test</h1>
+      </Drawer>
     </header>
   );
 }
