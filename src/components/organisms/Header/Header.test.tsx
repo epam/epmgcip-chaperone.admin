@@ -8,6 +8,7 @@ import messages from 'messages/en.json';
 import Header from './Header';
 
 jest.mock('@/navigation', () => ({
+  Link: jest.fn().mockReturnValue(<img src={'/test'} alt={'test'} />),
   usePathname: jest.fn().mockReturnValue('/test'),
   useRouter: jest.fn().mockReturnValue({
     replace: jest.fn(),

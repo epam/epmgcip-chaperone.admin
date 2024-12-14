@@ -1,3 +1,5 @@
+import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
+
 export const exhibitItem = {
   audioFileEn: {
     url: 'https://example.com/audio.mp3',
@@ -85,3 +87,26 @@ export const exhibitMockAnotherLanguage = {
     id: '123',
   },
 };
+
+export const topLatestExhibits: IPreviewExhibit[] = [
+  {
+    imagesCollection: {
+      items: [
+        {
+          sys: {
+            id: '1',
+          },
+          url: 'http://example.com',
+        },
+      ],
+    },
+    nameEn: 'Test Exhibit',
+    nameKa: 'Test Exhibit',
+    nameRu: 'Test Exhibit',
+    nameUz: 'Test Exhibit',
+    slug: 'test-exhibit',
+    sys: {
+      id: '12345',
+    },
+  },
+];

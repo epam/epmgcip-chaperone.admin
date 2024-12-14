@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 
 import logo from '@/assets/image/logo.png';
 import LanguageSwitcher from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
+import { BASE_URL } from '@/constants/routes';
 import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
 
@@ -35,7 +36,9 @@ export const DesktopHeader: React.FC<Props> = (props) => {
 
   return (
     <>
-      <Image src={logo} width={68} alt={t('logo')} />
+      <Link href={BASE_URL}>
+        <Image src={logo} width={68} alt={t('logo')} />
+      </Link>
 
       <Group gap={50} className={styles.desktopContainer}>
         {props.links.map((link) => {

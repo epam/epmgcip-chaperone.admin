@@ -1,6 +1,10 @@
 import { ILink } from '@/interfaces/ILink';
 
-export const Routes: ILink[] = [
+export const BASE_URL = '/';
+
+export const EXHIBIT_URL = `/exhibit`;
+
+export const APP_ROUTES: ILink[] = [
   {
     isEnabled: true,
     label: 'Home',
