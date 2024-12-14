@@ -11,9 +11,10 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  height: 60px;
 
   @media (min-width: map.get($breakpoints, sm)) {
-    padding: 8px $indentTabletPageBorder;
+    padding: 1px $indentTabletPageBorder;
   }
 }
 
@@ -28,6 +29,7 @@
 
 .desktopContainer {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   padding: 0;
@@ -53,10 +55,30 @@
 .activeLink {
   color: $colorOrange;
   font-weight: 600;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &:after {
+    display: block;
+    content: '';
+    height: 3px;
+    width: 100%;
+    background-color: $colorOrange;
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 }
 
 .burgerMenuIcon {
   margin-left: 15px;
+}
+
+.desktopHeaderContent {
+  height: 100%;
 }
 
 .subLinksDropdown {

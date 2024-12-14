@@ -28,7 +28,7 @@ const DesktopHeaderMenu: React.FC<Props> = (props) => {
     };
 
   return (
-    <Group visibleFrom="sm" gap="50px">
+    <Group visibleFrom="sm" gap="50px" className={styles.desktopHeaderContent}>
       {props.links.map((link) => {
         const isSubMenuItem = !!link.subLinks;
         const isSelectedLink = props.activeLink === link.url;
