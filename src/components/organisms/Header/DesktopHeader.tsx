@@ -51,7 +51,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
                 key={link.label}
                 href={link.url}
                 onClick={onClickLink(link.url)}
-                className={clsx(styles.link, { [styles.activeLink]: isSelectedLink })}
+                className={clsx(styles.desktopLink, { [styles.desktopActiveLink]: isSelectedLink })}
               >
                 {link.label}
               </Link>
@@ -64,31 +64,29 @@ export const DesktopHeader: React.FC<Props> = (props) => {
                 <Link
                   href={''}
                   onClick={onClickSubMenuLink(link.url)}
-                  className={clsx(styles.link, { [styles.activeLink]: isSelectedLink })}
+                  className={clsx(styles.desktopLink, {
+                    [styles.desktopActiveLink]: isSelectedLink,
+                  })}
                 >
                   {link.label}
                 </Link>
               </HoverCard.Target>
 
               <HoverCard.Dropdown className={styles.subLinksDropdown}>
-                <ul className={styles.subLinksContainer}>
-                  {link.subLinks!.map((item) => (
-                    <li key={item.label} className={styles.subLinkItem}>
-                      <Link key={item.label} href={item.url} className={styles.subLink}>
-                        {item.label}
-                      </Link>
-                    </li>
+                <div className={styles.desktopSubLinksContainer}>
+                  {link.subLinks!.map((subLink) => (
+                    <Link key={subLink.label} href={subLink.url} className={styles.desktopSubLink}>
+                      {subLink.label}
+                    </Link>
                   ))}
-                </ul>
+                </div>
               </HoverCard.Dropdown>
             </HoverCard>
           );
         })}
       </Group>
 
-      <div className={styles.dropdownContainer}>
-        <LanguageSwitcher />
-      </div>
+      <LanguageSwitcher />
     </>
   );
 };

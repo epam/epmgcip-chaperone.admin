@@ -1,5 +1,4 @@
 @use 'sass:map';
-@import '../../../variables.scss';
 
 @import '../../../variables.scss';
 
@@ -24,10 +23,6 @@
   cursor: pointer;
 }
 
-.dropdownContainer {
-  margin: 0 0 0 auto;
-}
-
 .desktopContainer {
   width: 100%;
   height: 100%;
@@ -39,30 +34,62 @@
   margin: 0 5%;
 }
 
-.link {
+.baseLink {
   color: #4a444f;
   text-decoration: none;
   outline: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-.subLink {
-  @extend .link;
+.desktopLink {
+  @extend .baseLink;
+
+  font-size: 16px;
+  height: auto;
+}
+
+.mobileLink {
+  @extend .baseLink;
+
+  font-size: 20px;
+  height: 50px;
+}
+
+.desktopSubLink {
+  @extend .baseLink;
 
   font-size: 14px;
   font-weight: normal;
+  margin-bottom: 5px;
 
   &:hover {
     font-weight: 600;
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.activeLink {
+.mobileSubLink {
+  @extend .baseLink;
+
+  font-size: 16px;
+  height: 40px;
+}
+
+.baseActiveLink {
   color: $colorOrange;
   font-weight: 600;
-  position: relative;
+}
+
+.desktopActiveLink {
+  @extend .baseActiveLink;
+
   height: 100%;
-  display: flex;
-  align-items: center;
 
   &:after {
     display: block;
@@ -77,6 +104,10 @@
   }
 }
 
+.mobileActiveLink {
+  @extend .baseActiveLink;
+}
+
 .subLinksDropdown {
   top: 60px !important;
   border: 1px solid $colorDarkGray;
@@ -84,17 +115,27 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
-.subLinksContainer {
+.desktopSubLinksContainer {
   margin: 0;
   padding: 0;
-  list-style-type: none;
 }
 
-.subLinkItem {
-  line-height: normal;
-  margin-bottom: 10px;
+.mobileSubLinksContainer {
+  margin-left: 15px;
+  padding: 0;
+}
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+.drawer {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSubLinksTab {
+  display: flex;
+  align-items: center;
+}
+
+.expandChevronIcon {
+  color: $colorOrange;
+  margin-left: 5px;
 }
