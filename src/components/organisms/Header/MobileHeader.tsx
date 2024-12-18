@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Burger, Collapse, Drawer } from '@mantine/core';
+import { Burger, Drawer } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { clsx } from 'clsx';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -14,6 +13,7 @@ import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
 
 import styles from './Header.module.scss';
+import { MobileSubLinks } from './MobileSubLinksLink';
 
 interface Props {
   activeLink: string;
@@ -25,26 +25,12 @@ export const MobileHeader: React.FC<Props> = (props) => {
   const t = useTranslations();
 
   const [isDrawerOpened, { toggle: onToggleDrawer, close: onCloseDrawer }] = useDisclosure(false);
-  // todo: separate component
-  const [isSubMenuOpened, { toggle: toggleSubMenu, close: onCloseSubMenu }] = useDisclosure(false);
 
   const onClickLink = (link: string) => (): void => {
     onCloseDrawer();
 
-    onCloseSubMenu();
-
     props.onClickLink(link);
   };
-
-  const onClickSubMenuLink =
-    (link: string) =>
-    (e: React.MouseEvent<HTMLAnchorElement>): void => {
-      e.preventDefault();
-
-      toggleSubMenu();
-
-      props.onClickLink(link);
-    };
 
   return (
     <>
@@ -82,35 +68,12 @@ export const MobileHeader: React.FC<Props> = (props) => {
             }
 
             return (
-              <React.Fragment key={link.label}>
-                <div className={styles.mobileSubLinksTab}>
-                  <Link
-                    href={''}
-                    onClick={onClickSubMenuLink(link.url)}
-                    className={clsx(styles.mobileLink, {
-                      [styles.mobileActiveLink]: isSelectedLink,
-                    })}
-                  >
-                    {link.label}
-                  </Link>
-
-                  {isSubMenuOpened ? (
-                    <IconChevronUp size={18} className={styles.expandChevronIcon} />
-                  ) : (
-                    <IconChevronDown size={18} className={styles.expandChevronIcon} />
-                  )}
-                </div>
-
-                <Collapse in={isSubMenuOpened}>
-                  <div className={styles.mobileSubLinksContainer}>
-                    {link.subLinks!.map((subLink) => (
-                      <Link key={subLink.label} href={subLink.url} className={styles.mobileSubLink}>
-                        {subLink.label}
-                      </Link>
-                    ))}
-                  </div>
-                </Collapse>
-              </React.Fragment>
+              <MobileSubLinks
+                key={link.label}
+                link={link}
+                onClickLink={props.onClickLink}
+                isSelected={isSelectedLink}
+              />
             );
           })}
         </div>
