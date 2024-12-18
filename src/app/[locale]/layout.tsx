@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { GoogleTagManager } from '@next/third-parties/google';
@@ -7,6 +9,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
 import Header from '@/components/organisms/Header/Header';
+import { APP_ROUTES } from '@/constants/routes';
 
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
@@ -43,7 +46,7 @@ export default async function RootLayout({
         <MantineProvider>
           <Notifications />
           <NextIntlClientProvider messages={messages}>
-            <Header />
+            <Header links={APP_ROUTES} />
             {children}
           </NextIntlClientProvider>
         </MantineProvider>

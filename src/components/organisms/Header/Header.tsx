@@ -2,15 +2,19 @@
 
 import React, { useMemo, useState } from 'react';
 
-import { APP_ROUTES } from '@/constants/routes';
 import { useMobileView } from '@/hooks/use-mobile-view';
+import { ILink } from '@/interfaces/ILink';
 
 import { DesktopHeader } from './DesktopHeader';
 import styles from './Header.module.scss';
 import { MobileHeader } from './MobileHeader';
 
-export default function Header() {
-  const links = useMemo(() => APP_ROUTES.filter((link) => link.isEnabled), []);
+interface Props {
+  links: ILink[];
+}
+
+export default function Header(props: Props) {
+  const links = useMemo(() => props.links.filter((link) => link.isEnabled), [props.links]);
 
   const [activeLink, setActiveLink] = useState(links[0].url);
   const isMobile = useMobileView();
@@ -19,13 +23,15 @@ export default function Header() {
     setActiveLink(link);
   };
 
+  const headersBaseProps = {
+    activeLink,
+    links,
+    onClickLink,
+  };
+
   return (
     <header className={styles.header} data-testid="header-component">
-      {isMobile ? (
-        <MobileHeader activeLink={activeLink} links={links} onClickLink={onClickLink} />
-      ) : (
-        <DesktopHeader activeLink={activeLink} links={links} onClickLink={onClickLink} />
-      )}
+      {isMobile ? <MobileHeader {...headersBaseProps} /> : <DesktopHeader {...headersBaseProps} />}
     </header>
   );
 }
