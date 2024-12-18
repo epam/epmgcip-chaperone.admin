@@ -13,7 +13,7 @@ import styles from './Header.module.scss';
 interface Props {
   link: ILink;
   isSelected: boolean;
-  onClickLink: (link: string) => void;
+  onClickLink: () => void;
 }
 
 export const MobileSubLinks: React.FC<Props> = (props) => {
@@ -22,13 +22,13 @@ export const MobileSubLinks: React.FC<Props> = (props) => {
   const onClickLink = (): void => {
     toggleSubMenu();
 
-    props.onClickLink(props.link.url);
+    props.onClickLink();
   };
 
   const onClickSubLink = (): void => {
     closeSubMenu();
 
-    props.onClickLink(props.link.url);
+    props.onClickLink();
   };
 
   const iconChevronProps = {

@@ -14,17 +14,27 @@ interface Props {
 }
 
 export default function Header(props: Props) {
-  const links = useMemo(() => props.links.filter((link) => link.isEnabled), [props.links]);
+  const links = useMemo(
+    () =>
+      props.links.filter((link) => {
+        if (link.subLinks?.length) {
+          link.subLinks = link.subLinks.filter((subLink) => subLink.isEnabled);
+        }
 
-  const [activeLink, setActiveLink] = useState(links[0].url);
+        return link.isEnabled;
+      }),
+    [props.links],
+  );
+
+  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
   const isMobile = useMobileView();
 
-  const onClickLink = (link: string): void => {
-    setActiveLink(link);
+  const onClickLink = (linkIndex: number): void => {
+    setActiveLinkIndex(linkIndex);
   };
 
   const headersBaseProps = {
-    activeLink,
+    activeLinkIndex,
     links,
     onClickLink,
   };

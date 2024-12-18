@@ -14,24 +14,24 @@ import { Link } from '@/navigation';
 import styles from './Header.module.scss';
 
 interface Props {
-  activeLink: string;
+  activeLinkIndex: number;
   links: ILink[];
-  onClickLink: (url: string) => void;
+  onClickLink: (linkIndex: number) => void;
 }
 
 export const DesktopHeader: React.FC<Props> = (props) => {
   const t = useTranslations();
 
-  const onClickLink = (link: string) => (): void => {
-    props.onClickLink(link);
+  const onClickLink = (linkIndex: number) => (): void => {
+    props.onClickLink(linkIndex);
   };
 
   const onClickSubMenuLink =
-    (link: string) =>
+    (linkIndex: number) =>
     (e: React.MouseEvent<HTMLAnchorElement>): void => {
       e.preventDefault();
 
-      props.onClickLink(link);
+      props.onClickLink(linkIndex);
     };
 
   return (
@@ -41,16 +41,18 @@ export const DesktopHeader: React.FC<Props> = (props) => {
       </Link>
 
       <Group gap={50} className={styles.desktopContainer}>
-        {props.links.map((link) => {
+        {props.links.map((link, index) => {
           const isSubMenuItem = !!link.subLinks;
-          const isSelectedLink = props.activeLink === link.url;
+          const isSelectedLink = props.activeLinkIndex === index;
 
           if (!isSubMenuItem) {
+            const linkUrl = link.url!;
+
             return (
               <Link
                 key={link.label}
-                href={link.url}
-                onClick={onClickLink(link.url)}
+                href={linkUrl}
+                onClick={onClickLink(index)}
                 className={clsx(styles.desktopLink, { [styles.desktopActiveLink]: isSelectedLink })}
               >
                 {link.label}
@@ -63,7 +65,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
               <HoverCard.Target>
                 <Link
                   href={''}
-                  onClick={onClickSubMenuLink(link.url)}
+                  onClick={onClickSubMenuLink(index)}
                   className={clsx(styles.desktopLink, {
                     [styles.desktopActiveLink]: isSelectedLink,
                   })}

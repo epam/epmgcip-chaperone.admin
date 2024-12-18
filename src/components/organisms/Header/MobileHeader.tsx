@@ -16,9 +16,9 @@ import styles from './Header.module.scss';
 import { MobileSubLinks } from './MobileSubLinksLink';
 
 interface Props {
-  activeLink: string;
+  activeLinkIndex: number;
   links: ILink[];
-  onClickLink: (url: string) => void;
+  onClickLink: (linkIndex: number) => void;
 }
 
 export const MobileHeader: React.FC<Props> = (props) => {
@@ -26,10 +26,10 @@ export const MobileHeader: React.FC<Props> = (props) => {
 
   const [isDrawerOpened, { toggle: onToggleDrawer, close: onCloseDrawer }] = useDisclosure(false);
 
-  const onClickLink = (link: string) => (): void => {
+  const onClickLink = (linkIndex: number) => (): void => {
     onCloseDrawer();
 
-    props.onClickLink(link);
+    props.onClickLink(linkIndex);
   };
 
   return (
@@ -50,16 +50,18 @@ export const MobileHeader: React.FC<Props> = (props) => {
         zIndex={1000}
       >
         <div className={styles.drawer}>
-          {props.links.map((link) => {
+          {props.links.map((link, index) => {
             const isSubMenuItem = !!link.subLinks;
-            const isSelectedLink = props.activeLink === link.url;
+            const isSelectedLink = props.activeLinkIndex === index;
 
             if (!isSubMenuItem) {
+              const linkUrl = link.url!;
+
               return (
                 <Link
                   key={link.label}
-                  href={link.url}
-                  onClick={onClickLink(link.url)}
+                  href={linkUrl}
+                  onClick={onClickLink(index)}
                   className={clsx(styles.mobileLink, { [styles.mobileActiveLink]: isSelectedLink })}
                 >
                   {link.label}
@@ -71,7 +73,7 @@ export const MobileHeader: React.FC<Props> = (props) => {
               <MobileSubLinks
                 key={link.label}
                 link={link}
-                onClickLink={props.onClickLink}
+                onClickLink={() => props.onClickLink(index)}
                 isSelected={isSelectedLink}
               />
             );
