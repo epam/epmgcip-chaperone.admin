@@ -111,6 +111,7 @@
     "no-warning-comments": "warn",
     "one-var-declaration-per-line": ["warn", "always"],
     "react/display-name": "warn",
+    "react/react-in-jsx-scope": "off",
     "react/sort-comp": "warn",
     "sort-keys": "warn",
     "unused-imports/no-unused-imports": "error"
