@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Group, HoverCard } from '@mantine/core';
+import { Group } from '@mantine/core';
 import { clsx } from 'clsx';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import logo from '@/assets/image/logo.png';
 import LanguageSwitcher from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
+import { DesktopSubLinks } from '@/components/organisms/Header/DesktopSubLinks';
 import { BASE_URL } from '@/constants/routes';
 import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
@@ -25,14 +26,6 @@ export const DesktopHeader: React.FC<Props> = (props) => {
   const onClickLink = (linkIndex: number) => (): void => {
     props.onClickLink(linkIndex);
   };
-
-  const onClickSubMenuLink =
-    (linkIndex: number) =>
-    (e: React.MouseEvent<HTMLAnchorElement>): void => {
-      e.preventDefault();
-
-      props.onClickLink(linkIndex);
-    };
 
   return (
     <>
@@ -62,35 +55,12 @@ export const DesktopHeader: React.FC<Props> = (props) => {
           }
 
           return (
-            <HoverCard key={link.label}>
-              <HoverCard.Target>
-                <Link
-                  data-testid="link"
-                  href={''}
-                  onClick={onClickSubMenuLink(index)}
-                  className={clsx(styles.desktopLink, {
-                    [styles.desktopActiveLink]: isSelectedLink,
-                  })}
-                >
-                  {link.label}
-                </Link>
-              </HoverCard.Target>
-
-              <HoverCard.Dropdown className={styles.subLinksDropdown}>
-                <div className={styles.desktopSubLinksContainer}>
-                  {link.subLinks!.map((subLink) => (
-                    <Link
-                      data-testid="sub-link"
-                      key={subLink.label}
-                      href={subLink.url}
-                      className={styles.desktopSubLink}
-                    >
-                      {subLink.label}
-                    </Link>
-                  ))}
-                </div>
-              </HoverCard.Dropdown>
-            </HoverCard>
+            <DesktopSubLinks
+              key={link.label}
+              link={link}
+              onClickLink={onClickLink(index)}
+              isSelected={isSelectedLink}
+            />
           );
         })}
       </Group>

@@ -13,7 +13,7 @@ import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
 
 import styles from './Header.module.scss';
-import { MobileSubLinks } from './MobileSubLinksLink';
+import { MobileSubLinks } from './MobileSubLinks';
 
 interface Props {
   activeLinkIndex: number;
@@ -29,6 +29,10 @@ export const MobileHeader: React.FC<Props> = (props) => {
   const onClickLink = (linkIndex: number) => (): void => {
     onCloseDrawer();
 
+    props.onClickLink(linkIndex);
+  };
+
+  const onClickSubLinksLink = (linkIndex: number) => (): void => {
     props.onClickLink(linkIndex);
   };
 
@@ -80,7 +84,7 @@ export const MobileHeader: React.FC<Props> = (props) => {
               <MobileSubLinks
                 key={link.label}
                 link={link}
-                onClickLink={() => props.onClickLink(index)}
+                onClickLink={onClickSubLinksLink(index)}
                 isSelected={isSelectedLink}
               />
             );

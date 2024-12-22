@@ -17,7 +17,9 @@ interface Props {
 }
 
 export const MobileSubLinks: React.FC<Props> = (props) => {
-  const [isSubMenuOpened, { toggle: toggleSubMenu, close: closeSubMenu }] = useDisclosure(false);
+  const [isSubMenuOpened, { toggle: toggleSubMenu, close: closeSubMenu }] = useDisclosure(
+    props.isSelected,
+  );
 
   const onClickLink = (): void => {
     toggleSubMenu();
