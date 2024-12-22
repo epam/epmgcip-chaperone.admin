@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 
-import { useMobileView } from '@/hooks/use-mobile-view';
+import { useMobileView } from '@/hooks';
 import { ILink } from '@/interfaces/ILink';
 
 import { DesktopHeader } from './DesktopHeader';

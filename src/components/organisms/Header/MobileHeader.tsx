@@ -34,7 +34,12 @@ export const MobileHeader: React.FC<Props> = (props) => {
 
   return (
     <>
-      <Burger opened={isDrawerOpened} onClick={onToggleDrawer} size="sm" />
+      <Burger
+        data-testid="mobile-menu"
+        opened={isDrawerOpened}
+        onClick={onToggleDrawer}
+        size="sm"
+      />
 
       <Link href={BASE_URL}>
         <Image src={logo} width={68} alt={t('logo')} />
@@ -45,6 +50,7 @@ export const MobileHeader: React.FC<Props> = (props) => {
       <Drawer
         opened={isDrawerOpened}
         onClose={onCloseDrawer}
+        closeButtonProps={{ 'data-testid': 'close-drawer-button' }}
         size="100%"
         padding="md"
         zIndex={1000}
@@ -59,6 +65,7 @@ export const MobileHeader: React.FC<Props> = (props) => {
 
               return (
                 <Link
+                  data-testid="link"
                   key={link.label}
                   href={linkUrl}
                   onClick={onClickLink(index)}

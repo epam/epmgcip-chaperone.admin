@@ -50,6 +50,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
 
             return (
               <Link
+                data-testid="link"
                 key={link.label}
                 href={linkUrl}
                 onClick={onClickLink(index)}
@@ -64,6 +65,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
             <HoverCard key={link.label}>
               <HoverCard.Target>
                 <Link
+                  data-testid="link"
                   href={''}
                   onClick={onClickSubMenuLink(index)}
                   className={clsx(styles.desktopLink, {
@@ -77,7 +79,12 @@ export const DesktopHeader: React.FC<Props> = (props) => {
               <HoverCard.Dropdown className={styles.subLinksDropdown}>
                 <div className={styles.desktopSubLinksContainer}>
                   {link.subLinks!.map((subLink) => (
-                    <Link key={subLink.label} href={subLink.url} className={styles.desktopSubLink}>
+                    <Link
+                      data-testid="sub-link"
+                      key={subLink.label}
+                      href={subLink.url}
+                      className={styles.desktopSubLink}
+                    >
                       {subLink.label}
                     </Link>
                   ))}

@@ -6,6 +6,7 @@
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
   "ignorePatterns": ["node_modules", "src/__generated__", "build", "coverage"],

@@ -30,6 +30,11 @@ const testRoutes: ILink[] = [
   },
   {
     isEnabled: true,
+    label: 'News',
+    url: '/news',
+  },
+  {
+    isEnabled: true,
     label: 'Features',
     subLinks: [
       {

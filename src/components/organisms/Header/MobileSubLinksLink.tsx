@@ -40,6 +40,7 @@ export const MobileSubLinks: React.FC<Props> = (props) => {
     <React.Fragment>
       <div className={styles.mobileSubLinksTab}>
         <Link
+          data-testid="link"
           href={''}
           onClick={onClickLink}
           className={clsx(styles.mobileLink, {
@@ -60,6 +61,7 @@ export const MobileSubLinks: React.FC<Props> = (props) => {
         <div className={styles.mobileSubLinksContainer}>
           {props.link.subLinks!.map((subLink) => (
             <Link
+              data-testid="sub-link"
               key={subLink.label}
               href={subLink.url}
               className={styles.mobileSubLink}
