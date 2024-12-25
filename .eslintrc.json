@@ -6,6 +6,7 @@
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
   "ignorePatterns": ["node_modules", "src/__generated__", "build", "coverage"],
@@ -110,6 +111,7 @@
     "no-warning-comments": "warn",
     "one-var-declaration-per-line": ["warn", "always"],
     "react/display-name": "warn",
+    "react/react-in-jsx-scope": "off",
     "react/sort-comp": "warn",
     "sort-keys": "warn",
     "unused-imports/no-unused-imports": "error"
