@@ -15,6 +15,7 @@ interface Props {
   selectedLocale: LocaleCodeCamelcase;
 }
 
+// eslint-disable-next-line complexity
 export const ExhibitDetails: React.FC<Props> = (props) => {
   const t = useTranslations();
 
