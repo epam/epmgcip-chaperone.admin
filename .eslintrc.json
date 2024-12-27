@@ -76,7 +76,7 @@
       }
     ],
     "max-depth": ["warn", 2],
-    "max-lines": ["warn", 200],
+    "max-lines": ["warn", { "max": 200, "skipBlankLines": true, "skipComments": true }],
     "max-nested-callbacks": ["warn", 3],
     "max-params": ["warn", 3],
     "max-statements-per-line": [

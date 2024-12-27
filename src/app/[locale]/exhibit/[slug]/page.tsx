@@ -1,6 +1,5 @@
 import Exhibit from '@/components/pages/Exhibit/Exhibit';
-
-import { getExhibit } from '../../../../lib/exhibit';
+import { getExhibit } from '@/lib/exhibit';
 
 interface Props {
   params: {

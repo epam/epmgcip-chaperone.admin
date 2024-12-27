@@ -2,19 +2,17 @@
 
 import { useEffect, useState } from 'react';
 
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useShallow } from 'zustand/react/shallow';
 
 import IExhibit from '@/interfaces/IExhibit';
-import { LocaleCodeCamelcase, localesCamelcase } from '@/locales';
+import { LocaleCodeCamelcase } from '@/locales';
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 
-import styles from './Exhibit.module.scss';
+import { ExhibitDetails } from './ExhibitDetails';
+import { ExhibitNotFoundMessage } from './ExhibitNotFoundMessage';
 import triggerGtagVisit from '../../../gtag/visit';
 import useImageGalleryStore from '../../../stores/useImageGalleryStore';
-import ImageGallery from '../../organisms/ImageGallery/ImageGallery';
-import Player from '../../organisms/Player/Player';
 
 interface Props {
   exhibit: IExhibit;
@@ -35,20 +33,8 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
       setZoom: state.setZoom,
     })),
   );
-  const t = useTranslations();
   const locale = capitalizeFirstLetter(useLocale()) as LocaleCodeCamelcase;
   const [currentLocale, setCurrentLocale] = useState(locale);
-
-  const images =
-    exhibit?.imagesCollection?.items?.map((i) => ({
-      id: i?.sys.id || '',
-      url: i?.url || '',
-    })) || [];
-
-  const title = exhibit?.[`name${currentLocale}`];
-  const author = exhibit?.[`author${currentLocale}`];
-  const audioFile = exhibit?.[`audioFile${currentLocale}`]?.url;
-  const description = exhibit?.[`description${currentLocale}`]?.json;
 
   useEffect(() => {
     if (exhibit?.sys.id && slug && currentLocale) {
@@ -56,93 +42,48 @@ export default function ExhibitPage({ exhibit, slug }: Props) {
     }
   }, [exhibit?.sys.id, slug, currentLocale]);
 
-  useEffect(() => {
+  useEffect((): void => {
+    const initGalleryZoomWithSelectedImage = (href: string): void => {
+      const params = new URLSearchParams(new URL(href).search);
+      const idString = params.get('imageId') || '';
+      const xString = params.get('x');
+      const yString = params.get('y');
+      const zoomString = params.get('zoom');
+      const x = xString ? parseInt(xString, 10) : 0;
+      const y = yString ? parseInt(yString, 10) : 0;
+      const zoom = zoomString ? parseInt(zoomString, 10) : 0;
+
+      setIsOpeningGalleryWithZoom(true);
+      setGalleryId(idString);
+      setGalleryZoom(zoom, x, y);
+      setIsOpenGallery(true);
+    };
+
+    const clickEventListener = (e: MouseEvent): void => {
+      const { href } = e?.target as HTMLAnchorElement;
+
+      if (!href.includes('imageId')) {
+        return;
+      }
+
+      e.preventDefault();
+
+      initGalleryZoomWithSelectedImage(href);
+    };
+
     document
       .getElementById('exhibit-description')
       ?.querySelectorAll('a')
       .forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const { href } = e?.target as HTMLAnchorElement;
-          if (!href.includes('imageId')) {
-            return;
-          }
-
-          e.preventDefault();
-
-          const params = new URLSearchParams(new URL(href).search);
-          const idString = params.get('imageId') || '';
-          const xString = params.get('x');
-          const yString = params.get('y');
-          const zoomString = params.get('zoom');
-          const x = xString ? parseInt(xString, 10) : 0;
-          const y = yString ? parseInt(yString, 10) : 0;
-          const zoom = zoomString ? parseInt(zoomString, 10) : 0;
-
-          setIsOpeningGalleryWithZoom(true);
-          setGalleryId(idString);
-          setGalleryZoom(zoom, x, y);
-          setIsOpenGallery(true);
-        });
+        link.addEventListener('click', clickEventListener);
       });
   });
 
-  const handleLinkOnClick = (lang: LocaleCodeCamelcase) => {
-    setCurrentLocale(lang);
-  };
+  const title = exhibit[`name${currentLocale}`];
 
-  const links = localesCamelcase
-    .filter((lang) => exhibit?.[`name${lang}`])
-    .map((lang) => (
-      <span key={lang}>
-        <button className={styles.link} onClick={() => handleLinkOnClick(lang)}>
-          {t(`exhibitNotFound${lang}`)}
-        </button>{' '}
-      </span>
-    ));
+  if (!title) {
+    return <ExhibitNotFoundMessage exhibit={exhibit} setLocale={setCurrentLocale} />;
+  }
 
-  return (
-    <>
-      {!title && (
-        <div className={styles.error}>
-          {t('exhibitNotFoundForLanguage')} {links}
-        </div>
-      )}
-
-      {title && (
-        <article className={styles.exhibit} data-testid="exhibit">
-          <h2 className={styles.title}>{title}</h2>
-
-          {author && <div className={styles.author}>{author}</div>}
-
-          {images.length > 0 && (
-            <div className={styles.gallery}>
-              <ImageGallery images={images} isLinkImage={false} displayArrows={false} />
-            </div>
-          )}
-
-          {audioFile && (
-            <div className={styles.audioPlayer}>
-              <Player url={audioFile || ''} />
-            </div>
-          )}
-
-          {exhibit?.yearOfCreation && (
-            <div className={styles.description}>
-              <div className={styles.descriptionName}>{t('date')}</div>
-              <div>{exhibit?.yearOfCreation}</div>
-            </div>
-          )}
-
-          {description && (
-            <div className={styles.description}>
-              <div className={styles.descriptionName}>{t('description')}</div>
-              <div id="exhibit-description" className={styles.descriptionContent}>
-                {documentToReactComponents(description)}
-              </div>
-            </div>
-          )}
-        </article>
-      )}
-    </>
-  );
+  return <ExhibitDetails exhibit={exhibit} selectedLocale={locale} />;
 }

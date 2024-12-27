@@ -31,8 +31,6 @@ export async function sendContactForm({ email, message, name, subject }: SendEma
 
     await transporter.sendMail({
       from: name,
-      subject,
-      to: process.env.CONTACTS_EMAIL,
       html: `
         <header>
           <p><strong>Name:</strong> ${name}</p>
@@ -44,6 +42,8 @@ export async function sendContactForm({ email, message, name, subject }: SendEma
           <p style="white-space: pre-wrap;">${message}</p>
         </main>
       `,
+      subject,
+      to: process.env.CONTACTS_EMAIL,
     });
 
     return { success: true };
