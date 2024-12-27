@@ -6,6 +6,7 @@
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
   "ignorePatterns": ["node_modules", "src/__generated__", "build", "coverage"],
@@ -75,7 +76,7 @@
       }
     ],
     "max-depth": ["warn", 2],
-    "max-lines": ["warn", 200],
+    "max-lines": ["warn", { "max": 200, "skipBlankLines": true, "skipComments": true }],
     "max-nested-callbacks": ["warn", 3],
     "max-params": ["warn", 3],
     "max-statements-per-line": [
@@ -110,6 +111,7 @@
     "no-warning-comments": "warn",
     "one-var-declaration-per-line": ["warn", "always"],
     "react/display-name": "warn",
+    "react/react-in-jsx-scope": "off",
     "react/sort-comp": "warn",
     "sort-keys": "warn",
     "unused-imports/no-unused-imports": "error"

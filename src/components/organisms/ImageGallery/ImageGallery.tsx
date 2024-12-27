@@ -28,7 +28,7 @@ interface Props {
   isLinkImage: boolean;
 }
 
-function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
+export default function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
   const {
     id: galleryId,
@@ -117,8 +117,8 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   ) => {
     const { innerWidth, innerHeight } = window;
     const aspectRatio = image.width / image.height;
-    let wrapperX = 0;
-    let wrapperY = 0;
+    let wrapperX: number;
+    let wrapperY: number;
 
     if (image.height > window.innerHeight && image.width < window.innerWidth) {
       wrapperY = Math.min(innerHeight - padding * 2, image.height);
@@ -131,19 +131,57 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
     return { wrapperX, wrapperY };
   };
 
-  function calculateTranslationOffsets(
-    wrapperX: number,
-    wrapperY: number,
-    translateX: number,
-    translateY: number,
-    zoom: number,
-  ) {
+  const calculateTranslationOffsets = ({
+    wrapperX,
+    wrapperY,
+    translateX,
+    translateY,
+    zoom,
+  }: {
+    wrapperX: number;
+    wrapperY: number;
+    translateX: number;
+    translateY: number;
+    zoom: number;
+  }) => {
+    const wrapperOffset = 100;
+    const translateOffset = 50;
+
     const yetAnotherReactLightboxShift = 1 - 1 / zoom;
-    const offsetX = ((wrapperX / 100) * (translateX - 50)) / yetAnotherReactLightboxShift;
-    const offsetY = ((wrapperY / 100) * (translateY - 50)) / yetAnotherReactLightboxShift;
+    const offsetX =
+      ((wrapperX / wrapperOffset) * (translateX - translateOffset)) / yetAnotherReactLightboxShift;
+    const offsetY =
+      ((wrapperY / wrapperOffset) * (translateY - translateOffset)) / yetAnotherReactLightboxShift;
 
     return { offsetX, offsetY };
-  }
+  };
+
+  const onEnterLightbox = async (): Promise<void> => {
+    if (!isOpeningWithZoom) {
+      const imageUrl = images.find((image) => image.id === galleryId)?.url || '';
+
+      if (!imageUrl) {
+        console.error('Image URL not found.');
+
+        return;
+      }
+
+      const currentImage = await loadImage(imageUrl);
+      const { wrapperX, wrapperY } = determineWrapperDimensions(currentImage, carouselPadding);
+      const { offsetX, offsetY } = calculateTranslationOffsets({
+        translateX: zoomOffsetX,
+        translateY: zoomOffsetY,
+        wrapperX,
+        wrapperY,
+        zoom: zoomValue,
+      });
+
+      zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY);
+    }
+
+    setZoom(0, 0, 0);
+    setIsOpeningWithZoom(false);
+  };
 
   return (
     <>
@@ -180,39 +218,9 @@ function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
         carousel={{
           padding: carouselPadding,
         }}
-        on={{
-          entered: async () => {
-            if (isOpeningWithZoom) {
-              const imageUrl = images.find((image) => image.id === galleryId)?.url || '';
-              if (!imageUrl) {
-                console.error('Image URL not found.');
-
-                return;
-              }
-
-              const currentImage = await loadImage(imageUrl);
-              const { wrapperX, wrapperY } = determineWrapperDimensions(
-                currentImage,
-                carouselPadding,
-              );
-              const { offsetX, offsetY } = calculateTranslationOffsets(
-                wrapperX,
-                wrapperY,
-                zoomOffsetX,
-                zoomOffsetY,
-                zoomValue,
-              );
-
-              zoomRef.current?.changeZoom(zoomValue, true, offsetX, offsetY);
-            }
-            setZoom(0, 0, 0);
-            setIsOpeningWithZoom(false);
-          },
-        }}
+        on={{ entered: onEnterLightbox }}
         className={clsx(isOpeningWithZoom && 'image-gallery-zooming')}
       />
     </>
   );
 }
-
-export default ImageGallery;
