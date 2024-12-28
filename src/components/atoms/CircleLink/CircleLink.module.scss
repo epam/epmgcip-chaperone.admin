@@ -1,0 +1,18 @@
+@use 'sass:map';
+@import '../../../variables.scss';
+
+.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: $circleLinkBackgroundColor;
+  border-radius: 50%;
+  transition: background-color 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $colorLink;
+  }
+}
