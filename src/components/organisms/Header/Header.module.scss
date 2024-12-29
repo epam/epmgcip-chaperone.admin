@@ -50,7 +50,7 @@ $linkColor: #4a444f;
   @extend .baseLink;
 
   font-size: 16px;
-  height: auto;
+  height: 100%;
 }
 
 .mobileLink {
@@ -90,8 +90,6 @@ $linkColor: #4a444f;
 
 .desktopActiveLink {
   @extend .baseActiveLink;
-
-  height: 100%;
 
   &:after {
     display: block;
