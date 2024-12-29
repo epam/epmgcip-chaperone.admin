@@ -23,7 +23,7 @@ interface Props {
 export const DesktopHeader: React.FC<Props> = (props) => {
   const t = useTranslations();
 
-  const onClickLink = (linkIndex: number) => (): void => {
+  const onClickLink = (linkIndex: number) => () => {
     props.onClickLink(linkIndex);
   };
 

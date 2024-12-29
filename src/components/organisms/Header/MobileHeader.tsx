@@ -26,13 +26,13 @@ export const MobileHeader: React.FC<Props> = (props) => {
 
   const [isDrawerOpened, { toggle: onToggleDrawer, close: onCloseDrawer }] = useDisclosure(false);
 
-  const onClickLink = (linkIndex: number) => (): void => {
+  const onClickLink = (linkIndex: number) => () => {
     onCloseDrawer();
 
     props.onClickLink(linkIndex);
   };
 
-  const onClickSubLinksLink = (linkIndex: number) => (): void => {
+  const onClickSubLinksLink = (linkIndex: number) => () => {
     props.onClickLink(linkIndex);
   };
 
