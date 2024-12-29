@@ -1,24 +1,64 @@
 'use client';
 
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import logo from '@/assets/image/logo.png';
-import LanguageSwitcher from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
-import { Link } from '@/navigation';
+import { useMobileView } from '@/hooks';
+import { ILink } from '@/interfaces/ILink';
+import { usePathname } from '@/navigation';
 
+import { DesktopHeader } from './DesktopHeader';
 import styles from './Header.module.scss';
+import { MobileHeader } from './MobileHeader';
 
-export default function Header() {
-  const t = useTranslations();
+interface Props {
+  links: ILink[];
+}
+
+export default function Header(props: Props) {
+  const pathname = usePathname();
+
+  const isMobile = useMobileView();
+
+  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
+
+  const links = useMemo(
+    () =>
+      props.links.filter((link) => {
+        if (link.subLinks?.length) {
+          link.subLinks = link.subLinks.filter((subLink) => subLink.isEnabled);
+        }
+
+        return link.isEnabled;
+      }),
+    [props.links],
+  );
+
+  useEffect(() => {
+    if (!pathname) {
+      return;
+    }
+
+    const foundActiveLinkIndex = links.findIndex((link) => {
+      if (!link.subLinks) {
+        return link.url === pathname;
+      }
+
+      return link.subLinks.some((subLink) => subLink.url === pathname);
+    });
+
+    const activeLinkIndex = foundActiveLinkIndex === -1 ? 0 : foundActiveLinkIndex;
+
+    setActiveLinkIndex(activeLinkIndex);
+  }, [pathname, links]);
+
+  const headersBaseProps = {
+    activeLinkIndex,
+    links,
+  };
 
   return (
-    <div className={styles.header} data-testid="header-component">
-      <Link href="/">
-        <Image src={logo} width={68} alt={t('logo')} className={styles.logo} />
-      </Link>
-
-      <LanguageSwitcher />
-    </div>
+    <header className={styles.header} data-testid="header-component">
+      {isMobile ? <MobileHeader {...headersBaseProps} /> : <DesktopHeader {...headersBaseProps} />}
+    </header>
   );
 }

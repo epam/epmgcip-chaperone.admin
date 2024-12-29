@@ -1,4 +1,5 @@
 @use 'sass:map';
+
 @import '../../../variables.scss';
 
 .header {
@@ -7,15 +8,144 @@
   padding: 8px $indentMobilePageBorder;
   border-bottom: 1px solid $mainBorderColor;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
 
   @media (min-width: map.get($breakpoints, sm)) {
-    padding: 8px $indentTabletPageBorder;
+    padding: 1px $indentTabletPageBorder;
   }
 }
 
 .logo {
   width: 68px;
   cursor: pointer;
+}
+
+.desktopContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0 5%;
+}
+
+.baseLink {
+  color: $colorMenuLink;
+  text-decoration: none;
+  outline: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.desktopLink {
+  @extend .baseLink;
+
+  font-size: $fontSizeLarge;
+  height: 100%;
+}
+
+.mobileLink {
+  @extend .baseLink;
+
+  font-size: $fontSizeXLarge;
+  height: 50px;
+}
+
+.desktopSubLink {
+  @extend .baseLink;
+
+  font-size: $fontSizeDefault;
+  font-weight: normal;
+  margin-bottom: 5px;
+
+  &:hover {
+    color: $colorLink;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.mobileSubLink {
+  @extend .baseLink;
+
+  font-size: $fontSizeLarge;
+  height: 40px;
+}
+
+.baseActiveLink {
+  color: $colorLink;
+  font-weight: 600;
+}
+
+.desktopActiveLink {
+  @extend .baseActiveLink;
+
+  &:after {
+    display: block;
+    content: '';
+    height: 3px;
+    width: 100%;
+    background-color: $colorLink;
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+}
+
+.mobileActiveLink {
+  @extend .baseActiveLink;
+}
+
+.subLinksDropdown {
+  top: 60px !important;
+  border: 1px solid $menuBorderColor;
+  min-width: 150px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.desktopSubLinksContainer {
+  margin: 0;
+  padding: 0;
+}
+
+.mobileSubLinksContainer {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSubLinksTab {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.baseChevronIcon {
+  margin: 3px 0 0 5px;
+}
+
+.chevronIcon {
+  @extend .baseChevronIcon;
+
+  color: $colorMenuLink;
+}
+
+.activeChevronIcon {
+  @extend .baseChevronIcon;
+
+  color: $colorLink;
 }

@@ -5,6 +5,7 @@ $colorDarkGray: #79747e;
 $colorOrange: #d95323;
 $colorPink: #f5d4c8;
 $colorWhite: #ffffff;
+$graphite: #4a444f;
 
 $breakpoints: (
   xs: 576px,
@@ -29,10 +30,12 @@ $indentTabletPageBorder: 40px;
 $mainFontColor: $colorBlack;
 $mainBorderColor: $colorBlack;
 $mainBackgroundColor: $colorWhite;
+$menuBorderColor: $colorDarkGray;
 $secondaryBackgroundColor: $colorLightGray;
 $colorAudioMain: $colorOrange;
 $colorAudioSecondary: $colorPink;
 $colorLink: $colorOrange;
+$colorMenuLink: $graphite;
 
 $mainFontSize: $fontSizeDefault;
 $titleFontSize: $fontSizeXXLarge;
