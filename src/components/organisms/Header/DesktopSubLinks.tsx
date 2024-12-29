@@ -44,6 +44,7 @@ export const DesktopSubLinks: React.FC<Props> = (props) => {
               key={subLink.label}
               href={subLink.url}
               className={styles.desktopSubLink}
+              onClick={props.onClickLink}
             >
               {subLink.label}
             </Link>
