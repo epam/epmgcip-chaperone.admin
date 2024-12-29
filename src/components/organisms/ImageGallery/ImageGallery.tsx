@@ -19,7 +19,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './ImageGallery.module.scss';
 import ImageGalleryArrow, { ArrowDirection } from './ImageGalleryArrow';
-import BREAKPOINT_TABLE from '../../../constants/breakpoints';
+import { BREAKPOINT_TABLE } from '../../../constants/breakpoints';
 import useImageGalleryStore from '../../../stores/useImageGalleryStore';
 
 interface Props {
