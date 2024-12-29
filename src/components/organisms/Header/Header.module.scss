@@ -2,8 +2,6 @@
 
 @import '../../../variables.scss';
 
-$linkColor: #4a444f;
-
 .header {
   position: relative;
   z-index: 10;
@@ -37,7 +35,7 @@ $linkColor: #4a444f;
 }
 
 .baseLink {
-  color: $linkColor;
+  color: $colorMenuLink;
   text-decoration: none;
   outline: none;
   width: fit-content;
@@ -143,7 +141,7 @@ $linkColor: #4a444f;
 .chevronIcon {
   @extend .baseChevronIcon;
 
-  color: $linkColor;
+  color: $colorMenuLink;
 }
 
 .activeChevronIcon {
