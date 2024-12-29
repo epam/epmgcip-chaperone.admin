@@ -49,21 +49,21 @@ $linkColor: #4a444f;
 .desktopLink {
   @extend .baseLink;
 
-  font-size: 16px;
+  font-size: $fontSizeLarge;
   height: 100%;
 }
 
 .mobileLink {
   @extend .baseLink;
 
-  font-size: 20px;
+  font-size: $fontSizeXLarge;
   height: 50px;
 }
 
 .desktopSubLink {
   @extend .baseLink;
 
-  font-size: 14px;
+  font-size: $fontSizeDefault;
   font-weight: normal;
   margin-bottom: 5px;
 
@@ -79,7 +79,7 @@ $linkColor: #4a444f;
 .mobileSubLink {
   @extend .baseLink;
 
-  font-size: 16px;
+  font-size: $fontSizeLarge;
   height: 40px;
 }
 
