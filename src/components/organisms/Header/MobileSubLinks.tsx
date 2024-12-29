@@ -40,11 +40,10 @@ export const MobileSubLinks: React.FC<Props> = (props) => {
 
   return (
     <React.Fragment>
-      <div className={styles.mobileSubLinksTab}>
+      <div className={styles.mobileSubLinksTab} onClick={onClickLink}>
         <Link
           data-testid="link"
           href={''}
-          onClick={onClickLink}
           className={clsx(styles.mobileLink, {
             [styles.mobileActiveLink]: props.isSelected,
           })}
