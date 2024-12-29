@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { useMobileView } from '@/hooks';
 import { ILink } from '@/interfaces/ILink';
+import { usePathname } from '@/navigation';
 
 import { DesktopHeader } from './DesktopHeader';
 import styles from './Header.module.scss';
@@ -14,6 +15,12 @@ interface Props {
 }
 
 export default function Header(props: Props) {
+  const pathname = usePathname();
+
+  const isMobile = useMobileView();
+
+  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
+
   const links = useMemo(
     () =>
       props.links.filter((link) => {
@@ -26,17 +33,27 @@ export default function Header(props: Props) {
     [props.links],
   );
 
-  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
-  const isMobile = useMobileView();
+  useEffect(() => {
+    if (!pathname) {
+      return;
+    }
 
-  const onClickLink = (linkIndex: number): void => {
-    setActiveLinkIndex(linkIndex);
-  };
+    const foundActiveLinkIndex = links.findIndex((link) => {
+      if (!link.subLinks) {
+        return link.url === pathname;
+      }
+
+      return link.subLinks.some((subLink) => subLink.url === pathname);
+    });
+
+    const activeLinkIndex = foundActiveLinkIndex === -1 ? 0 : foundActiveLinkIndex;
+
+    setActiveLinkIndex(activeLinkIndex);
+  }, [pathname, links]);
 
   const headersBaseProps = {
     activeLinkIndex,
     links,
-    onClickLink,
   };
 
   return (

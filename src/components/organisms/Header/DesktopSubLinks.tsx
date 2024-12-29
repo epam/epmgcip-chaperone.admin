@@ -11,14 +11,11 @@ import styles from './Header.module.scss';
 interface Props {
   link: ILink;
   isSelected: boolean;
-  onClickLink: () => void;
 }
 
 export const DesktopSubLinks: React.FC<Props> = (props) => {
   const onClickSubMenuLink = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     e.preventDefault();
-
-    props.onClickLink();
   };
 
   return (
@@ -44,7 +41,6 @@ export const DesktopSubLinks: React.FC<Props> = (props) => {
               key={subLink.label}
               href={subLink.url}
               className={styles.desktopSubLink}
-              onClick={props.onClickLink}
             >
               {subLink.label}
             </Link>

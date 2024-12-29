@@ -17,15 +17,10 @@ import styles from './Header.module.scss';
 interface Props {
   activeLinkIndex: number;
   links: ILink[];
-  onClickLink: (linkIndex: number) => void;
 }
 
 export const DesktopHeader: React.FC<Props> = (props) => {
   const t = useTranslations();
-
-  const onClickLink = (linkIndex: number) => () => {
-    props.onClickLink(linkIndex);
-  };
 
   return (
     <>
@@ -46,7 +41,6 @@ export const DesktopHeader: React.FC<Props> = (props) => {
                 data-testid="link"
                 key={link.label}
                 href={linkUrl}
-                onClick={onClickLink(index)}
                 className={clsx(styles.desktopLink, { [styles.desktopActiveLink]: isSelectedLink })}
               >
                 {link.label}
@@ -54,14 +48,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
             );
           }
 
-          return (
-            <DesktopSubLinks
-              key={link.label}
-              link={link}
-              onClickLink={onClickLink(index)}
-              isSelected={isSelectedLink}
-            />
-          );
+          return <DesktopSubLinks key={link.label} link={link} isSelected={isSelectedLink} />;
         })}
       </Group>
 

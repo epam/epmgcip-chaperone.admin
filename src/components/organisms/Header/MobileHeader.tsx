@@ -18,23 +18,12 @@ import { MobileSubLinks } from './MobileSubLinks';
 interface Props {
   activeLinkIndex: number;
   links: ILink[];
-  onClickLink: (linkIndex: number) => void;
 }
 
 export const MobileHeader: React.FC<Props> = (props) => {
   const t = useTranslations();
 
   const [isDrawerOpened, { toggle: onToggleDrawer, close: onCloseDrawer }] = useDisclosure(false);
-
-  const onClickLink = (linkIndex: number) => () => {
-    onCloseDrawer();
-
-    props.onClickLink(linkIndex);
-  };
-
-  const onClickSubLinksLink = (linkIndex: number) => () => {
-    props.onClickLink(linkIndex);
-  };
 
   return (
     <>
@@ -72,7 +61,7 @@ export const MobileHeader: React.FC<Props> = (props) => {
                   data-testid="link"
                   key={link.label}
                   href={linkUrl}
-                  onClick={onClickLink(index)}
+                  onClick={onCloseDrawer}
                   className={clsx(styles.mobileLink, { [styles.mobileActiveLink]: isSelectedLink })}
                 >
                   {link.label}
@@ -84,8 +73,8 @@ export const MobileHeader: React.FC<Props> = (props) => {
               <MobileSubLinks
                 key={link.label}
                 link={link}
-                onClickLink={onClickSubLinksLink(index)}
                 isSelected={isSelectedLink}
+                onCloseDrawer={onCloseDrawer}
               />
             );
           })}

@@ -14,18 +14,18 @@ export const APP_ROUTES: ILink[] = [
     isEnabled: true,
     label: 'Museum',
     subLinks: [
-      { isEnabled: true, label: 'History', url: 'history' },
-      { isEnabled: true, label: 'Architecture', url: 'architecture' },
+      { isEnabled: true, label: 'History', url: '/history' },
+      { isEnabled: true, label: 'Architecture', url: '/architecture' },
     ],
   },
   {
     isEnabled: true,
     label: 'Exposition',
-    url: 'exposition',
+    url: '/exposition',
   },
   {
     isEnabled: true,
     label: 'News',
-    url: 'news',
+    url: '/news',
   },
 ];
