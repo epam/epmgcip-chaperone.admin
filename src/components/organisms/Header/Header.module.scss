@@ -68,7 +68,7 @@ $linkColor: #4a444f;
   margin-bottom: 5px;
 
   &:hover {
-    color: $colorOrange;
+    color: $colorLink;
   }
 
   &:last-child {
@@ -84,7 +84,7 @@ $linkColor: #4a444f;
 }
 
 .baseActiveLink {
-  color: $colorOrange;
+  color: $colorLink;
   font-weight: 600;
 }
 
@@ -96,7 +96,7 @@ $linkColor: #4a444f;
     content: '';
     height: 3px;
     width: 100%;
-    background-color: $colorOrange;
+    background-color: $colorLink;
     position: absolute;
     bottom: 0;
     border-top-left-radius: 5px;
@@ -110,7 +110,7 @@ $linkColor: #4a444f;
 
 .subLinksDropdown {
   top: 60px !important;
-  border: 1px solid $colorDarkGray;
+  border: 1px solid $menuBorderColor;
   min-width: 150px;
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
@@ -149,5 +149,5 @@ $linkColor: #4a444f;
 .activeChevronIcon {
   @extend .baseChevronIcon;
 
-  color: $colorOrange;
+  color: $colorLink;
 }
