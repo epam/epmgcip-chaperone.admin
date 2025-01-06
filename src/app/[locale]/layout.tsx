@@ -1,4 +1,6 @@
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import React from 'react';
+
+import { ColorSchemeScript, createTheme, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
@@ -8,6 +10,8 @@ import { getMessages } from 'next-intl/server';
 
 import Footer from '@/components/organisms/Footer/Footer';
 import Header from '@/components/organisms/Header/Header';
+import { THEME_BREAKPOINTS } from '@/constants/breakpoints';
+import { APP_ROUTES } from '@/constants/routes';
 
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
@@ -18,6 +22,10 @@ const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
   weight: ['400', '700'],
+});
+
+const theme = createTheme({
+  breakpoints: THEME_BREAKPOINTS,
 });
 
 export const metadata: Metadata = {
@@ -41,10 +49,10 @@ export default async function RootLayout({
       </head>
       <GoogleTagManager gtmId={process.env.CONTENTFUL_GTAG_ID || ''} />
       <body>
-        <MantineProvider>
+        <MantineProvider theme={theme}>
           <Notifications />
           <NextIntlClientProvider messages={messages}>
-            <Header />
+            <Header links={APP_ROUTES} />
             {children}
             <Footer />
           </NextIntlClientProvider>

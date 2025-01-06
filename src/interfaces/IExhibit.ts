@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types';
+
 export default interface IExhibit {
   sys: {
     id: string;
@@ -12,16 +14,16 @@ export default interface IExhibit {
   authorKa?: string | null;
   yearOfCreation?: string | null;
   descriptionEn?: {
-    json: any;
+    json: undefined | Document;
   } | null;
   descriptionRu?: {
-    json: any;
+    json: undefined | Document;
   } | null;
   descriptionUz?: {
-    json: any;
+    json: undefined | Document;
   } | null;
   descriptionKa?: {
-    json: any;
+    json: undefined | Document;
   } | null;
   imagesCollection?: {
     items: Array<{
