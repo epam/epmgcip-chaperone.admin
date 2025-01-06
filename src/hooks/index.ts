@@ -1,1 +1,2 @@
-export { useShowNotification } from './useShowNotification';
+export { useShowNotification } from './use-notification';
+export { useMobileView } from './use-mobile-view';

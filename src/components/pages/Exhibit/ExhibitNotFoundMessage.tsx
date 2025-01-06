@@ -16,8 +16,7 @@ export const ExhibitNotFoundMessage: React.FC<Props> = (props) => {
   const t = useTranslations();
 
   const handleLinkOnClick =
-    (lang: LocaleCodeCamelcase) =>
-    (e: React.SyntheticEvent<HTMLButtonElement>): void => {
+    (lang: LocaleCodeCamelcase) => (e: React.SyntheticEvent<HTMLButtonElement>) => {
       e.preventDefault();
 
       props.setLocale(lang);
