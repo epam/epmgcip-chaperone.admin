@@ -104,6 +104,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
         <form className={styles.form} onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput
             withAsterisk
+            data-testid="contact-name"
             label={t('contactForm.fields.name.label')}
             placeholder={t('contactForm.fields.name.placeholder')}
             key={form.key('name')}
@@ -113,6 +114,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
           <TextInput
             type="email"
             withAsterisk
+            data-testid="contact-email"
             label={t('contactForm.fields.email.label')}
             placeholder={t('contactForm.fields.email.placeholder')}
             key={form.key('email')}
@@ -121,6 +123,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
 
           <Select
             withAsterisk
+            data-testid="contact-subject"
             label={t('contactForm.fields.subject.label')}
             comboboxProps={{ withinPortal: true }}
             data={translatedSubjects}
@@ -131,6 +134,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
 
           <Textarea
             withAsterisk
+            data-testid="contact-message"
             label={t('contactForm.fields.message.label')}
             placeholder={t('contactForm.fields.message.placeholder')}
             key={form.key('message')}
@@ -154,6 +158,7 @@ const ContactForm: FC<Props> = ({ reCaptchaSiteKey }) => {
             type="submit"
             disabled={!isSubmitEnabled}
             loading={isSubmitting}
+            data-testid="contact-submit-button"
             loaderProps={{ type: 'dots' }}
           >
             {t('submit')}
