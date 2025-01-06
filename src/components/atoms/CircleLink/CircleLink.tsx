@@ -5,10 +5,10 @@ interface Props {
   icon: JSX.Element;
 }
 
-export default function CircleLink({ link, icon }: Props) {
+export const CircleLink = ({ link, icon }: Props) => {
   return (
     <a href={link} className={styles.link}>
       {icon}
     </a>
   );
-}
+};

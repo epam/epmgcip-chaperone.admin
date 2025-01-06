@@ -7,13 +7,13 @@ import {
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import CircleLink from '@/components/atoms/CircleLink/CircleLink';
+import { CircleLink } from '@/components/atoms/CircleLink/CircleLink';
 import { APP_ROUTES } from '@/constants/routes';
 import { RouteLabelsEnum } from '@/enums';
 
 import styles from './Footer.module.scss';
 
-export default function Footer() {
+export const Footer = () => {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
   const contactRoute = APP_ROUTES.find((r) => r.label === RouteLabelsEnum.Contacts);
@@ -48,4 +48,4 @@ export default function Footer() {
       </div>
     </div>
   );
-}
+};
