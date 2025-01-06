@@ -62,5 +62,9 @@
       "success": "Email sent successfully",
       "error": "Failed to send email"
     }
+  },
+  "copyright": {
+    "message": "All copyrights reserved. Copying website content allowed only on permission of the Museum&apos;s Administration.",
+    "contact": "Contact details."
   }
 }

@@ -62,5 +62,9 @@
       "success": "Elektron pochta muvaffaqiyatli yuborildi",
       "error": "Elektron pochtani yuborib bo'lmadi"
     }
+  },
+  "copyright": {
+    "message": "Barcha huquqlar himoyalangan. Veb-sayt mazmunini nusxalash faqat muzey ma'muriyati ruxsati bilan amalga oshiriladi.",
+    "contact": "Aloqa ma'lumotlari."
   }
 }
