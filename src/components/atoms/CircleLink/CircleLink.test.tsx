@@ -1,7 +1,7 @@
 import { IconBrandTelegram } from '@tabler/icons-react';
 import { render, screen } from '@testing-library/react';
 
-import CircleLink from './CircleLink';
+import { CircleLink } from './CircleLink';
 
 describe('CircleLink', () => {
   it('renders the CircleLink component with an icon and a link', () => {

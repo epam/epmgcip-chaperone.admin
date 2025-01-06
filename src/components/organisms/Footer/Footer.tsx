@@ -23,19 +23,19 @@ export const Footer = () => {
       <div className={styles.socialLinks}>
         <CircleLink
           link="https://www.facebook.com/savitskymuseum/"
-          icon={<IconBrandTelegram color="white" size="20" />}
+          icon={<IconBrandTelegram color="white" size="20" data-testid="social-network" />}
         />
         <CircleLink
           link="https://www.instagram.com/museumsavitsky1/"
-          icon={<IconBrandInstagram color="white" size="20" />}
+          icon={<IconBrandInstagram color="white" size="20" data-testid="social-network" />}
         />
         <CircleLink
           link="https://t.me/museumsavitsky"
-          icon={<IconBrandFacebook color="white" size="20" />}
+          icon={<IconBrandFacebook color="white" size="20" data-testid="social-network" />}
         />
         <CircleLink
           link="https://www.youtube.com/channel/UCshZAh9gVGMv_gFQJo3IXyQ"
-          icon={<IconBrandYoutube color="white" size="19" />}
+          icon={<IconBrandYoutube color="white" size="19" data-testid="social-network" />}
         />
       </div>
       <div className={styles.copyright}>
