@@ -7,12 +7,14 @@ import {
 import Link from 'next/link';
 
 import CircleLink from '@/components/atoms/CircleLink/CircleLink';
-import { CONTACTS_URL } from '@/constants/routes';
+import { APP_ROUTES } from '@/constants/routes';
+import { RouteLabelsEnum } from '@/enums';
 
 import styles from './Footer.module.scss';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const contactRoute = APP_ROUTES.find((r) => r.label === RouteLabelsEnum.Contacts);
 
   return (
     <div className={styles.footer}>
@@ -37,9 +39,11 @@ export default function Footer() {
       <div className={styles.copyright}>
         ©{currentYear}. All copyrights reserved. Copying website content allowed only on permission
         of the Museum&apos;s Administration.{' '}
-        <Link className={styles.contactsLink} href={CONTACTS_URL}>
-          Contact details.
-        </Link>
+        {contactRoute?.url && (
+          <Link className={styles.contactsLink} href={contactRoute.url}>
+            Contact details.
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,20 +1,19 @@
+import { RouteLabelsEnum } from '@/enums';
 import { ILink } from '@/interfaces/ILink';
 
 export const BASE_URL = '/';
 
 export const EXHIBIT_URL = `/exhibit`;
 
-export const CONTACTS_URL = `/contacts`;
-
 export const APP_ROUTES: ILink[] = [
   {
     isEnabled: true,
-    label: 'Home',
+    label: RouteLabelsEnum.Home,
     url: '/',
   },
   {
     isEnabled: true,
-    label: 'Museum',
+    label: RouteLabelsEnum.Museum,
     subLinks: [
       { isEnabled: true, label: 'History', url: '/history' },
       { isEnabled: true, label: 'Architecture', url: '/architecture' },
@@ -22,17 +21,17 @@ export const APP_ROUTES: ILink[] = [
   },
   {
     isEnabled: true,
-    label: 'Exposition',
+    label: RouteLabelsEnum.Exposition,
     url: '/exposition',
   },
   {
     isEnabled: true,
-    label: 'News',
+    label: RouteLabelsEnum.News,
     url: '/news',
   },
   {
     isEnabled: true,
-    label: 'Contacts',
+    label: RouteLabelsEnum.Contacts,
     url: '/contacts',
   },
 ];
