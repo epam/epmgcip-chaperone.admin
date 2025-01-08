@@ -29,7 +29,7 @@
     "@tabler/icons-react": "^3.26.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
-    "next": "^14.2.5",
+    "next": "^14.2.22",
     "next-intl": "^3.26.2",
     "nodemailer": "^6.9.16",
     "react": "^18",
