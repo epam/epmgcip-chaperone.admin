@@ -5,6 +5,7 @@ import { ZodError } from 'zod';
 
 import { ContactFormValidationErrors } from '@/enums';
 import { contactFormDataSchema } from '@/schemas/shared';
+import { Logger } from '@/utils/logger';
 
 interface SendEmailProps {
   email: string;
@@ -48,7 +49,7 @@ export async function sendContactForm({ email, message, name, subject }: SendEma
 
     return { success: true };
   } catch (error) {
-    console.error('Error sending email:', error);
+    Logger.logError('Error sending email:', error);
 
     const messages =
       error instanceof ZodError

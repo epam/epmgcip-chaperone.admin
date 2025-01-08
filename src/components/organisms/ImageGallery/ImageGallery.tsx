@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import 'yet-another-react-lightbox/styles.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import 'yet-another-react-lightbox/styles.css';
+
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,9 +14,11 @@ import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import { useShallow } from 'zustand/react/shallow';
 
 import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
+import { Logger } from '@/utils/logger';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 import styles from './ImageGallery.module.scss';
 import ImageGalleryArrow, { ArrowDirection } from './ImageGalleryArrow';
 import { BREAKPOINT_TABLE } from '../../../constants/breakpoints';
@@ -161,7 +163,7 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
       const imageUrl = images.find((image) => image.id === galleryId)?.url || '';
 
       if (!imageUrl) {
-        console.error('Image URL not found.');
+        Logger.logError('Image URL not found.');
 
         return;
       }
