@@ -1,0 +1,31 @@
+@use 'sass:map';
+@import '../../../variables.scss';
+
+.footer {
+  padding: 40px 16px;
+  background-color: $secondaryBackgroundColor;
+  text-align: center;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 40px;
+}
+
+.copyright {
+  max-width: 530px;
+  margin: 0 auto;
+  font-size: $fontSizeDefault;
+  font-weight: 500;
+}
+
+.contactsLink {
+  color: $mainFontColor;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

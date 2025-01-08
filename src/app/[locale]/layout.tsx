@@ -8,6 +8,7 @@ import { Montserrat } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
+import { Footer } from '@/components/organisms/Footer/Footer';
 import Header from '@/components/organisms/Header/Header';
 import { THEME_BREAKPOINTS } from '@/constants/breakpoints';
 import { APP_ROUTES } from '@/constants/routes';
@@ -53,6 +54,7 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <Header links={APP_ROUTES} />
             {children}
+            <Footer />
           </NextIntlClientProvider>
         </MantineProvider>
       </body>
