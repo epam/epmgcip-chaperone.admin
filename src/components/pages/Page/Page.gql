@@ -1,0 +1,61 @@
+query GetPage($slug: String!) {
+  pageCollection(limit: 1, where: { slug: $slug }) {
+    items {  
+      sys {
+        id
+      }
+      nameEn
+      nameRu
+      nameUz
+      nameKa
+      descriptionEn {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionRu {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionUz {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+      descriptionKa {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
