@@ -1,5 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
 
+import { IRichTextEditorLinks } from './IRichTextEditorLinks';
+
 export default interface IPage {
   sys: {
     id: string;
@@ -10,14 +12,18 @@ export default interface IPage {
   nameKa?: string | null;
   descriptionEn?: {
     json: undefined | Document;
+    links: undefined | IRichTextEditorLinks;
   } | null;
   descriptionRu?: {
     json: undefined | Document;
+    links: undefined | IRichTextEditorLinks;
   } | null;
   descriptionUz?: {
     json: undefined | Document;
+    links: undefined | IRichTextEditorLinks;
   } | null;
   descriptionKa?: {
     json: undefined | Document;
+    links: undefined | IRichTextEditorLinks;
   } | null;
 }

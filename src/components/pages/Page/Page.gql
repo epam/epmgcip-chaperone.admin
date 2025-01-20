@@ -17,6 +17,17 @@ query GetPage($slug: String!) {
                 id
               }
             }
+          },
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              width
+              height
+            }
           }
         }
       }
@@ -28,6 +39,17 @@ query GetPage($slug: String!) {
               sys {
                 id
               }
+            }
+          },
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              width
+              height
             }
           }
         }
@@ -41,6 +63,17 @@ query GetPage($slug: String!) {
                 id
               }
             }
+          },
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              width
+              height
+            }
           }
         }
       }
@@ -52,6 +85,17 @@ query GetPage($slug: String!) {
               sys {
                 id
               }
+            }
+          },
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              title
+              width
+              height
             }
           }
         }

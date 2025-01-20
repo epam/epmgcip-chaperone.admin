@@ -6,6 +6,7 @@ import Title from '@/components/atoms/Title/Title';
 import IPage from '@/interfaces/IPage';
 import { LocaleCodeCamelcase } from '@/locales';
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
+import renderOptions from '@/utils/getRichTextEditorRenderOptions';
 
 import styles from './Page.module.scss';
 
@@ -18,12 +19,15 @@ export default function Page({ page }: Props): React.ReactElement {
 
   const title = page[`name${locale}`];
   const description = page[`description${locale}`]?.json;
+  const links = page[`description${locale}`]?.links;
 
   return (
     <article className={styles.page}>
       <Title>{title}</Title>
 
-      {description && <Description>{documentToReactComponents(description)}</Description>}
+      {description && links && (
+        <Description>{documentToReactComponents(description, renderOptions(links))}</Description>
+      )}
     </article>
   );
 }
