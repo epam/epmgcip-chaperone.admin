@@ -113,7 +113,7 @@
     "react/display-name": "warn",
     "react/react-in-jsx-scope": "off",
     "react/sort-comp": "warn",
-    "sort-keys": "warn",
+    "sort-keys": "off",
     "unused-imports/no-unused-imports": "error"
   },
   "settings": {

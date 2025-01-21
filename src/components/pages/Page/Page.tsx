@@ -6,7 +6,7 @@ import Title from '@/components/atoms/Title/Title';
 import IPage from '@/interfaces/IPage';
 import { LocaleCodeCamelcase } from '@/locales';
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
-import renderOptions from '@/utils/getRichTextEditorRenderOptions';
+import getRichTextEditorRenderOptions from '@/utils/getRichTextEditorRenderOptions';
 
 import styles from './Page.module.scss';
 
@@ -26,7 +26,9 @@ export default function Page({ page }: Props): React.ReactElement {
       <Title>{title}</Title>
 
       {description && links && (
-        <Description>{documentToReactComponents(description, renderOptions(links))}</Description>
+        <Description>
+          {documentToReactComponents(description, getRichTextEditorRenderOptions(links))}
+        </Description>
       )}
     </article>
   );

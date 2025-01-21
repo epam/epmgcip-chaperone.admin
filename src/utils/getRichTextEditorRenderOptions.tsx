@@ -3,7 +3,7 @@ import { BLOCKS, NodeData } from '@contentful/rich-text-types';
 import DescriptionImage from '@/components/atoms/DescriptionImage/DescriptionImage';
 import { IRichTextEditorLinks } from '@/interfaces/IRichTextEditorLinks';
 
-export default function renderOptions(links: IRichTextEditorLinks | undefined) {
+export default function getRichTextEditorRenderOptions(links: IRichTextEditorLinks | undefined) {
   if (!links) {
     return {};
   }
