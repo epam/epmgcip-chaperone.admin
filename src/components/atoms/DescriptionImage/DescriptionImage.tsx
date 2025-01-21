@@ -12,7 +12,7 @@ export interface Props {
 export default function DescriptionImage({ url, title, height, width }: Props) {
   return (
     <div className={styles.wrapper}>
-      <Image src={url} alt={title} height={height} width={width} />
+      <Image className={styles.image} src={url} alt={title} height={height} width={width} />
     </div>
   );
 }

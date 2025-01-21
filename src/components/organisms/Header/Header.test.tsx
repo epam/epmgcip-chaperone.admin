@@ -8,6 +8,7 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import messages from 'messages/en.json';
 
+import { RouteLabelsEnum } from '@/enums';
 import { useMobileView } from '@/hooks/use-mobile-view';
 import { ILink } from '@/interfaces/ILink';
 
@@ -29,29 +30,21 @@ jest.mock('@/hooks/use-mobile-view', () => ({
 const testRoutes: ILink[] = [
   {
     isEnabled: true,
-    label: 'Home',
+    label: RouteLabelsEnum.Home,
     url: '/',
   },
   {
     isEnabled: true,
-    label: 'News',
-    url: '/news',
+    label: RouteLabelsEnum.Museum,
+    subLinks: [
+      { isEnabled: true, label: RouteLabelsEnum.History, url: '/museum/history' },
+      { isEnabled: true, label: RouteLabelsEnum.History, url: '/museum/architecture' },
+    ],
   },
   {
     isEnabled: true,
-    label: 'Features',
-    subLinks: [
-      {
-        isEnabled: true,
-        label: 'Museum',
-        url: '/features/museum',
-      },
-      {
-        isEnabled: true,
-        label: 'Architecture',
-        url: '/features/architecture',
-      },
-    ],
+    label: RouteLabelsEnum.Contacts,
+    url: '/contacts',
   },
 ];
 

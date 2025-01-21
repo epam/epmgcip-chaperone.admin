@@ -2,6 +2,7 @@ import React from 'react';
 
 import { HoverCard } from '@mantine/core';
 import { clsx } from 'clsx';
+import { useTranslations } from 'next-intl';
 
 import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export const DesktopSubLinks: React.FC<Props> = (props) => {
+  const t = useTranslations();
   const onClickSubMenuLink = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     e.preventDefault();
   };
@@ -29,7 +31,7 @@ export const DesktopSubLinks: React.FC<Props> = (props) => {
             [styles.desktopActiveLink]: props.isSelected,
           })}
         >
-          {props.link.label}
+          {t(`menu.${props.link.label}`)}
         </Link>
       </HoverCard.Target>
 
@@ -42,7 +44,7 @@ export const DesktopSubLinks: React.FC<Props> = (props) => {
               href={subLink.url}
               className={styles.desktopSubLink}
             >
-              {subLink.label}
+              {t(`menu.${subLink.label}`)}
             </Link>
           ))}
         </div>

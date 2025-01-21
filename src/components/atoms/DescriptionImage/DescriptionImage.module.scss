@@ -2,5 +2,10 @@
 @import '../../../variables.scss';
 
 .wrapper {
+  padding-bottom: 8px;
   text-align: center;
+}
+
+.image {
+  max-width: 100%;
 }

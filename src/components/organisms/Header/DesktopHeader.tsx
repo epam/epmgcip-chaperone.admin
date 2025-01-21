@@ -43,7 +43,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
                 href={linkUrl}
                 className={clsx(styles.desktopLink, { [styles.desktopActiveLink]: isSelectedLink })}
               >
-                {link.label}
+                {t(`menu.${link.label}`)}
               </Link>
             );
           }

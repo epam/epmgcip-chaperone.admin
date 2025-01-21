@@ -4,6 +4,7 @@ import { Collapse } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { clsx } from 'clsx';
+import { useTranslations } from 'next-intl';
 
 import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export const MobileSubLinks: React.FC<Props> = (props) => {
+  const t = useTranslations();
   const [isSubMenuOpened, { toggle: toggleSubMenu, close: closeSubMenu }] = useDisclosure(
     props.isSelected,
   );
@@ -46,7 +48,7 @@ export const MobileSubLinks: React.FC<Props> = (props) => {
             [styles.mobileActiveLink]: props.isSelected,
           })}
         >
-          {props.link.label}
+          {t(`menu.${props.link.label}`)}
         </Link>
 
         {isSubMenuOpened ? (
@@ -66,7 +68,7 @@ export const MobileSubLinks: React.FC<Props> = (props) => {
               className={styles.mobileSubLink}
               onClick={onClickSubLink}
             >
-              {subLink.label}
+              {t(`menu.${subLink.label}`)}
             </Link>
           ))}
         </div>
