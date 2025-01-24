@@ -14,30 +14,27 @@ interface Props {
   isSelected: boolean;
 }
 
-export const DesktopSubLinks: React.FC<Props> = (props) => {
+export const DesktopSubLinks: React.FC<Props> = ({ link, isSelected }: Props) => {
   const t = useTranslations();
-  const onClickSubMenuLink = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-    e.preventDefault();
-  };
+  const linkUrl = link.url!;
 
   return (
     <HoverCard>
       <HoverCard.Target>
         <Link
           data-testid="link"
-          href={''}
-          onClick={onClickSubMenuLink}
+          href={linkUrl}
           className={clsx(styles.desktopLink, {
-            [styles.desktopActiveLink]: props.isSelected,
+            [styles.desktopActiveLink]: isSelected,
           })}
         >
-          {t(`menu.${props.link.label}`)}
+          {t(`menu.${link.label}`)}
         </Link>
       </HoverCard.Target>
 
       <HoverCard.Dropdown className={styles.subLinksDropdown}>
         <div className={styles.desktopSubLinksContainer}>
-          {props.link.subLinks!.map((subLink) => (
+          {link.subLinks!.map((subLink) => (
             <Link
               data-testid="sub-link"
               key={subLink.label}

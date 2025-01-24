@@ -19,7 +19,7 @@ export default function Header(props: Props) {
 
   const isMobile = useMobileView();
 
-  const [activeLinkIndex, setActiveLinkIndex] = useState(0);
+  const [activeLinkIndex, setActiveLinkIndex] = useState<null | number>(null);
 
   const links = useMemo(
     () =>
@@ -43,7 +43,7 @@ export default function Header(props: Props) {
         return link.url === pathname;
       }
 
-      return link.subLinks.some((subLink) => subLink.url === pathname);
+      return link.subLinks.some((subLink) => subLink.url === pathname) || link.url === pathname;
     });
 
     const activeLinkIndex = foundActiveLinkIndex === -1 ? 0 : foundActiveLinkIndex;

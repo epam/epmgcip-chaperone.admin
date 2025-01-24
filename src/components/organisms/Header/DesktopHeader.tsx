@@ -15,7 +15,7 @@ import { Link } from '@/navigation';
 import styles from './Header.module.scss';
 
 interface Props {
-  activeLinkIndex: number;
+  activeLinkIndex: number | null;
   links: ILink[];
 }
 

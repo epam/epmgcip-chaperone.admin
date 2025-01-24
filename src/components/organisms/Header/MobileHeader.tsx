@@ -16,7 +16,7 @@ import styles from './Header.module.scss';
 import { MobileSubLinks } from './MobileSubLinks';
 
 interface Props {
-  activeLinkIndex: number;
+  activeLinkIndex: number | null;
   links: ILink[];
 }
 
