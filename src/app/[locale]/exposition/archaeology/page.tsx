@@ -2,7 +2,7 @@ import Page from '@/components/pages/Page/Page';
 import { getPage } from '@/lib/page';
 import getLastUrlSegment from '@/utils/getLastUrlSegment';
 
-export default async function HistoryPage() {
+export default async function ArchaeologyPage() {
   const lastUrlSegment = getLastUrlSegment();
   const page = await getPage(lastUrlSegment);
 
