@@ -7,9 +7,6 @@ export default function middleware(req: NextRequest) {
   const handleI18nRouting = createMiddleware(routing);
   const response = handleI18nRouting(req);
 
-  const requestPathname = req.nextUrl.pathname;
-  response.headers.set('x-pathname', requestPathname);
-
   return response;
 }
 
