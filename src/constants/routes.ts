@@ -19,7 +19,7 @@ export const APP_ROUTES: ILink[] = [
       { isEnabled: true, label: RouteLabelsEnum.Restoration, url: '/museum/restoration-section' },
       { isEnabled: true, label: RouteLabelsEnum.Projects, url: '/museum/projects' },
       { isEnabled: true, label: RouteLabelsEnum.Library, url: '/museum/library' },
-      { isEnabled: true, label: RouteLabelsEnum.Shop, url: '/museum/shop' },
+      { isEnabled: true, label: RouteLabelsEnum.Shop, url: '/museum/book-shop' },
     ],
     url: '/museum',
   },
