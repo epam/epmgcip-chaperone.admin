@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 import ImageGallery from '@/components/organisms/ImageGallery/ImageGallery';
-import { EXHIBIT_URL } from '@/constants/routes';
+import { SLUGS } from '@/constants/slugs';
 import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
 import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
 
@@ -26,7 +26,7 @@ export default function Home(props: Props): React.ReactElement {
           const firstImageItem = exhibit.imagesCollection.items[0];
 
           return {
-            clickUrl: `${EXHIBIT_URL}/${exhibit.slug}`,
+            clickUrl: `/${SLUGS.exhibit}/${exhibit.slug}`,
             id: firstImageItem.sys.id,
             url: firstImageItem.url,
           };

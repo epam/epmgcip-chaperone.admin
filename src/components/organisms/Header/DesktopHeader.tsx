@@ -15,7 +15,7 @@ import { Link } from '@/navigation';
 import styles from './Header.module.scss';
 
 interface Props {
-  activeLinkIndex: number;
+  activeLinkIndex: number | null;
   links: ILink[];
 }
 
@@ -43,7 +43,7 @@ export const DesktopHeader: React.FC<Props> = (props) => {
                 href={linkUrl}
                 className={clsx(styles.desktopLink, { [styles.desktopActiveLink]: isSelectedLink })}
               >
-                {link.label}
+                {t(`menu.${link.label}`)}
               </Link>
             );
           }

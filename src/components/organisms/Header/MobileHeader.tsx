@@ -16,7 +16,7 @@ import styles from './Header.module.scss';
 import { MobileSubLinks } from './MobileSubLinks';
 
 interface Props {
-  activeLinkIndex: number;
+  activeLinkIndex: number | null;
   links: ILink[];
 }
 
@@ -64,7 +64,7 @@ export const MobileHeader: React.FC<Props> = (props) => {
                   onClick={onCloseDrawer}
                   className={clsx(styles.mobileLink, { [styles.mobileActiveLink]: isSelectedLink })}
                 >
-                  {link.label}
+                  {t(`menu.${link.label}`)}
                 </Link>
               );
             }

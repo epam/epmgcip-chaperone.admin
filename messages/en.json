@@ -66,5 +66,21 @@
   "copyright": {
     "message": "All copyrights reserved. Copying website content allowed only on permission of the Museum&apos;s Administration.",
     "contact": "Contact details."
+  },
+  "menu": {
+    "home": "Home",
+    "museum": "Museum",
+    "history": "History",
+    "restoration": "Restoration section",
+    "projects": "Projects",
+    "library": "Library",
+    "shop": "Book Shop",
+    "exposition": "Exposition",
+    "archaeology": "Archaeology",
+    "art": "The folk applied art",
+    "gallery": "Gallery",
+    "friends": "Friends and Sponsors",
+    "visits": "Visits",
+    "contacts": "Contacts"
   }
 }

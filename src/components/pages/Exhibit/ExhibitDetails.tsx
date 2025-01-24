@@ -3,6 +3,8 @@ import React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { useTranslations } from 'next-intl';
 
+import Description from '@/components/atoms/Description/Description';
+import Title from '@/components/atoms/Title/Title';
 import ImageGallery from '@/components/organisms/ImageGallery/ImageGallery';
 import Player from '@/components/organisms/Player/Player';
 import IExhibit from '@/interfaces/IExhibit';
@@ -33,7 +35,7 @@ export const ExhibitDetails: React.FC<Props> = (props) => {
 
   return (
     <article className={styles.exhibit} data-testid="exhibit">
-      <h2 className={styles.title}>{title}</h2>
+      <Title>{title}</Title>
 
       {author && <div className={styles.author}>{author}</div>}
 
@@ -59,8 +61,8 @@ export const ExhibitDetails: React.FC<Props> = (props) => {
       {description && (
         <div className={styles.description}>
           <div className={styles.descriptionName}>{t('description')}</div>
-          <div id="exhibit-description" className={styles.descriptionContent}>
-            {documentToReactComponents(description)}
+          <div id="exhibit-description">
+            <Description>{documentToReactComponents(description)}</Description>
           </div>
         </div>
       )}
