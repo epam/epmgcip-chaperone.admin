@@ -4,7 +4,7 @@ import { Logger } from '@/utils/logger';
 import { getClient } from './ApolloClient';
 import { GetPageDocument } from '../__generated__/graphql';
 
-export async function getPage(slug: string): Promise<IPage | undefined> {
+export async function getPage(slug: string): Promise<IPage | null> {
   try {
     const { data } = await getClient().query({
       query: GetPageDocument,
@@ -16,5 +16,5 @@ export async function getPage(slug: string): Promise<IPage | undefined> {
     Logger.logError('Failed to fetch page', error);
   }
 
-  return undefined;
+  return null;
 }

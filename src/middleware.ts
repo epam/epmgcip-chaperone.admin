@@ -5,9 +5,8 @@ import { routing } from './i18n/routing';
 
 export default function middleware(req: NextRequest) {
   const handleI18nRouting = createMiddleware(routing);
-  const response = handleI18nRouting(req);
 
-  return response;
+  return handleI18nRouting(req);
 }
 
 export const config = {
