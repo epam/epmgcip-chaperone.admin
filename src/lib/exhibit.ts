@@ -1,9 +1,14 @@
 import IExhibit from '@/interfaces/IExhibit';
+import { IImagePreviewExhibit } from '@/interfaces/IImagePreviewExhibit';
 import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
 import { Logger } from '@/utils/logger';
 
 import { getClient } from './ApolloClient';
-import { GetExhibitDocument, GetTopLatestExhibitsDocument } from '../__generated__/graphql';
+import {
+  GetExhibitDocument,
+  GetExhibitsImagesByIdsDocument,
+  GetTopLatestExhibitsDocument,
+} from '../__generated__/graphql';
 
 export async function getExhibit(slug: string): Promise<IExhibit | undefined> {
   try {
@@ -30,6 +35,21 @@ export async function getTopLatestExhibits(limit: number): Promise<IPreviewExhib
     return (data.exhibitCollection?.items as IPreviewExhibit[]) ?? [];
   } catch (error) {
     Logger.logError('Failed to fetch top latest exhibits: ', error);
+  }
+
+  return [];
+}
+
+export async function getImagePreviewExhibitsByIds(ids: string[]): Promise<IImagePreviewExhibit[]> {
+  try {
+    const { data } = await getClient().query({
+      query: GetExhibitsImagesByIdsDocument,
+      variables: { ids },
+    });
+
+    return (data.exhibitCollection?.items as IImagePreviewExhibit[]) ?? [];
+  } catch (error) {
+    Logger.logError('Failed to fetch images preview exhibits: ', error);
   }
 
   return [];

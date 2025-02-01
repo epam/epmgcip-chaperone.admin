@@ -1,5 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
 
+import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
+
 export interface IExhibition {
   sys: {
     id: string;
@@ -27,4 +29,5 @@ export interface IExhibition {
       };
     }>;
   };
+  exhibitionsImages: IImageGalleryImage[];
 }

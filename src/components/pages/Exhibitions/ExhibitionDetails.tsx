@@ -31,7 +31,7 @@ export const ExhibitionDetails: React.FC<Props> = ({ exhibition }) => {
 
       <div className={styles.description}>{documentToReactComponents(description as Document)}</div>
 
-      <ImageGallery displayArrows={true} images={[]} isLinkImage={true} />
+      <ImageGallery displayArrows={true} images={exhibition.exhibitionsImages} isLinkImage={true} />
     </div>
   );
 };

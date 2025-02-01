@@ -34,7 +34,6 @@ query GetExhibitions(
           sys {
             id
           }
-          slug
         }
       }
     }
