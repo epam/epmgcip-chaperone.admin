@@ -1,6 +1,7 @@
 import Exhibitions from '@/components/pages/Exhibitions/Exhibitions';
 import { EXHIBIT_URL } from '@/constants/routes';
 import { IExhibition } from '@/interfaces/IExhibition';
+import { IExhibitionContentModel } from '@/interfaces/IExhibitionContentModel';
 import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
 import { IImagePreviewExhibit } from '@/interfaces/IImagePreviewExhibit';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
@@ -11,20 +12,20 @@ const exhibitionsOffset = 0;
 const exhibitionsRelatedItemsLimit = 0;
 
 export default async function ExhibitionsPage() {
-  const getExhibitsIdsFromExhibitions = (exhibitions: IExhibition[]): string[] =>
-    exhibitions
+  const getExhibitsIdsFromExhibitions = (exhibitionsModels: IExhibitionContentModel[]): string[] =>
+    exhibitionsModels
       .map((exhibition) => exhibition.referencesCollection.items.map((exhibit) => exhibit.sys.id))
       .flat();
 
   const mergeExhibitsImagesPreviewsIntoExhibitions = (
-    exhibitions: IExhibition[],
+    exhibitionsModels: IExhibitionContentModel[],
     exhibitsImagesPreviews: IImagePreviewExhibit[],
   ): IExhibition[] => {
     const exhibitsImagesPreviewsMap = new Map(
       exhibitsImagesPreviews.map((imagePreview) => [imagePreview.sys.id, imagePreview]),
     );
 
-    return exhibitions.map((exhibition) => ({
+    return exhibitionsModels.map((exhibition) => ({
       ...exhibition,
       exhibitionsImages: exhibition.referencesCollection.items
         .map((exhibitRef) => {
