@@ -26,7 +26,7 @@ export const ExhibitionDetails: React.FC<Props> = ({ exhibition }) => {
     exhibition[`description${currentLocale}`]?.json || exhibition.descriptionEn.json;
 
   return (
-    <div>
+    <div className={styles.exhibitionContainer}>
       <h2 className={styles.title}>{title}</h2>
 
       <div className={styles.description}>{documentToReactComponents(description as Document)}</div>
