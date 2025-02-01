@@ -26,10 +26,14 @@ export const ExhibitionDetails: React.FC<Props> = ({ exhibition }) => {
     exhibition[`description${currentLocale}`]?.json || exhibition.descriptionEn.json;
 
   return (
-    <div className={styles.exhibitionContainer}>
-      <h2 className={styles.title}>{title}</h2>
+    <div data-testid="exhibition" className={styles.exhibitionContainer}>
+      <h2 data-testid="exhibition-title" className={styles.title}>
+        {title}
+      </h2>
 
-      <div className={styles.description}>{documentToReactComponents(description as Document)}</div>
+      <div data-testid="exhibition-description" className={styles.description}>
+        {documentToReactComponents(description as Document)}
+      </div>
 
       <ImageGallery displayArrows={true} images={exhibition.exhibitionsImages} isLinkImage={true} />
     </div>
