@@ -7,6 +7,11 @@ interface Props {
 
 export const Map = ({ height }: Props) => {
   return (
-    <iframe className={styles.iframe} height={height} src={process.env.EMBED_MAP_SRC}></iframe>
+    <iframe
+      data-testid="map-iframe"
+      className={styles.iframe}
+      height={height}
+      src={process.env.EMBED_MAP_SRC}
+    ></iframe>
   );
 };
