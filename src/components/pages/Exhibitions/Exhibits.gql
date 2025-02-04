@@ -1,0 +1,18 @@
+query GetExhibitsImagesByIds($ids: [String]) {
+  exhibitCollection(where: { sys: { id_in: $ids }}) {
+    items {
+      sys {
+        id
+      }
+      slug
+      imagesCollection(limit: 1) {
+        items {
+          sys {
+            id
+          }
+          url
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use 'sass:map';
+@import '../../../variables.scss';
+
+.root {
+  margin: $indentMobilePageBorder;
+
+  @media (min-width: map.get($breakpoints, sm)) {
+    margin: $indentTabletPageBorder;
+  }
+}
+
+.title {
+  margin: 0 0 30px 0;
+  font-weight: bold;
+  font-size: $titleFontSize;
+  line-height: normal;
+}
+
+.exhibitionContainer {
+  margin-top: 40px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.description {
+  p {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+}

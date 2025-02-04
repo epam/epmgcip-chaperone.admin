@@ -1,0 +1,41 @@
+query GetExhibitions(
+  $limit: Int,
+  $skip: Int,
+  $referencesLimit: Int
+) {
+  exhibitionsCollection(
+    limit: $limit
+    skip: $skip
+    order: nameEn_ASC
+    where: { referencesCollection_exists: true }
+  ) {
+    items {
+      sys {
+        id
+      }
+      nameEn
+      nameRu
+      nameUz
+      nameKa
+      descriptionEn {
+        json
+      }
+      descriptionRu {
+        json
+      }
+      descriptionUz {
+        json
+      }
+      descriptionKa {
+        json
+      }
+      referencesCollection (limit: $referencesLimit, order: sys_publishedAt_DESC) {
+        items {
+          sys {
+            id
+          }
+        }
+      }
+    }
+  }
+}
