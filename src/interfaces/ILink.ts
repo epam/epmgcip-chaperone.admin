@@ -1,6 +1,8 @@
+import { RouteLabelsValues } from '@/enums';
+
 export interface ILink {
   isEnabled: boolean;
-  label: string;
+  label: RouteLabelsValues;
   subLinks?: ISubLink[];
   url?: string;
 }
@@ -8,5 +10,5 @@ export interface ILink {
 export interface ISubLink {
   isEnabled: boolean;
   url: string;
-  label: string;
+  label: RouteLabelsValues;
 }

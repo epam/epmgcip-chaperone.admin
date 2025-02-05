@@ -1,0 +1,10 @@
+@use 'sass:map';
+@import '../../../variables.scss';
+
+.page {
+  padding: 40px $indentMobilePageBorder 24px $indentMobilePageBorder;
+
+  @media (min-width: map.get($breakpoints, sm)) {
+    padding: 40px $indentTabletPageBorder 24px $indentTabletPageBorder;
+  }
+}

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { HoverCard } from '@mantine/core';
 import { clsx } from 'clsx';
+import { useTranslations } from 'next-intl';
 
 import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
@@ -13,36 +14,34 @@ interface Props {
   isSelected: boolean;
 }
 
-export const DesktopSubLinks: React.FC<Props> = (props) => {
-  const onClickSubMenuLink = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-    e.preventDefault();
-  };
+export const DesktopSubLinks: React.FC<Props> = ({ link, isSelected }: Props) => {
+  const t = useTranslations();
+  const linkUrl = link.url!;
 
   return (
     <HoverCard>
       <HoverCard.Target>
         <Link
           data-testid="link"
-          href={''}
-          onClick={onClickSubMenuLink}
+          href={linkUrl}
           className={clsx(styles.desktopLink, {
-            [styles.desktopActiveLink]: props.isSelected,
+            [styles.desktopActiveLink]: isSelected,
           })}
         >
-          {props.link.label}
+          {t(`menu.${link.label}`)}
         </Link>
       </HoverCard.Target>
 
       <HoverCard.Dropdown className={styles.subLinksDropdown}>
         <div className={styles.desktopSubLinksContainer}>
-          {props.link.subLinks!.map((subLink) => (
+          {link.subLinks!.map((subLink) => (
             <Link
               data-testid="sub-link"
               key={subLink.label}
               href={subLink.url}
               className={styles.desktopSubLink}
             >
-              {subLink.label}
+              {t(`menu.${subLink.label}`)}
             </Link>
           ))}
         </div>

@@ -66,5 +66,21 @@
   "copyright": {
     "message": "Barcha huquqlar himoyalangan. Veb-sayt mazmunini nusxalash faqat muzey ma'muriyati ruxsati bilan amalga oshiriladi.",
     "contact": "Aloqa ma'lumotlari."
+  },
+  "menu": {
+    "home": "Ui",
+    "museum": "Muzhai",
+    "history": "Tarih",
+    "restoration": "Qalpyna keltiru bölimi",
+    "projects": "Jobalar",
+    "library": "Kitaphana",
+    "shop": "Kitap dükeni",
+    "exposition": "Ekspozitsiya",
+    "archaeology": "Arheologiya",
+    "art": "Halyqtyq qoldanbaly öner",
+    "gallery": "Galereya",
+    "friends": "Dostar men Demewshiler",
+    "visits": "Saparlar",
+    "contacts": "Bailanstıar"
   }
 }

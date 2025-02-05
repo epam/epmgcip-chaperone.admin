@@ -6,18 +6,6 @@
   font-size: $mainFontSize;
 }
 
-.title {
-  margin: 0 0 12px 0;
-  padding: 0 $indentMobilePageBorder;
-  text-align: center;
-  font-weight: bold;
-  font-size: $titleFontSize;
-
-  @media (min-width: map.get($breakpoints, sm)) {
-    padding: 0 $indentTabletPageBorder;
-  }
-}
-
 .author {
   padding: 0 $indentMobilePageBorder 32px $indentMobilePageBorder;
   text-align: center;
@@ -29,6 +17,9 @@
 }
 
 .description {
+  max-width: $contentWidth;
+  margin: 0 auto;
+  box-sizing: content-box;
   padding: 0 $indentMobilePageBorder 24px $indentMobilePageBorder;
 
   @media (min-width: map.get($breakpoints, sm)) {
@@ -69,6 +60,9 @@
 }
 
 .audioPlayer {
+  max-width: $contentWidth;
+  margin: 0 auto;
+  box-sizing: content-box;
   padding: 0 $indentMobilePageBorder 40px $indentMobilePageBorder;
 
   @media (min-width: map.get($breakpoints, sm)) {

@@ -1,9 +1,9 @@
 import { RouteLabelsEnum } from '@/enums';
 import { ILink } from '@/interfaces/ILink';
 
-export const BASE_URL = '/';
+import { SLUGS } from './slugs';
 
-export const EXHIBIT_URL = `/exhibit`;
+export const BASE_URL = '/';
 
 export const APP_ROUTES: ILink[] = [
   {
@@ -15,23 +15,57 @@ export const APP_ROUTES: ILink[] = [
     isEnabled: true,
     label: RouteLabelsEnum.Museum,
     subLinks: [
-      { isEnabled: true, label: 'History', url: '/history' },
-      { isEnabled: true, label: 'Architecture', url: '/architecture' },
+      { isEnabled: true, label: RouteLabelsEnum.History, url: `/${SLUGS.museum}/${SLUGS.history}` },
+      {
+        isEnabled: true,
+        label: RouteLabelsEnum.Restoration,
+        url: `/${SLUGS.museum}/restoration-section`,
+      },
+      {
+        isEnabled: true,
+        label: RouteLabelsEnum.Projects,
+        url: `/${SLUGS.museum}/${SLUGS.projects}`,
+      },
+      { isEnabled: true, label: RouteLabelsEnum.Library, url: `/${SLUGS.museum}/${SLUGS.library}` },
+      { isEnabled: true, label: RouteLabelsEnum.Shop, url: `/${SLUGS.museum}/${SLUGS.shop}` },
     ],
+    url: `/${SLUGS.museum}`,
   },
   {
     isEnabled: true,
     label: RouteLabelsEnum.Exposition,
-    url: '/exposition',
+    subLinks: [
+      {
+        isEnabled: true,
+        label: RouteLabelsEnum.Archaeology,
+        url: `/${SLUGS.exposition}/${SLUGS.archaeology}`,
+      },
+      {
+        isEnabled: true,
+        label: RouteLabelsEnum.Art,
+        url: `/${SLUGS.exposition}/${SLUGS.art}`,
+      },
+      {
+        isEnabled: true,
+        label: RouteLabelsEnum.Gallery,
+        url: `/${SLUGS.exposition}/${SLUGS.gallery}`,
+      },
+    ],
+    url: `/${SLUGS.exposition}`,
   },
   {
     isEnabled: true,
-    label: RouteLabelsEnum.News,
-    url: '/news',
+    label: RouteLabelsEnum.Visits,
+    url: `/${SLUGS.visits}`,
+  },
+  {
+    isEnabled: true,
+    label: RouteLabelsEnum.Friends,
+    url: `/${SLUGS.friends}`,
   },
   {
     isEnabled: true,
     label: RouteLabelsEnum.Contacts,
-    url: '/contacts',
+    url: `/${SLUGS.contacts}`,
   },
 ];

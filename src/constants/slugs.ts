@@ -1,0 +1,16 @@
+export const SLUGS = {
+  exhibit: 'exhibit',
+  museum: 'museum',
+  exposition: 'exposition',
+  visits: 'visits',
+  friends: 'friends',
+  contacts: 'contacts',
+  history: 'history',
+  restoration: 'restoration-section',
+  projects: 'projects',
+  library: 'library',
+  shop: 'book-shop',
+  archaeology: 'archaeology',
+  art: 'folk-applied-art',
+  gallery: 'gallery',
+};

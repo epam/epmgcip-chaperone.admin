@@ -134,18 +134,20 @@
   width: fit-content;
 }
 
-.baseChevronIcon {
-  margin: 3px 0 0 5px;
-}
-
 .chevronIcon {
-  @extend .baseChevronIcon;
-
   color: $colorMenuLink;
 }
 
 .activeChevronIcon {
-  @extend .baseChevronIcon;
-
   color: $colorLink;
+}
+
+.mobuleSubMenuButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
 }

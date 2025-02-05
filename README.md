@@ -1,4 +1,4 @@
-# Setup Guide  
+# Setup Guide
 
 This guide provides instructions on how to register the necessary services, configure environment variables, and set up the project to use a form with CAPTCHA and email functionality.
 
@@ -7,11 +7,13 @@ This guide provides instructions on how to register the necessary services, conf
 ## **1. Registration and API Keys**
 
 ### **Contentful**
+
 [Full instruction](https://github.com/epam/epmgcip-chaperone.contentful/blob/main/README.md)
 
 ---
 
 ### **Google reCAPTCHA**
+
 1. Go to the [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin/create).
 2. Register your site:
    - **Label**: Choose a name for your site.
@@ -25,14 +27,15 @@ This guide provides instructions on how to register the necessary services, conf
 ---
 
 ### **Email Service**
+
 You will need an SMTP provider for sending emails: **Gmail**
 
 1. Use [App Passwords](https://support.google.com/accounts/answer/185833) for better security.
-3. Collect the following:
-    - **SMTP Host**: `smtp.gmail.com`
-    - **SMTP Port**: `587`
-    - **System Email**: Your Gmail address (e.g., `example@gmail.com`).
-    - **System Email Password**: Your email password or app-specific password.
+2. Collect the following:
+   - **SMTP Host**: `smtp.gmail.com`
+   - **SMTP Port**: `587`
+   - **System Email**: Your Gmail address (e.g., `example@gmail.com`).
+   - **System Email Password**: Your email password or app-specific password.
 
 ---
 
@@ -61,6 +64,7 @@ SYSTEM_EMAIL_PASSWORD=your_system_email_password
 ```
 
 ### Example Configuration (using Gmail):
+
 ```env
 # Contentful
 CONTENTFUL_SPACE_ID=abcd1234efgh
@@ -84,6 +88,7 @@ SYSTEM_EMAIL_PASSWORD=your_app_specific_password
 ---
 
 ## **3. Verification Checklist**
+
 - Confirm that your reCAPTCHA keys match the site configuration.
 - Test the SMTP credentials to ensure emails can be sent successfully.
 - Verify that all environment variables are correctly added to `.env.local`.

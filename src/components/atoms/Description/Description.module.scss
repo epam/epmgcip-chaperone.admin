@@ -1,0 +1,42 @@
+@use 'sass:map';
+@import '../../../variables.scss';
+
+.description {
+  max-width: $contentWidth;
+  margin: 0 auto;
+  text-align: center;
+
+  p {
+    text-align: left;
+    margin-top: 0;
+  }
+
+  table,
+  td,
+  th {
+    border: 1px solid $mainBorderColor;
+  }
+
+  table {
+    text-align: left;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    padding: 4px 8px;
+  }
+
+  h6 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: normal;
+    font-size: $fontSizeDefault;
+  }
+
+  h5 {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: $fontSizeXLarge;
+  }
+}

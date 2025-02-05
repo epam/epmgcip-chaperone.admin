@@ -4,6 +4,7 @@ import { Collapse } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { clsx } from 'clsx';
+import { useTranslations } from 'next-intl';
 
 import { ILink } from '@/interfaces/ILink';
 import { Link } from '@/navigation';
@@ -16,57 +17,61 @@ interface Props {
   onCloseDrawer: () => void;
 }
 
-export const MobileSubLinks: React.FC<Props> = (props) => {
-  const [isSubMenuOpened, { toggle: toggleSubMenu, close: closeSubMenu }] = useDisclosure(
-    props.isSelected,
-  );
+export const MobileSubLinks: React.FC<Props> = ({ link, isSelected, onCloseDrawer }: Props) => {
+  const t = useTranslations();
+  const linkUrl = link.url!;
+  const [isSubMenuOpened, { toggle: toggleSubMenu, close: closeSubMenu }] =
+    useDisclosure(isSelected);
 
-  const onClickLink = (): void => {
+  const onClickButton = (): void => {
     toggleSubMenu();
   };
 
-  const onClickSubLink = (): void => {
+  const onClickLink = (): void => {
     closeSubMenu();
 
-    props.onCloseDrawer();
+    onCloseDrawer();
   };
 
   const iconChevronProps = {
-    className: props.isSelected ? styles.activeChevronIcon : styles.chevronIcon,
+    className: isSelected ? styles.activeChevronIcon : styles.chevronIcon,
     size: 20,
   };
 
   return (
     <React.Fragment>
-      <div className={styles.mobileSubLinksTab} onClick={onClickLink}>
+      <div className={styles.mobileSubLinksTab}>
         <Link
           data-testid="link"
-          href={''}
+          href={linkUrl}
           className={clsx(styles.mobileLink, {
-            [styles.mobileActiveLink]: props.isSelected,
+            [styles.mobileActiveLink]: isSelected,
           })}
+          onClick={onClickLink}
         >
-          {props.link.label}
+          {t(`menu.${link.label}`)}
         </Link>
 
-        {isSubMenuOpened ? (
-          <IconChevronUp {...iconChevronProps} />
-        ) : (
-          <IconChevronDown {...iconChevronProps} />
-        )}
+        <button type="button" onClick={onClickButton} className={styles.mobuleSubMenuButton}>
+          {isSubMenuOpened ? (
+            <IconChevronUp {...iconChevronProps} />
+          ) : (
+            <IconChevronDown {...iconChevronProps} />
+          )}
+        </button>
       </div>
 
       <Collapse in={isSubMenuOpened}>
         <div className={styles.mobileSubLinksContainer}>
-          {props.link.subLinks!.map((subLink) => (
+          {link.subLinks!.map((subLink) => (
             <Link
               data-testid="sub-link"
               key={subLink.label}
               href={subLink.url}
               className={styles.mobileSubLink}
-              onClick={onClickSubLink}
+              onClick={onClickLink}
             >
-              {subLink.label}
+              {t(`menu.${subLink.label}`)}
             </Link>
           ))}
         </div>

@@ -1,5 +1,5 @@
 import Exhibitions from '@/components/pages/Exhibitions/Exhibitions';
-import { EXHIBIT_URL } from '@/constants/routes';
+import { SLUGS } from '@/constants/slugs';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { IExhibitionContentModel } from '@/interfaces/IExhibitionContentModel';
 import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
@@ -36,7 +36,7 @@ export default async function ExhibitionsPage() {
           }
 
           return {
-            clickUrl: `${EXHIBIT_URL}/${imagePreview.slug}`,
+            clickUrl: `${SLUGS.exhibit}/${imagePreview.slug}`,
             id: imagePreview.sys.id,
             url: imagePreview.imagesCollection.items[0].url,
           } as IImageGalleryImage;
