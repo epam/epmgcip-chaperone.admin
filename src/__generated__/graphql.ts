@@ -772,6 +772,7 @@ export type ExhibitFilter = {
 export type ExhibitLinkingCollections = {
   __typename?: 'ExhibitLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  exhibitionsCollection?: Maybe<ExhibitionsCollection>;
 };
 
 
@@ -782,7 +783,440 @@ export type ExhibitLinkingCollectionsEntryCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
+export type ExhibitLinkingCollectionsExhibitionsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ExhibitLinkingCollectionsExhibitionsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum ExhibitLinkingCollectionsExhibitionsCollectionOrder {
+  NameEnAsc = 'nameEn_ASC',
+  NameEnDesc = 'nameEn_DESC',
+  NameKaAsc = 'nameKa_ASC',
+  NameKaDesc = 'nameKa_DESC',
+  NameRuAsc = 'nameRu_ASC',
+  NameRuDesc = 'nameRu_DESC',
+  NameUzAsc = 'nameUz_ASC',
+  NameUzDesc = 'nameUz_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export enum ExhibitOrder {
+  AuthorEnAsc = 'authorEn_ASC',
+  AuthorEnDesc = 'authorEn_DESC',
+  AuthorKaAsc = 'authorKa_ASC',
+  AuthorKaDesc = 'authorKa_DESC',
+  AuthorRuAsc = 'authorRu_ASC',
+  AuthorRuDesc = 'authorRu_DESC',
+  AuthorUzAsc = 'authorUz_ASC',
+  AuthorUzDesc = 'authorUz_DESC',
+  ImageUrlAsc = 'imageUrl_ASC',
+  ImageUrlDesc = 'imageUrl_DESC',
+  NameEnAsc = 'nameEn_ASC',
+  NameEnDesc = 'nameEn_DESC',
+  NameKaAsc = 'nameKa_ASC',
+  NameKaDesc = 'nameKa_DESC',
+  NameRuAsc = 'nameRu_ASC',
+  NameRuDesc = 'nameRu_DESC',
+  NameUzAsc = 'nameUz_ASC',
+  NameUzDesc = 'nameUz_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  YearOfCreationAsc = 'yearOfCreation_ASC',
+  YearOfCreationDesc = 'yearOfCreation_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type Exhibitions = Entry & _Node & {
+  __typename?: 'Exhibitions';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  descriptionEn?: Maybe<ExhibitionsDescriptionEn>;
+  descriptionKa?: Maybe<ExhibitionsDescriptionKa>;
+  descriptionRu?: Maybe<ExhibitionsDescriptionRu>;
+  descriptionUz?: Maybe<ExhibitionsDescriptionUz>;
+  linkedFrom?: Maybe<ExhibitionsLinkingCollections>;
+  nameEn?: Maybe<Scalars['String']['output']>;
+  nameKa?: Maybe<Scalars['String']['output']>;
+  nameRu?: Maybe<Scalars['String']['output']>;
+  nameUz?: Maybe<Scalars['String']['output']>;
+  referencesCollection?: Maybe<ExhibitionsReferencesCollection>;
+  sys: Sys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsDescriptionEnArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsDescriptionKaArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsDescriptionRuArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsDescriptionUzArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsNameEnArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsNameKaArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsNameRuArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsNameUzArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/q42k89snlxs6/content_types/exhibitions) */
+export type ExhibitionsReferencesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ExhibitionsReferencesCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ExhibitFilter>;
+};
+
+export type ExhibitionsCollection = {
+  __typename?: 'ExhibitionsCollection';
+  items: Array<Maybe<Exhibitions>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type ExhibitionsDescriptionEn = {
+  __typename?: 'ExhibitionsDescriptionEn';
+  json: Scalars['JSON']['output'];
+  links: ExhibitionsDescriptionEnLinks;
+};
+
+export type ExhibitionsDescriptionEnAssets = {
+  __typename?: 'ExhibitionsDescriptionEnAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ExhibitionsDescriptionEnEntries = {
+  __typename?: 'ExhibitionsDescriptionEnEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ExhibitionsDescriptionEnLinks = {
+  __typename?: 'ExhibitionsDescriptionEnLinks';
+  assets: ExhibitionsDescriptionEnAssets;
+  entries: ExhibitionsDescriptionEnEntries;
+  resources: ExhibitionsDescriptionEnResources;
+};
+
+export type ExhibitionsDescriptionEnResources = {
+  __typename?: 'ExhibitionsDescriptionEnResources';
+  block: Array<ExhibitionsDescriptionEnResourcesBlock>;
+  hyperlink: Array<ExhibitionsDescriptionEnResourcesHyperlink>;
+  inline: Array<ExhibitionsDescriptionEnResourcesInline>;
+};
+
+export type ExhibitionsDescriptionEnResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionEnResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionEnResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionEnResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionEnResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionEnResourcesInline';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionKa = {
+  __typename?: 'ExhibitionsDescriptionKa';
+  json: Scalars['JSON']['output'];
+  links: ExhibitionsDescriptionKaLinks;
+};
+
+export type ExhibitionsDescriptionKaAssets = {
+  __typename?: 'ExhibitionsDescriptionKaAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ExhibitionsDescriptionKaEntries = {
+  __typename?: 'ExhibitionsDescriptionKaEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ExhibitionsDescriptionKaLinks = {
+  __typename?: 'ExhibitionsDescriptionKaLinks';
+  assets: ExhibitionsDescriptionKaAssets;
+  entries: ExhibitionsDescriptionKaEntries;
+  resources: ExhibitionsDescriptionKaResources;
+};
+
+export type ExhibitionsDescriptionKaResources = {
+  __typename?: 'ExhibitionsDescriptionKaResources';
+  block: Array<ExhibitionsDescriptionKaResourcesBlock>;
+  hyperlink: Array<ExhibitionsDescriptionKaResourcesHyperlink>;
+  inline: Array<ExhibitionsDescriptionKaResourcesInline>;
+};
+
+export type ExhibitionsDescriptionKaResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionKaResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionKaResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionKaResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionKaResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionKaResourcesInline';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionRu = {
+  __typename?: 'ExhibitionsDescriptionRu';
+  json: Scalars['JSON']['output'];
+  links: ExhibitionsDescriptionRuLinks;
+};
+
+export type ExhibitionsDescriptionRuAssets = {
+  __typename?: 'ExhibitionsDescriptionRuAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ExhibitionsDescriptionRuEntries = {
+  __typename?: 'ExhibitionsDescriptionRuEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ExhibitionsDescriptionRuLinks = {
+  __typename?: 'ExhibitionsDescriptionRuLinks';
+  assets: ExhibitionsDescriptionRuAssets;
+  entries: ExhibitionsDescriptionRuEntries;
+  resources: ExhibitionsDescriptionRuResources;
+};
+
+export type ExhibitionsDescriptionRuResources = {
+  __typename?: 'ExhibitionsDescriptionRuResources';
+  block: Array<ExhibitionsDescriptionRuResourcesBlock>;
+  hyperlink: Array<ExhibitionsDescriptionRuResourcesHyperlink>;
+  inline: Array<ExhibitionsDescriptionRuResourcesInline>;
+};
+
+export type ExhibitionsDescriptionRuResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionRuResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionRuResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionRuResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionRuResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionRuResourcesInline';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionUz = {
+  __typename?: 'ExhibitionsDescriptionUz';
+  json: Scalars['JSON']['output'];
+  links: ExhibitionsDescriptionUzLinks;
+};
+
+export type ExhibitionsDescriptionUzAssets = {
+  __typename?: 'ExhibitionsDescriptionUzAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ExhibitionsDescriptionUzEntries = {
+  __typename?: 'ExhibitionsDescriptionUzEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ExhibitionsDescriptionUzLinks = {
+  __typename?: 'ExhibitionsDescriptionUzLinks';
+  assets: ExhibitionsDescriptionUzAssets;
+  entries: ExhibitionsDescriptionUzEntries;
+  resources: ExhibitionsDescriptionUzResources;
+};
+
+export type ExhibitionsDescriptionUzResources = {
+  __typename?: 'ExhibitionsDescriptionUzResources';
+  block: Array<ExhibitionsDescriptionUzResourcesBlock>;
+  hyperlink: Array<ExhibitionsDescriptionUzResourcesHyperlink>;
+  inline: Array<ExhibitionsDescriptionUzResourcesInline>;
+};
+
+export type ExhibitionsDescriptionUzResourcesBlock = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionUzResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionUzResourcesHyperlink = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionUzResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsDescriptionUzResourcesInline = ResourceLink & {
+  __typename?: 'ExhibitionsDescriptionUzResourcesInline';
+  sys: ResourceSys;
+};
+
+export type ExhibitionsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ExhibitionsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ExhibitionsFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  descriptionEn_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionEn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionEn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionKa_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionKa_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionKa_not_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionRu_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionRu_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionRu_not_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionUz_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionUz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionUz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameEn?: InputMaybe<Scalars['String']['input']>;
+  nameEn_contains?: InputMaybe<Scalars['String']['input']>;
+  nameEn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameEn_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameEn_not?: InputMaybe<Scalars['String']['input']>;
+  nameEn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameEn_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameKa?: InputMaybe<Scalars['String']['input']>;
+  nameKa_contains?: InputMaybe<Scalars['String']['input']>;
+  nameKa_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameKa_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameKa_not?: InputMaybe<Scalars['String']['input']>;
+  nameKa_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameKa_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameRu?: InputMaybe<Scalars['String']['input']>;
+  nameRu_contains?: InputMaybe<Scalars['String']['input']>;
+  nameRu_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameRu_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameRu_not?: InputMaybe<Scalars['String']['input']>;
+  nameRu_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameRu_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameUz?: InputMaybe<Scalars['String']['input']>;
+  nameUz_contains?: InputMaybe<Scalars['String']['input']>;
+  nameUz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameUz_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameUz_not?: InputMaybe<Scalars['String']['input']>;
+  nameUz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameUz_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  references?: InputMaybe<CfExhibitNestedFilter>;
+  referencesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type ExhibitionsLinkingCollections = {
+  __typename?: 'ExhibitionsLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ExhibitionsLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum ExhibitionsOrder {
+  NameEnAsc = 'nameEn_ASC',
+  NameEnDesc = 'nameEn_DESC',
+  NameKaAsc = 'nameKa_ASC',
+  NameKaDesc = 'nameKa_DESC',
+  NameRuAsc = 'nameRu_ASC',
+  NameRuDesc = 'nameRu_DESC',
+  NameUzAsc = 'nameUz_ASC',
+  NameUzDesc = 'nameUz_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ExhibitionsReferencesCollection = {
+  __typename?: 'ExhibitionsReferencesCollection';
+  items: Array<Maybe<Exhibit>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum ExhibitionsReferencesCollectionOrder {
   AuthorEnAsc = 'authorEn_ASC',
   AuthorEnDesc = 'authorEn_DESC',
   AuthorKaAsc = 'authorKa_ASC',
@@ -1363,6 +1797,8 @@ export type Query = {
   entryCollection?: Maybe<EntryCollection>;
   exhibit?: Maybe<Exhibit>;
   exhibitCollection?: Maybe<ExhibitCollection>;
+  exhibitions?: Maybe<Exhibitions>;
+  exhibitionsCollection?: Maybe<ExhibitionsCollection>;
   links?: Maybe<Links>;
   linksCollection?: Maybe<LinksCollection>;
   page?: Maybe<Page>;
@@ -1418,6 +1854,23 @@ export type QueryExhibitCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ExhibitFilter>;
+};
+
+
+export type QueryExhibitionsArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryExhibitionsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ExhibitionsOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ExhibitionsFilter>;
 };
 
 
@@ -1514,7 +1967,7 @@ export type SysFilter = {
 };
 
 /**
- * Represents a tag entity for finding and organizing content easily.
+ * Represents a taxonomy concept entity for finding and organizing content easily.
  *         Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
  */
 export type TaxonomyConcept = {
@@ -1526,12 +1979,129 @@ export type _Node = {
   _id: Scalars['ID']['output'];
 };
 
+export type CfExhibitNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfExhibitNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfExhibitNestedFilter>>>;
+  audioFileEn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  audioFileKa_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  audioFileRU_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  audioFileUz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  authorEn?: InputMaybe<Scalars['String']['input']>;
+  authorEn_contains?: InputMaybe<Scalars['String']['input']>;
+  authorEn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  authorEn_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorEn_not?: InputMaybe<Scalars['String']['input']>;
+  authorEn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  authorEn_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorKa?: InputMaybe<Scalars['String']['input']>;
+  authorKa_contains?: InputMaybe<Scalars['String']['input']>;
+  authorKa_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  authorKa_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorKa_not?: InputMaybe<Scalars['String']['input']>;
+  authorKa_not_contains?: InputMaybe<Scalars['String']['input']>;
+  authorKa_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorRu?: InputMaybe<Scalars['String']['input']>;
+  authorRu_contains?: InputMaybe<Scalars['String']['input']>;
+  authorRu_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  authorRu_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorRu_not?: InputMaybe<Scalars['String']['input']>;
+  authorRu_not_contains?: InputMaybe<Scalars['String']['input']>;
+  authorRu_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorUz?: InputMaybe<Scalars['String']['input']>;
+  authorUz_contains?: InputMaybe<Scalars['String']['input']>;
+  authorUz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  authorUz_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  authorUz_not?: InputMaybe<Scalars['String']['input']>;
+  authorUz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  authorUz_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  descriptionEn_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionEn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionEn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionKa_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionKa_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionKa_not_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionRu_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionRu_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionRu_not_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionUz_contains?: InputMaybe<Scalars['String']['input']>;
+  descriptionUz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  descriptionUz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  imageUrl?: InputMaybe<Scalars['String']['input']>;
+  imageUrl_contains?: InputMaybe<Scalars['String']['input']>;
+  imageUrl_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  imageUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  imageUrl_not?: InputMaybe<Scalars['String']['input']>;
+  imageUrl_not_contains?: InputMaybe<Scalars['String']['input']>;
+  imageUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  imagesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameEn?: InputMaybe<Scalars['String']['input']>;
+  nameEn_contains?: InputMaybe<Scalars['String']['input']>;
+  nameEn_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameEn_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameEn_not?: InputMaybe<Scalars['String']['input']>;
+  nameEn_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameEn_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameKa?: InputMaybe<Scalars['String']['input']>;
+  nameKa_contains?: InputMaybe<Scalars['String']['input']>;
+  nameKa_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameKa_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameKa_not?: InputMaybe<Scalars['String']['input']>;
+  nameKa_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameKa_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameRu?: InputMaybe<Scalars['String']['input']>;
+  nameRu_contains?: InputMaybe<Scalars['String']['input']>;
+  nameRu_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameRu_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameRu_not?: InputMaybe<Scalars['String']['input']>;
+  nameRu_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameRu_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameUz?: InputMaybe<Scalars['String']['input']>;
+  nameUz_contains?: InputMaybe<Scalars['String']['input']>;
+  nameUz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  nameUz_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  nameUz_not?: InputMaybe<Scalars['String']['input']>;
+  nameUz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  nameUz_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  yearOfCreation?: InputMaybe<Scalars['String']['input']>;
+  yearOfCreation_contains?: InputMaybe<Scalars['String']['input']>;
+  yearOfCreation_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  yearOfCreation_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  yearOfCreation_not?: InputMaybe<Scalars['String']['input']>;
+  yearOfCreation_not_contains?: InputMaybe<Scalars['String']['input']>;
+  yearOfCreation_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type GetExhibitQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, authorEn?: string | null, authorRu?: string | null, authorUz?: string | null, authorKa?: string | null, yearOfCreation?: string | null, sys: { __typename?: 'Sys', id: string }, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'ExhibitDescriptionRu', json: any, links: { __typename?: 'ExhibitDescriptionRuLinks', entries: { __typename?: 'ExhibitDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'ExhibitDescriptionUz', json: any, links: { __typename?: 'ExhibitDescriptionUzLinks', entries: { __typename?: 'ExhibitDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'ExhibitDescriptionKa', json: any, links: { __typename?: 'ExhibitDescriptionKaLinks', entries: { __typename?: 'ExhibitDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, audioFileEn?: { __typename?: 'Asset', url?: string | null } | null, audioFileRu?: { __typename?: 'Asset', url?: string | null } | null, audioFileUz?: { __typename?: 'Asset', url?: string | null } | null, audioFileKa?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetExhibitQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, authorEn?: string | null, authorRu?: string | null, authorUz?: string | null, authorKa?: string | null, yearOfCreation?: string | null, sys: { __typename?: 'Sys', id: string }, descriptionEn?: { __typename?: 'ExhibitDescriptionEn', json: any, links: { __typename?: 'ExhibitDescriptionEnLinks', entries: { __typename?: 'ExhibitDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'ExhibitDescriptionRu', json: any, links: { __typename?: 'ExhibitDescriptionRuLinks', entries: { __typename?: 'ExhibitDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'ExhibitDescriptionUz', json: any, links: { __typename?: 'ExhibitDescriptionUzLinks', entries: { __typename?: 'ExhibitDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'ExhibitDescriptionKa', json: any, links: { __typename?: 'ExhibitDescriptionKaLinks', entries: { __typename?: 'ExhibitDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> } } } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, audioFileEn?: { __typename?: 'Asset', url?: string | null } | null, audioFileRu?: { __typename?: 'Asset', url?: string | null } | null, audioFileUz?: { __typename?: 'Asset', url?: string | null } | null, audioFileKa?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
+
+export type GetExhibitionsQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  referencesLimit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetExhibitionsQuery = { __typename?: 'Query', exhibitionsCollection?: { __typename?: 'ExhibitionsCollection', items: Array<{ __typename?: 'Exhibitions', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, sys: { __typename?: 'Sys', id: string }, descriptionEn?: { __typename?: 'ExhibitionsDescriptionEn', json: any } | null, descriptionRu?: { __typename?: 'ExhibitionsDescriptionRu', json: any } | null, descriptionUz?: { __typename?: 'ExhibitionsDescriptionUz', json: any } | null, descriptionKa?: { __typename?: 'ExhibitionsDescriptionKa', json: any } | null, referencesCollection?: { __typename?: 'ExhibitionsReferencesCollection', items: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | null> } | null } | null> } | null };
+
+export type GetExhibitsImagesByIdsQueryVariables = Exact<{
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+}>;
+
+
+export type GetExhibitsImagesByIdsQuery = { __typename?: 'Query', exhibitCollection?: { __typename?: 'ExhibitCollection', items: Array<{ __typename?: 'Exhibit', slug?: string | null, sys: { __typename?: 'Sys', id: string }, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null } | null> } | null };
 
 export type GetTopLatestExhibitsQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -1545,9 +2115,11 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'Query', pageCollection?: { __typename?: 'PageCollection', items: Array<{ __typename?: 'Page', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, sys: { __typename?: 'Sys', id: string }, descriptionEn?: { __typename?: 'PageDescriptionEn', json: any, links: { __typename?: 'PageDescriptionEnLinks', entries: { __typename?: 'PageDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionEnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'PageDescriptionRu', json: any, links: { __typename?: 'PageDescriptionRuLinks', entries: { __typename?: 'PageDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionRuAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'PageDescriptionUz', json: any, links: { __typename?: 'PageDescriptionUzLinks', entries: { __typename?: 'PageDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionUzAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'PageDescriptionKa', json: any, links: { __typename?: 'PageDescriptionKaLinks', entries: { __typename?: 'PageDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionKaAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
+export type GetPageQuery = { __typename?: 'Query', pageCollection?: { __typename?: 'PageCollection', items: Array<{ __typename?: 'Page', nameEn?: string | null, nameRu?: string | null, nameUz?: string | null, nameKa?: string | null, sys: { __typename?: 'Sys', id: string }, descriptionEn?: { __typename?: 'PageDescriptionEn', json: any, links: { __typename?: 'PageDescriptionEnLinks', entries: { __typename?: 'PageDescriptionEnEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionEnAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionRu?: { __typename?: 'PageDescriptionRu', json: any, links: { __typename?: 'PageDescriptionRuLinks', entries: { __typename?: 'PageDescriptionRuEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionRuAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionUz?: { __typename?: 'PageDescriptionUz', json: any, links: { __typename?: 'PageDescriptionUzLinks', entries: { __typename?: 'PageDescriptionUzEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionUzAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, descriptionKa?: { __typename?: 'PageDescriptionKa', json: any, links: { __typename?: 'PageDescriptionKaLinks', entries: { __typename?: 'PageDescriptionKaEntries', inline: Array<{ __typename?: 'Exhibit', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Exhibitions', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Links', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null> }, assets: { __typename?: 'PageDescriptionKaAssets', block: Array<{ __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null } | null> } | null };
 
 
 export const GetExhibitDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetExhibit"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"exhibitCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"nameEn"}},{"kind":"Field","name":{"kind":"Name","value":"nameRu"}},{"kind":"Field","name":{"kind":"Name","value":"nameUz"}},{"kind":"Field","name":{"kind":"Name","value":"nameKa"}},{"kind":"Field","name":{"kind":"Name","value":"authorEn"}},{"kind":"Field","name":{"kind":"Name","value":"authorRu"}},{"kind":"Field","name":{"kind":"Name","value":"authorUz"}},{"kind":"Field","name":{"kind":"Name","value":"authorKa"}},{"kind":"Field","name":{"kind":"Name","value":"yearOfCreation"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionEn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionRu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionUz"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionKa"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"imagesCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"5"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioFileEn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioFileRu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioFileUz"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioFileKa"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetExhibitQuery, GetExhibitQueryVariables>;
+export const GetExhibitionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetExhibitions"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"referencesLimit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"exhibitionsCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"nameEn_ASC"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"referencesCollection_exists"},"value":{"kind":"BooleanValue","value":true}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"nameEn"}},{"kind":"Field","name":{"kind":"Name","value":"nameRu"}},{"kind":"Field","name":{"kind":"Name","value":"nameUz"}},{"kind":"Field","name":{"kind":"Name","value":"nameKa"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionEn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionRu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionUz"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionKa"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","name":{"kind":"Name","value":"referencesCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"referencesLimit"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"sys_publishedAt_DESC"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetExhibitionsQuery, GetExhibitionsQueryVariables>;
+export const GetExhibitsImagesByIdsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetExhibitsImagesByIds"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"ids"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"exhibitCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"sys"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id_in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"ids"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"imagesCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetExhibitsImagesByIdsQuery, GetExhibitsImagesByIdsQueryVariables>;
 export const GetTopLatestExhibitsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetTopLatestExhibits"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"exhibitCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"EnumValue","value":"sys_publishedAt_DESC"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"imagesCollection_exists"},"value":{"kind":"BooleanValue","value":true}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"nameEn"}},{"kind":"Field","name":{"kind":"Name","value":"nameRu"}},{"kind":"Field","name":{"kind":"Name","value":"nameUz"}},{"kind":"Field","name":{"kind":"Name","value":"nameKa"}},{"kind":"Field","name":{"kind":"Name","value":"imagesCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetTopLatestExhibitsQuery, GetTopLatestExhibitsQueryVariables>;
 export const GetPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"nameEn"}},{"kind":"Field","name":{"kind":"Name","value":"nameRu"}},{"kind":"Field","name":{"kind":"Name","value":"nameUz"}},{"kind":"Field","name":{"kind":"Name","value":"nameKa"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionEn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"block"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionRu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"block"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionUz"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"block"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"descriptionKa"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"inline"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"block"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPageQuery, GetPageQueryVariables>;
