@@ -15,6 +15,11 @@ export const APP_ROUTES: ILink[] = [
     isEnabled: true,
     label: RouteLabelsEnum.Museum,
     subLinks: [
+      {
+        isEnabled: true,
+        label: RouteLabelsEnum.Exhibitions,
+        url: `/${SLUGS.museum}/${SLUGS.exhibitions}`,
+      },
       { isEnabled: true, label: RouteLabelsEnum.History, url: `/${SLUGS.museum}/${SLUGS.history}` },
       {
         isEnabled: true,

@@ -13,6 +13,7 @@ export enum RouteLabelsEnum {
   Friends = 'friends',
   Visits = 'visits',
   Contacts = 'contacts',
+  Exhibitions = 'exhibitions',
 }
 
 export type RouteLabelsValues = `${RouteLabelsEnum}`;
