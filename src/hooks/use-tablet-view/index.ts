@@ -1,0 +1,1 @@
+export { useTabletView } from './useTabletView';

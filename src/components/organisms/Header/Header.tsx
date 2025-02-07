@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { useMobileView } from '@/hooks';
+import { useMobileView, useTabletView } from '@/hooks';
 import { ILink } from '@/interfaces/ILink';
 import { usePathname } from '@/navigation';
 
@@ -18,6 +18,7 @@ export default function Header(props: Props) {
   const pathname = usePathname();
 
   const isMobile = useMobileView();
+  const isTablet = useTabletView();
 
   const [activeLinkIndex, setActiveLinkIndex] = useState<null | number>(null);
 
@@ -54,7 +55,11 @@ export default function Header(props: Props) {
 
   return (
     <header className={styles.header} data-testid="header-component">
-      {isMobile ? <MobileHeader {...headersBaseProps} /> : <DesktopHeader {...headersBaseProps} />}
+      {isMobile || isTablet ? (
+        <MobileHeader {...headersBaseProps} />
+      ) : (
+        <DesktopHeader {...headersBaseProps} />
+      )}
     </header>
   );
 }
