@@ -19,7 +19,7 @@ export const Footer = () => {
   const contactRoute = APP_ROUTES.find((r) => r.label === RouteLabelsEnum.Contacts);
 
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.socialLinks}>
         <CircleLink
           link="https://www.facebook.com/savitskymuseum/"
@@ -46,6 +46,6 @@ export const Footer = () => {
           </Link>
         )}
       </div>
-    </div>
+    </footer>
   );
 };

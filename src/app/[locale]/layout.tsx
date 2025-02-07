@@ -13,6 +13,8 @@ import Header from '@/components/organisms/Header/Header';
 import { THEME_BREAKPOINTS } from '@/constants/breakpoints';
 import { APP_ROUTES } from '@/constants/routes';
 
+import styles from './layout.module.scss';
+
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import './globals.scss';
@@ -66,9 +68,11 @@ export default async function RootLayout({
         <MantineProvider theme={theme}>
           <Notifications />
           <NextIntlClientProvider messages={messages}>
-            <Header links={APP_ROUTES} />
-            {children}
-            <Footer />
+            <div className={styles.wrapper}>
+              <Header links={APP_ROUTES} />
+              <div className={styles.main}>{children}</div>
+              <Footer />
+            </div>
           </NextIntlClientProvider>
         </MantineProvider>
       </body>

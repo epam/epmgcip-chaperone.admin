@@ -2,6 +2,7 @@
 @import '../../../variables.scss';
 
 .footer {
+  grid-area: footer;
   padding: 40px 16px;
   background-color: $secondaryBackgroundColor;
   text-align: center;
