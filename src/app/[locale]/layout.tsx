@@ -26,6 +26,20 @@ const montserrat = Montserrat({
 
 const theme = createTheme({
   breakpoints: THEME_BREAKPOINTS,
+  colors: {
+    brand: [
+      '#ffefe7',
+      '#fcded3',
+      '#f2bca8',
+      '#ea977a',
+      '#e27852',
+      '#de6539',
+      '#dd5a2b',
+      '#c44a1e',
+      '#af4119',
+      '#9a3511',
+    ],
+  },
 });
 
 export const metadata: Metadata = {
