@@ -7,17 +7,20 @@ export async function getExhibitions(
   limit: number,
   offset: number,
   relatedItemsLimit: number,
-): Promise<IExhibitionContentModel[]> {
+): Promise<{ total: number; exhibitions: IExhibitionContentModel[] }> {
   try {
     const { data } = await getClient().query({
       query: GetExhibitionsDocument,
       variables: { limit, offset, referencesLimit: relatedItemsLimit },
     });
 
-    return data.exhibitionsCollection?.items as IExhibitionContentModel[];
+    return {
+      exhibitions: data.exhibitionsCollection?.items as IExhibitionContentModel[],
+      total: data.exhibitionsCollection?.total ?? 0,
+    };
   } catch (error) {
     Logger.logError('Failed to fetch exhibitions', error);
   }
 
-  return [];
+  return { exhibitions: [], total: 0 };
 }

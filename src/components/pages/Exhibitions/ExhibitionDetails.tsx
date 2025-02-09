@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
@@ -17,7 +17,9 @@ interface Props {
   exhibition: IExhibition;
 }
 
-export const ExhibitionDetails: React.FC<Props> = ({ exhibition }) => {
+export const ExhibitionDetails: React.FC<Props> = memo(function ExhibitionDetails({
+  exhibition,
+}: Props) {
   const locale = capitalizeFirstLetter(useLocale()) as LocaleCodeCamelcase;
   const [currentLocale] = useState(locale);
 
@@ -38,4 +40,4 @@ export const ExhibitionDetails: React.FC<Props> = ({ exhibition }) => {
       <ImageGallery displayArrows={true} images={exhibition.exhibitionsImages} isLinkImage={true} />
     </div>
   );
-};
+});

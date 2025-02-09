@@ -1,4 +1,9 @@
 import Exhibitions from '@/components/pages/Exhibitions/Exhibitions';
+import {
+  exhibitionsLimitPerPage,
+  exhibitionsDefaultOffset,
+  exhibitionsRelatedItemsLimit,
+} from '@/constants/pagination';
 import { SLUGS } from '@/constants/slugs';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { IExhibitionContentModel } from '@/interfaces/IExhibitionContentModel';
@@ -6,10 +11,6 @@ import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
 import { IImagePreviewExhibit } from '@/interfaces/IImagePreviewExhibit';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
 import { getExhibitions } from '@/lib/exhibition';
-
-const exhibitionsLimit = 100;
-const exhibitionsOffset = 0;
-const exhibitionsRelatedItemsLimit = 0;
 
 export default async function ExhibitionsPage() {
   const getExhibitsIdsFromExhibitions = (exhibitionsModels: IExhibitionContentModel[]): string[] =>
@@ -45,9 +46,9 @@ export default async function ExhibitionsPage() {
     }));
   };
 
-  const exhibitions = await getExhibitions(
-    exhibitionsLimit,
-    exhibitionsOffset,
+  const { total, exhibitions } = await getExhibitions(
+    exhibitionsLimitPerPage,
+    exhibitionsDefaultOffset,
     exhibitionsRelatedItemsLimit,
   );
 
@@ -59,5 +60,11 @@ export default async function ExhibitionsPage() {
     exhibitsImagesPreviews,
   );
 
-  return <Exhibitions exhibitions={mergedExhibitions} />;
+  return (
+    <Exhibitions
+      exhibitionsAmountPerPage={exhibitionsLimitPerPage}
+      totalExhibitionsAmount={total}
+      exhibitions={mergedExhibitions}
+    />
+  );
 }

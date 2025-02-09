@@ -9,6 +9,7 @@ query GetExhibitions(
     order: nameEn_ASC
     where: { referencesCollection_exists: true }
   ) {
+    total
     items {
       sys {
         id
