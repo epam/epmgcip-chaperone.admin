@@ -1,18 +1,22 @@
+import { ApolloClient } from '@apollo/client';
+
 import IExhibit from '@/interfaces/IExhibit';
 import { IImagePreviewExhibit } from '@/interfaces/IImagePreviewExhibit';
 import { IPreviewExhibit } from '@/interfaces/IPreviewExhibit';
 import { Logger } from '@/utils/logger';
 
-import { getClient } from './ApolloClient';
 import {
   GetExhibitDocument,
   GetExhibitsImagesByIdsDocument,
   GetTopLatestExhibitsDocument,
 } from '../__generated__/graphql';
 
-export async function getExhibit(slug: string): Promise<IExhibit | undefined> {
+export async function getExhibit(
+  client: ApolloClient<unknown>,
+  slug: string,
+): Promise<IExhibit | undefined> {
   try {
-    const { data } = await getClient().query({
+    const { data } = await client.query({
       query: GetExhibitDocument,
       variables: { slug },
     });
@@ -25,9 +29,12 @@ export async function getExhibit(slug: string): Promise<IExhibit | undefined> {
   return undefined;
 }
 
-export async function getTopLatestExhibits(limit: number): Promise<IPreviewExhibit[]> {
+export async function getTopLatestExhibits(
+  client: ApolloClient<unknown>,
+  limit: number,
+): Promise<IPreviewExhibit[]> {
   try {
-    const { data } = await getClient().query({
+    const { data } = await client.query({
       query: GetTopLatestExhibitsDocument,
       variables: { limit },
     });
@@ -40,9 +47,12 @@ export async function getTopLatestExhibits(limit: number): Promise<IPreviewExhib
   return [];
 }
 
-export async function getImagePreviewExhibitsByIds(ids: string[]): Promise<IImagePreviewExhibit[]> {
+export async function getImagePreviewExhibitsByIds(
+  client: ApolloClient<unknown>,
+  ids: string[],
+): Promise<IImagePreviewExhibit[]> {
   try {
-    const { data } = await getClient().query({
+    const { data } = await client.query({
       query: GetExhibitsImagesByIdsDocument,
       variables: { ids },
     });

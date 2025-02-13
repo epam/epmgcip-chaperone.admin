@@ -1,17 +1,19 @@
+import { ApolloClient } from '@apollo/client';
+
 import { GetExhibitionsDocument } from '@/__generated__/graphql';
 import { IExhibitionContentModel } from '@/interfaces/IExhibitionContentModel';
-import { getClient } from '@/lib/ApolloClient';
 import { Logger } from '@/utils/logger';
 
 export async function getExhibitions(
+  client: ApolloClient<unknown>,
   limit: number,
   offset: number,
   relatedItemsLimit: number,
 ): Promise<{ total: number; exhibitions: IExhibitionContentModel[] }> {
   try {
-    const { data } = await getClient().query({
+    const { data } = await client.query({
       query: GetExhibitionsDocument,
-      variables: { limit, offset, referencesLimit: relatedItemsLimit },
+      variables: { limit, referencesLimit: relatedItemsLimit, skip: offset },
     });
 
     return {
