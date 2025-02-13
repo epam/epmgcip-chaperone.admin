@@ -42,15 +42,14 @@ export default function Exhibitions({
     const fetchPageExhibitions = async (): Promise<void> => {
       const client = createApolloClient();
 
-      const { exhibitions } = await getExhibitions(
-        client,
+      const { exhibitions } = await getExhibitions(client)(
         exhibitionsAmountPerPage,
         exhibitionsAmountPerPage * (activePage - 1),
         exhibitionsRelatedItemsLimit,
       );
 
       const exhibitsIds = getExhibitsIdsFromExhibitions(exhibitions);
-      const exhibitsImagesPreviews = await getImagePreviewExhibitsByIds(client, exhibitsIds);
+      const exhibitsImagesPreviews = await getImagePreviewExhibitsByIds(client)(exhibitsIds);
 
       const mergedExhibitions = mergeExhibitsImagesPreviewsIntoExhibitions(
         exhibitions,

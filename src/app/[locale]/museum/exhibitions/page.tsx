@@ -15,15 +15,14 @@ import {
 export default async function ExhibitionsPage() {
   const client = getClient();
 
-  const { total, exhibitions } = await getExhibitions(
-    client,
+  const { total, exhibitions } = await getExhibitions(client)(
     exhibitionsLimitPerPage,
     exhibitionsDefaultOffset,
     exhibitionsRelatedItemsLimit,
   );
 
   const exhibitsIds = getExhibitsIdsFromExhibitions(exhibitions);
-  const exhibitsImagesPreviews = await getImagePreviewExhibitsByIds(client, exhibitsIds);
+  const exhibitsImagesPreviews = await getImagePreviewExhibitsByIds(client)(exhibitsIds);
 
   const mergedExhibitions = mergeExhibitsImagesPreviewsIntoExhibitions(
     exhibitions,
