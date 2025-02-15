@@ -74,10 +74,12 @@ export default function Exhibitions({
 
       {totalExhibitionsAmount > exhibitionsAmountPerPage && (
         <Pagination
-          value={activePage}
-          onChange={onChangePage}
           className={styles.pagination}
+          data-testid="exhibitions-pagination"
+          getItemProps={(page: number) => ({ 'data-testid': `exhibitions-page-${page}` })}
+          onChange={onChangePage}
           total={totalExhibitionsAmount}
+          value={activePage}
         />
       )}
     </div>
