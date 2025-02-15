@@ -1,7 +1,7 @@
 import IPage from '@/interfaces/IPage';
 import { Logger } from '@/utils/logger';
 
-import { getClient } from './ApolloClient';
+import { getClient } from './apolloServer';
 import { GetPageDocument } from '../__generated__/graphql';
 
 export async function getPage(slug: string): Promise<IPage | null> {

@@ -45,9 +45,11 @@ Create a `.env.local` file in your project root directory (if it doesn't exist) 
 
 ```env
 # Contentful
-CONTENTFUL_SPACE_ID=your_contentful_space_id
+NEXT_PUBLIC_CONTENTFUL_SPACE_ID=your_contentful_space_id
+NEXT_PUBLIC_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=your_contentful_delivery_access_token
+
 CONTENTFUL_ENVIRONMENT=your_contentful_environment
-CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=your_contentful_delivery_access_token
+CONTENTFUL_CONTENT_PREVIEW_ACCESS_TOKEN=your_contentful_preview_access_token
 
 # Google reCAPTCHA
 RE_CAPTCHA_SITE_KEY=your_recaptcha_site_key
@@ -67,9 +69,11 @@ SYSTEM_EMAIL_PASSWORD=your_system_email_password
 
 ```env
 # Contentful
-CONTENTFUL_SPACE_ID=abcd1234efgh
+NEXT_PUBLIC_CONTENTFUL_SPACE_ID=abcd1234efgh
+NEXT_PUBLIC_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+
 CONTENTFUL_ENVIRONMENT=master
-CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+CONTENTFUL_CONTENT_PREVIEW_ACCESS_TOKEN=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
 
 # Google reCAPTCHA
 RE_CAPTCHA_SITE_KEY=6LcXXXXUAAAAANXXXXmQXXXfJXXXX

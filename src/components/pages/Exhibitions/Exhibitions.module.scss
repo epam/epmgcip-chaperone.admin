@@ -30,3 +30,15 @@
     margin-bottom: 15px;
   }
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+
+  [data-active='true'] {
+    background-color: $colorOrange;
+    border-color: $colorOrange;
+  }
+}
