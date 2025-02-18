@@ -12,6 +12,13 @@ export function getExhibitions(client: ApolloClient<unknown>) {
   ): Promise<{ total: number; exhibitions: IExhibitionContentModel[] }> => {
     try {
       const { data } = await client.query({
+        context: {
+          fetchOptions: {
+            next: {
+              revalidate: 20,
+            },
+          },
+        },
         query: GetExhibitionsDocument,
         variables: { limit, referencesLimit: relatedItemsLimit, skip: offset },
       });

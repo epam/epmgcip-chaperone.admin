@@ -15,6 +15,13 @@ export function getExhibit(client: ApolloClient<unknown>) {
   return async (slug: string): Promise<IExhibit | undefined> => {
     try {
       const { data } = await client.query({
+        context: {
+          fetchOptions: {
+            next: {
+              revalidate: 20,
+            },
+          },
+        },
         query: GetExhibitDocument,
         variables: { slug },
       });
@@ -32,6 +39,13 @@ export function getTopLatestExhibits(client: ApolloClient<unknown>) {
   return async (limit: number): Promise<IPreviewExhibit[]> => {
     try {
       const { data } = await client.query({
+        context: {
+          fetchOptions: {
+            next: {
+              revalidate: 20,
+            },
+          },
+        },
         query: GetTopLatestExhibitsDocument,
         variables: { limit },
       });
@@ -49,6 +63,13 @@ export function getImagePreviewExhibitsByIds(client: ApolloClient<unknown>) {
   return async (ids: string[]): Promise<IImagePreviewExhibit[]> => {
     try {
       const { data } = await client.query({
+        context: {
+          fetchOptions: {
+            next: {
+              revalidate: 20,
+            },
+          },
+        },
         query: GetExhibitsImagesByIdsDocument,
         variables: { ids },
       });

@@ -30,7 +30,7 @@ export const mergeExhibitsImagesPreviewsIntoExhibitions = (
         }
 
         return {
-          clickUrl: `${SLUGS.exhibit}/${imagePreview.slug}`,
+          clickUrl: `/${SLUGS.exhibit}/${imagePreview.slug}`,
           id: imagePreview.sys.id,
           url: imagePreview.imagesCollection.items[0].url,
         } as IImageGalleryImage;
