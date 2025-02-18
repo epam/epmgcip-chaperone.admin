@@ -29,7 +29,11 @@ describe('Home component', () => {
   it('should render component', () => {
     const { getByText } = renderComponent(topLatestExhibits);
 
-    expect(getByText('Welcome to our official webpage')).toBeInTheDocument();
+    expect(
+      getByText(
+        'The state museum of arts of the Republic of Karakalpakstan named after I.V.Savitsky',
+      ),
+    ).toBeInTheDocument();
   });
 
   it('should render component with image gallery', () => {
