@@ -12,7 +12,7 @@ export default async function ContactsPage() {
   return (
     <>
       {page && <Page page={page} />}
-      <Map height={mapHeight} />
+      <Map height={mapHeight} src={process.env.EMBED_MAP_SRC || ''} />
       <ContactForm reCaptchaSiteKey={process.env.RE_CAPTCHA_SITE_KEY!} />
     </>
   );

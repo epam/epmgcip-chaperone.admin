@@ -7,7 +7,7 @@ describe('Map Component', () => {
     const testHeight = '500px';
     process.env.EMBED_MAP_SRC = 'https://example.com/map';
 
-    render(<Map height={testHeight} />);
+    render(<Map height={testHeight} src={process.env.EMBED_MAP_SRC} />);
 
     const iframe = screen.getByTestId('map-iframe');
     expect(iframe).toBeInTheDocument();
