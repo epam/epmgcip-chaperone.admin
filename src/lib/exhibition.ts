@@ -10,6 +10,13 @@ export async function getExhibitions(
 ): Promise<IExhibitionContentModel[]> {
   try {
     const { data } = await getClient().query({
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 20,
+          },
+        },
+      },
       query: GetExhibitionsDocument,
       variables: { limit, offset, referencesLimit: relatedItemsLimit },
     });

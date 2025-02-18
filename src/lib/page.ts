@@ -7,6 +7,13 @@ import { GetPageDocument } from '../__generated__/graphql';
 export async function getPage(slug: string): Promise<IPage | null> {
   try {
     const { data } = await getClient().query({
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 20,
+          },
+        },
+      },
       query: GetPageDocument,
       variables: { slug },
     });

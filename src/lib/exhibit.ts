@@ -13,6 +13,13 @@ import {
 export async function getExhibit(slug: string): Promise<IExhibit | undefined> {
   try {
     const { data } = await getClient().query({
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 20,
+          },
+        },
+      },
       query: GetExhibitDocument,
       variables: { slug },
     });
@@ -28,6 +35,13 @@ export async function getExhibit(slug: string): Promise<IExhibit | undefined> {
 export async function getTopLatestExhibits(limit: number): Promise<IPreviewExhibit[]> {
   try {
     const { data } = await getClient().query({
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 20,
+          },
+        },
+      },
       query: GetTopLatestExhibitsDocument,
       variables: { limit },
     });
@@ -43,6 +57,13 @@ export async function getTopLatestExhibits(limit: number): Promise<IPreviewExhib
 export async function getImagePreviewExhibitsByIds(ids: string[]): Promise<IImagePreviewExhibit[]> {
   try {
     const { data } = await getClient().query({
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 20,
+          },
+        },
+      },
       query: GetExhibitsImagesByIdsDocument,
       variables: { ids },
     });
