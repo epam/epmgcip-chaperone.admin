@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import 'yet-another-react-lightbox/styles.css';
 import 'slick-carousel/slick/slick.css';
@@ -32,6 +32,7 @@ interface Props {
 
 export default function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const {
     id: galleryId,
     setId: setGalleryId,
@@ -72,6 +73,12 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
     setIsOpen(false);
   };
 
+  const onSlideLinkClick = (e: React.MouseEvent) => {
+    if (isDragging) {
+      e.preventDefault();
+    }
+  };
+
   const imagesList = images.map((image, index) => {
     const galleryImage = (
       <Image
@@ -87,7 +94,11 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
       <div key={image.id}>
         <div className={styles.imageWrapper}>
           {isLinkImage ? (
-            <Link className={styles.lightboxImage} href={image.clickUrl!}>
+            <Link
+              className={styles.lightboxImage}
+              href={image.clickUrl!}
+              onClick={onSlideLinkClick}
+            >
               {galleryImage}
             </Link>
           ) : (
@@ -185,6 +196,14 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
     setIsOpeningWithZoom(false);
   };
 
+  const onBeforeSlideChange = () => {
+    setIsDragging(true);
+  };
+
+  const onAfterSlideChange = () => {
+    setIsDragging(false);
+  };
+
   return (
     <>
       <Slider
@@ -205,6 +224,8 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
             },
           },
         ]}
+        beforeChange={onBeforeSlideChange}
+        afterChange={onAfterSlideChange}
       >
         {imagesList}
       </Slider>
