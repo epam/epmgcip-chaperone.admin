@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { MantineProvider } from '@mantine/core';
 import { screen, render, RenderResult } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 
@@ -12,15 +13,29 @@ jest.mock('yet-another-react-lightbox', () => jest.fn());
 jest.mock('yet-another-react-lightbox/plugins/zoom', () => ({}));
 
 describe('Exhibitions component', () => {
-  const renderComponent = (exhibitions: IExhibition[]): RenderResult =>
+  const renderComponent = (
+    exhibitions: IExhibition[],
+    exhibitionsAmountPerPage: number,
+    totalExhibitionsAmount: number,
+  ): RenderResult =>
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
-        <Exhibitions exhibitions={exhibitions} />
+        <MantineProvider>
+          <Exhibitions
+            exhibitionsAmountPerPage={exhibitionsAmountPerPage}
+            totalExhibitionsAmount={totalExhibitionsAmount}
+            exhibitions={exhibitions}
+          />
+        </MantineProvider>
       </NextIntlClientProvider>,
     );
 
   it('should render exhibition item correctly', () => {
-    renderComponent([exhibitionItem]);
+    const exhibitions = [exhibitionItem];
+    const exhibitionsAmountPerPage = 1;
+    const totalExhibitionsAmount = 1;
+
+    renderComponent(exhibitions, exhibitionsAmountPerPage, totalExhibitionsAmount);
 
     expect(screen.getByTestId('exhibition')).toBeInTheDocument();
     expect(screen.getByTestId('exhibition-title')).toBeInTheDocument();
@@ -31,9 +46,37 @@ describe('Exhibitions component', () => {
     }
   });
 
-  it('should not render exhibitions if they are not provided', async () => {
-    renderComponent([]);
+  it('should not render exhibitions if they are not provided', () => {
+    const exhibitions = [] as IExhibition[];
+    const exhibitionsAmountPerPage = 1;
+    const totalExhibitionsAmount = 0;
+
+    renderComponent(exhibitions, exhibitionsAmountPerPage, totalExhibitionsAmount);
 
     expect(screen.queryByTestId('exhibition')).toBeNull();
+  });
+
+  it('should render exhibitions pagination items', () => {
+    const exhibitions = [exhibitionItem];
+    const exhibitionsAmountPerPage = 1;
+    const totalExhibitionsAmount = 3;
+
+    renderComponent(exhibitions, exhibitionsAmountPerPage, totalExhibitionsAmount);
+
+    expect(screen.getByTestId('exhibitions-pagination')).toBeInTheDocument();
+
+    for (let i = 1; i <= exhibitionItem.referencesCollection.items.length; i++) {
+      expect(screen.getByTestId(`exhibitions-page-${i}`)).toBeInTheDocument();
+    }
+  });
+
+  it('should not render exhibitions pagination if their total amount less then or equal items per page', () => {
+    const exhibitions = [exhibitionItem];
+    const exhibitionsAmountPerPage = 5;
+    const totalExhibitionsAmount = 1;
+
+    renderComponent(exhibitions, exhibitionsAmountPerPage, totalExhibitionsAmount);
+
+    expect(screen.queryByTestId('exhibitions-pagination')).toBeNull();
   });
 });
