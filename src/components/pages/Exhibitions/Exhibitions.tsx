@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Pagination } from '@mantine/core';
 
@@ -64,6 +64,14 @@ export default function Exhibitions({
     }
   }, [exhibitionsAmountPerPage, activePage, previousPage]);
 
+  const pagesAmount = useMemo(
+    () =>
+      totalExhibitionsAmount && exhibitionsAmountPerPage
+        ? Math.ceil(totalExhibitionsAmount / exhibitionsAmountPerPage)
+        : 0,
+    [totalExhibitionsAmount, exhibitionsAmountPerPage],
+  );
+
   return (
     <div className={styles.root}>
       {items.map((exhibition) => (
@@ -78,7 +86,7 @@ export default function Exhibitions({
           data-testid="exhibitions-pagination"
           getItemProps={(page: number) => ({ 'data-testid': `exhibitions-page-${page}` })}
           onChange={onChangePage}
-          total={totalExhibitionsAmount}
+          total={pagesAmount}
           value={activePage}
         />
       )}
