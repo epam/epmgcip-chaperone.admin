@@ -56,19 +56,24 @@ describe('Exhibitions component', () => {
     expect(screen.queryByTestId('exhibition')).toBeNull();
   });
 
-  it('should render exhibitions pagination items', () => {
-    const exhibitions = [exhibitionItem];
-    const exhibitionsAmountPerPage = 1;
-    const totalExhibitionsAmount = 3;
+  it.each([
+    { exhibitionsAmountPerPage: 1, expectedPaginationCount: 3, totalExhibitionsAmount: 3 },
+    { exhibitionsAmountPerPage: 5, expectedPaginationCount: 2, totalExhibitionsAmount: 6 },
+    { exhibitionsAmountPerPage: 4, expectedPaginationCount: 3, totalExhibitionsAmount: 9 },
+  ])(
+    'should render exhibitions pagination items',
+    ({ exhibitionsAmountPerPage, totalExhibitionsAmount, expectedPaginationCount }) => {
+      const exhibitions = [exhibitionItem];
 
-    renderComponent(exhibitions, exhibitionsAmountPerPage, totalExhibitionsAmount);
+      renderComponent(exhibitions, exhibitionsAmountPerPage, totalExhibitionsAmount);
 
-    expect(screen.getByTestId('exhibitions-pagination')).toBeInTheDocument();
+      expect(screen.getByTestId('exhibitions-pagination')).toBeInTheDocument();
 
-    for (let i = 1; i <= exhibitionItem.referencesCollection.items.length; i++) {
-      expect(screen.getByTestId(`exhibitions-page-${i}`)).toBeInTheDocument();
-    }
-  });
+      for (let i = 1; i <= expectedPaginationCount; i++) {
+        expect(screen.getByTestId(`exhibitions-page-${i}`)).toBeInTheDocument();
+      }
+    },
+  );
 
   it('should not render exhibitions pagination if their total amount less then or equal items per page', () => {
     const exhibitions = [exhibitionItem];
