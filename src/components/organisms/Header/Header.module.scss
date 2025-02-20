@@ -15,7 +15,7 @@
   height: 60px;
 
   @media (min-width: map.get($breakpoints, sm)) {
-    padding: 1px $indentTabletPageBorder;
+    padding: 0px $indentTabletPageBorder;
   }
 }
 
@@ -50,6 +50,10 @@
 
   font-size: $fontSizeLarge;
   height: 100%;
+
+  &:hover {
+    color: $colorLink;
+  }
 }
 
 .mobileLink {

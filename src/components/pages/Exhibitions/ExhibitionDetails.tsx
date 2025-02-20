@@ -4,6 +4,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Document } from '@contentful/rich-text-types';
 import { useLocale } from 'next-intl';
 
+import Description from '@/components/atoms/Description/Description';
 import ImageGallery from '@/components/organisms/ImageGallery/ImageGallery';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { LocaleCodeCamelcase } from '@/locales';
@@ -32,10 +33,10 @@ export const ExhibitionDetails: React.FC<Props> = memo(function ExhibitionDetail
       </h2>
 
       <div data-testid="exhibition-description" className={styles.description}>
-        {documentToReactComponents(description as Document)}
+        <Description>{documentToReactComponents(description as Document)}</Description>
       </div>
 
-      <ImageGallery displayArrows={true} images={exhibition.exhibitionsImages} isLinkImage={true} />
+      <ImageGallery images={exhibition.exhibitionsImages} isLinkImage={true} />
     </div>
   );
 });

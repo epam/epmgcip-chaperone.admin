@@ -10,14 +10,15 @@
 }
 
 .title {
-  margin: 0 0 30px 0;
+  max-width: $contentWidth;
+  margin: 0 auto 30px auto;
   font-weight: bold;
   font-size: $titleFontSize;
   line-height: normal;
 }
 
 .exhibitionContainer {
-  margin-top: 40px;
+  margin-top: 50px;
 
   &:first-child {
     margin-top: 0;
@@ -27,7 +28,7 @@
 .description {
   p {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 }
 
