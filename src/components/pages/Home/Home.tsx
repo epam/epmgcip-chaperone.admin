@@ -40,7 +40,7 @@ export default function Home(props: Props): React.ReactElement {
 
       {images.length > 0 && (
         <div className={styles.gallery}>
-          <ImageGallery images={images} isLinkImage={true} displayArrows={true} />
+          <ImageGallery images={images} isLinkImage={true} />
         </div>
       )}
     </div>

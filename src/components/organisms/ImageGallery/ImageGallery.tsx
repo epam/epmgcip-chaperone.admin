@@ -13,6 +13,7 @@ import Lightbox, { ControllerRef, ZoomRef } from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import { useShallow } from 'zustand/react/shallow';
 
+import { useMobileView, useTabletView } from '@/hooks';
 import { IImageGalleryImage } from '@/interfaces/IImageGalleryImage';
 import { Logger } from '@/utils/logger';
 
@@ -25,14 +26,16 @@ import { BREAKPOINT_TABLE } from '../../../constants/breakpoints';
 import useImageGalleryStore from '../../../stores/useImageGalleryStore';
 
 interface Props {
-  displayArrows: boolean;
   images: IImageGalleryImage[];
   isLinkImage: boolean;
 }
 
-export default function ImageGallery({ images, displayArrows, isLinkImage }: Props) {
+const slidesToShow = 3;
+
+export default function ImageGallery({ images, isLinkImage }: Props) {
   const zoomRef = useRef<ZoomRef>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const {
     id: galleryId,
     setId: setGalleryId,
@@ -62,6 +65,8 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
   const ref = useRef<ControllerRef>(null);
   const galleryIndex = images.findIndex((i) => i.id === galleryId);
   const carouselPadding = 16;
+  const isMobile = useMobileView();
+  const isTablet = useTabletView();
 
   const handleOnImageClick = (index: string) => (): void => {
     setIsOpeningWithZoom(true);
@@ -103,7 +108,7 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
             </Link>
           ) : (
             <button
-              className={styles.lightboxButton}
+              className={styles.lightboxImage}
               type="button"
               onClick={handleOnImageClick(image.id)}
             >
@@ -200,9 +205,19 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
     setIsDragging(true);
   };
 
-  const onAfterSlideChange = () => {
+  const onAfterSlideChange = (index: number) => {
     setIsDragging(false);
+    setCurrentSlideIndex(index);
   };
+
+  const prevArrow =
+    currentSlideIndex > 0 ? <ImageGalleryArrow direction={ArrowDirection.Previous} /> : <></>;
+  const nextArrow =
+    currentSlideIndex < images.length - slidesToShow ? (
+      <ImageGalleryArrow direction={ArrowDirection.Next} />
+    ) : (
+      <></>
+    );
 
   return (
     <>
@@ -210,11 +225,11 @@ export default function ImageGallery({ images, displayArrows, isLinkImage }: Pro
         swipeToSlide
         infinite={false}
         centerPadding="28px"
-        slidesToShow={3}
+        slidesToShow={slidesToShow}
         className="image-gallery"
-        arrows={displayArrows}
-        prevArrow={<ImageGalleryArrow direction={ArrowDirection.Previous} />}
-        nextArrow={<ImageGalleryArrow direction={ArrowDirection.Next} />}
+        arrows={!isMobile && !isTablet}
+        prevArrow={prevArrow}
+        nextArrow={nextArrow}
         responsive={[
           {
             breakpoint: BREAKPOINT_TABLE,

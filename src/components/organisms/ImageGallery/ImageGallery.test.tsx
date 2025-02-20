@@ -23,9 +23,7 @@ describe('ImageGallery', () => {
   ];
 
   it('renders gallery', () => {
-    const { container } = render(
-      <ImageGallery images={images} isLinkImage={false} displayArrows={false} />,
-    );
+    const { container } = render(<ImageGallery images={images} isLinkImage={false} />);
 
     const imageGallery = container.querySelector('.image-gallery') as HTMLDivElement;
 

@@ -41,7 +41,7 @@ export const ExhibitDetails: React.FC<Props> = (props) => {
 
       {images.length > 0 && (
         <div className={styles.gallery}>
-          <ImageGallery images={images} isLinkImage={false} displayArrows={false} />
+          <ImageGallery images={images} isLinkImage={false} />
         </div>
       )}
 
