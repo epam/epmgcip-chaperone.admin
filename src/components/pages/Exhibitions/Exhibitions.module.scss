@@ -9,6 +9,11 @@
   }
 }
 
+.searchPanel {
+  display: flex;
+  flex-direction: row;
+}
+
 .title {
   max-width: $contentWidth;
   margin: 0 auto 30px auto;

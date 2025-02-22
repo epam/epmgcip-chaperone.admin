@@ -40,3 +40,52 @@ query GetExhibitions(
     }
   }
 }
+
+
+query SearchExhibitionsByText($search: String, $limit: Int, $skip: Int, $referencesLimit: Int) {
+  exhibitionsCollection(
+    limit: $limit
+    skip: $skip
+    order: nameEn_ASC
+    where: {
+      OR:
+      [
+        { nameEn_contains: $search },
+        { nameRu_contains: $search },
+        { nameUz_contains: $search },
+        { nameKa_contains: $search }
+      ],
+      referencesCollection_exists: true
+    }
+  ) {
+    total
+    items {
+      sys {
+        id
+      }
+      nameEn
+      nameRu
+      nameUz
+      nameKa
+      descriptionEn {
+        json
+      }
+      descriptionRu {
+        json
+      }
+      descriptionUz {
+        json
+      }
+      descriptionKa {
+        json
+      }
+      referencesCollection(limit: $referencesLimit, order: sys_publishedAt_DESC) {
+        items {
+          sys {
+            id
+          }
+        }
+      }
+    }
+  }
+}
