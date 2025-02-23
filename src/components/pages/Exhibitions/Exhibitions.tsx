@@ -2,23 +2,26 @@
 
 import React, { useMemo, useState } from 'react';
 
-import { ApolloClient } from '@apollo/client';
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
 import { ExhibitionDetails } from '@/components/pages/Exhibitions/ExhibitionDetails';
-import { exhibitionsRelatedItemsLimit } from '@/constants/pagination';
+import {
+  exhibitionsDefaultSearchValue,
+  exhibitionsRelatedItemsLimit,
+} from '@/constants/pagination';
 import { IExhibition } from '@/interfaces/IExhibition';
-import { IExhibitionContentModel } from '@/interfaces/IExhibitionContentModel';
 import { createApolloClient } from '@/lib/apolloClient';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
-import { getExhibitions, searchExhibitionsByText } from '@/lib/exhibition';
+import { getExhibitions } from '@/lib/exhibition';
 import {
   getExhibitsIdsFromExhibitions,
   mergeExhibitsImagesPreviewsIntoExhibitions,
 } from '@/utils/exhibitions';
 
 import styles from './Exhibitions.module.scss';
+
+const initialPage = 1;
 
 interface Props {
   exhibitions: IExhibition[];
@@ -33,34 +36,35 @@ export default function Exhibitions({
 }: Props): React.ReactElement {
   const [totalItemsCount, setTotalItemsCount] = useState(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
-  const [activePage, setPage] = useState<number>(1);
-  const [searchInput, setSearchInput] = useState<string>('');
+  const [activePage, setPage] = useState<number>(initialPage);
+  const [searchInput, setSearchInput] = useState<string>(exhibitionsDefaultSearchValue);
 
-  const getMergedRelatedExhibits = async (
-    client: ApolloClient<unknown>,
-    exhibitions: IExhibitionContentModel[],
-  ): Promise<IExhibition[]> => {
-    const exhibitsIds = getExhibitsIdsFromExhibitions(exhibitions);
-    const exhibitsImagesPreviews = await getImagePreviewExhibitsByIds(client)(exhibitsIds);
-
-    return mergeExhibitsImagesPreviewsIntoExhibitions(exhibitions, exhibitsImagesPreviews);
-  };
-
-  const onChangePage = async (page: number): Promise<void> => {
-    setPage(page);
-
+  const fetchExhibitions = async (search: string, page: number): Promise<void> => {
     const client = createApolloClient();
 
     const { exhibitions, total } = await getExhibitions(client)(
+      search,
       exhibitionsAmountPerPage,
       exhibitionsAmountPerPage * (page - 1),
       exhibitionsRelatedItemsLimit,
     );
 
-    const mergedExhibitions = await getMergedRelatedExhibits(client, exhibitions);
+    const exhibitsIds = getExhibitsIdsFromExhibitions(exhibitions);
+    const exhibitsImagesPreviews = await getImagePreviewExhibitsByIds(client)(exhibitsIds);
+
+    const mergedExhibitions = mergeExhibitsImagesPreviewsIntoExhibitions(
+      exhibitions,
+      exhibitsImagesPreviews,
+    );
 
     setItems(mergedExhibitions);
     setTotalItemsCount(total);
+  };
+
+  const onChangePage = async (page: number): Promise<void> => {
+    setPage(page);
+
+    await fetchExhibitions(searchInput, page);
   };
 
   const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -68,21 +72,9 @@ export default function Exhibitions({
   };
 
   const onClickSearch = async (): Promise<void> => {
-    setPage(1);
+    setPage(initialPage);
 
-    const client = createApolloClient();
-
-    const { exhibitions, total } = await searchExhibitionsByText(client)(
-      searchInput,
-      exhibitionsAmountPerPage,
-      exhibitionsAmountPerPage * (activePage - 1),
-      exhibitionsRelatedItemsLimit,
-    );
-
-    const mergedExhibitions = await getMergedRelatedExhibits(client, exhibitions);
-
-    setItems(mergedExhibitions);
-    setTotalItemsCount(total);
+    await fetchExhibitions(searchInput, initialPage);
   };
 
   const pagesAmount = useMemo(
