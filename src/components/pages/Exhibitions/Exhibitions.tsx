@@ -31,6 +31,7 @@ export default function Exhibitions({
   totalExhibitionsAmount,
   exhibitionsAmountPerPage,
 }: Props): React.ReactElement {
+  const [totalItemsCount, setTotalItemsCount] = useState(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
   const [activePage, setPage] = useState<number>(1);
   const [searchInput, setSearchInput] = useState<string>('');
@@ -50,7 +51,7 @@ export default function Exhibitions({
 
     const client = createApolloClient();
 
-    const { exhibitions } = await getExhibitions(client)(
+    const { exhibitions, total } = await getExhibitions(client)(
       exhibitionsAmountPerPage,
       exhibitionsAmountPerPage * (page - 1),
       exhibitionsRelatedItemsLimit,
@@ -59,6 +60,7 @@ export default function Exhibitions({
     const mergedExhibitions = await getMergedRelatedExhibits(client, exhibitions);
 
     setItems(mergedExhibitions);
+    setTotalItemsCount(total);
   };
 
   const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -70,7 +72,7 @@ export default function Exhibitions({
 
     const client = createApolloClient();
 
-    const { exhibitions } = await searchExhibitionsByText(client)(
+    const { exhibitions, total } = await searchExhibitionsByText(client)(
       searchInput,
       exhibitionsAmountPerPage,
       exhibitionsAmountPerPage * (activePage - 1),
@@ -80,14 +82,15 @@ export default function Exhibitions({
     const mergedExhibitions = await getMergedRelatedExhibits(client, exhibitions);
 
     setItems(mergedExhibitions);
+    setTotalItemsCount(total);
   };
 
   const pagesAmount = useMemo(
     () =>
-      totalExhibitionsAmount && exhibitionsAmountPerPage
-        ? Math.ceil(totalExhibitionsAmount / exhibitionsAmountPerPage)
+      totalItemsCount && exhibitionsAmountPerPage
+        ? Math.ceil(totalItemsCount / exhibitionsAmountPerPage)
         : 0,
-    [totalExhibitionsAmount, exhibitionsAmountPerPage],
+    [totalItemsCount, exhibitionsAmountPerPage],
   );
 
   return (
@@ -106,7 +109,7 @@ export default function Exhibitions({
         </React.Fragment>
       ))}
 
-      {totalExhibitionsAmount > exhibitionsAmountPerPage && (
+      {totalItemsCount > exhibitionsAmountPerPage && (
         <Pagination
           className={styles.pagination}
           data-testid="exhibitions-pagination"
