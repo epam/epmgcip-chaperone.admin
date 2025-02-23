@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import { ChangeEvent, Fragment, ReactElement, useMemo, useState } from 'react';
 
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
@@ -34,12 +34,12 @@ export default function Exhibitions({
   exhibitions,
   totalExhibitionsAmount,
   exhibitionsAmountPerPage,
-}: Props): React.ReactElement {
+}: Props): ReactElement {
   const [totalItemsCount, setTotalItemsCount] = useState<number>(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
   const [activePage, setPage] = useState<number>(initialPage);
   const [searchInput, setSearchInput] = useState<string>(exhibitionsDefaultSearchValue);
-  const [searchError, setSearchError] = useState<string | null>(null);
+  const [searchError, setSearchError] = useState<string>('');
   const [isSubmittingSearch, setIsSubmittingSearch] = useState<boolean>(false);
 
   const isSearchInputInvalid = (): boolean =>
@@ -73,7 +73,7 @@ export default function Exhibitions({
     await fetchExhibitions(searchInput, page);
   };
 
-  const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChangeSearchInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchInput(e.target.value);
   };
 
@@ -124,9 +124,9 @@ export default function Exhibitions({
       {items.length ? (
         <div>
           {items.map((exhibition) => (
-            <React.Fragment key={exhibition.sys.id}>
+            <Fragment key={exhibition.sys.id}>
               <ExhibitionDetails exhibition={exhibition} />
-            </React.Fragment>
+            </Fragment>
           ))}
         </div>
       ) : null}
