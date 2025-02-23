@@ -22,6 +22,7 @@ import {
 import styles from './Exhibitions.module.scss';
 
 const initialPage = 1;
+const minSearchLength = 3;
 
 interface Props {
   exhibitions: IExhibition[];
@@ -34,10 +35,15 @@ export default function Exhibitions({
   totalExhibitionsAmount,
   exhibitionsAmountPerPage,
 }: Props): React.ReactElement {
-  const [totalItemsCount, setTotalItemsCount] = useState(totalExhibitionsAmount);
+  const [totalItemsCount, setTotalItemsCount] = useState<number>(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
   const [activePage, setPage] = useState<number>(initialPage);
   const [searchInput, setSearchInput] = useState<string>(exhibitionsDefaultSearchValue);
+  const [searchError, setSearchError] = useState<string | null>(null);
+  const [isSubmittingSearch, setIsSubmittingSearch] = useState<boolean>(false);
+
+  const isSearchInputInvalid = (): boolean =>
+    searchInput.length >= 1 && searchInput.length < minSearchLength;
 
   const fetchExhibitions = async (search: string, page: number): Promise<void> => {
     const client = createApolloClient();
@@ -72,9 +78,19 @@ export default function Exhibitions({
   };
 
   const onClickSearch = async (): Promise<void> => {
+    if (isSearchInputInvalid()) {
+      setSearchError(`Please, enter more than ${minSearchLength} symbols to start search.`);
+
+      return;
+    }
+
+    setIsSubmittingSearch(true);
     setPage(initialPage);
+    setSearchError('');
 
     await fetchExhibitions(searchInput, initialPage);
+
+    setIsSubmittingSearch(false);
   };
 
   const pagesAmount = useMemo(
@@ -88,18 +104,32 @@ export default function Exhibitions({
   return (
     <div className={styles.root}>
       <div className={styles.searchPanel}>
-        <TextInput value={searchInput} onChange={onChangeSearchInput} />
+        <TextInput
+          className={styles.searchInput}
+          value={searchInput}
+          onChange={onChangeSearchInput}
+        />
 
-        <Button onClick={onClickSearch}>
+        <Button
+          onClick={onClickSearch}
+          className={styles.searchButton}
+          disabled={isSubmittingSearch}
+        >
           <IconSearch />
         </Button>
       </div>
 
-      {items.map((exhibition) => (
-        <React.Fragment key={exhibition.sys.id}>
-          <ExhibitionDetails exhibition={exhibition} />
-        </React.Fragment>
-      ))}
+      <p className={styles.searchError}>{searchError}</p>
+
+      {items.length ? (
+        <div>
+          {items.map((exhibition) => (
+            <React.Fragment key={exhibition.sys.id}>
+              <ExhibitionDetails exhibition={exhibition} />
+            </React.Fragment>
+          ))}
+        </div>
+      ) : null}
 
       {totalItemsCount > exhibitionsAmountPerPage && (
         <Pagination
