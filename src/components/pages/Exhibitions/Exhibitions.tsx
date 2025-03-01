@@ -106,20 +106,24 @@ export default function Exhibitions({
       <div className={styles.searchPanel}>
         <TextInput
           className={styles.searchInput}
+          data-testid="exhibitions-search-input"
           value={searchInput}
           onChange={onChangeSearchInput}
         />
 
         <Button
-          onClick={onClickSearch}
           className={styles.searchButton}
           disabled={isSubmittingSearch}
+          data-testid="exhibitions-search-submit"
+          onClick={onClickSearch}
         >
           <IconSearch />
         </Button>
       </div>
 
-      <p className={styles.searchError}>{searchError}</p>
+      <p data-testid="exhibitions-search-error" className={styles.searchError}>
+        {searchError}
+      </p>
 
       {items.length ? (
         <div>
