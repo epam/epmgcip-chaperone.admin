@@ -3,6 +3,7 @@ import {
   exhibitionsLimitPerPage,
   exhibitionsDefaultOffset,
   exhibitionsRelatedItemsLimit,
+  exhibitionsDefaultSearchValue,
 } from '@/constants/pagination';
 import { getClient } from '@/lib/apolloServer';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
@@ -16,6 +17,7 @@ export default async function ExhibitionsPage() {
   const client = getClient();
 
   const { total, exhibitions } = await getExhibitions(client)(
+    exhibitionsDefaultSearchValue,
     exhibitionsLimitPerPage,
     exhibitionsDefaultOffset,
     exhibitionsRelatedItemsLimit,

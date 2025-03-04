@@ -97,3 +97,20 @@ export const topLatestExhibits: IPreviewExhibit[] = [
     },
   },
 ];
+
+export const exhibitImagePreview: IPreviewExhibit = {
+  imagesCollection: {
+    items: [
+      {
+        sys: {
+          id: '7qEuYLkGwS5ppq0l30uOvZ',
+        },
+        url: 'https://images.ctfassets.net/space_id/entity_id/attachment/some_ranom_image.png',
+      },
+    ],
+  },
+  slug: 'test-id',
+  sys: {
+    id: '14pQJnCdWfPg7xsCKn1qpt',
+  },
+};

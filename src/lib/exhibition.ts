@@ -6,9 +6,11 @@ import { Logger } from '@/utils/logger';
 
 export function getExhibitions(client: ApolloClient<unknown>) {
   return async (
+    search: string,
     limit: number,
     offset: number,
     relatedItemsLimit: number,
+    // eslint-disable-next-line max-params
   ): Promise<{ total: number; exhibitions: IExhibitionContentModel[] }> => {
     try {
       const { data } = await client.query({
@@ -20,7 +22,7 @@ export function getExhibitions(client: ApolloClient<unknown>) {
           },
         },
         query: GetExhibitionsDocument,
-        variables: { limit, referencesLimit: relatedItemsLimit, skip: offset },
+        variables: { limit, referencesLimit: relatedItemsLimit, search, skip: offset },
       });
 
       return {
