@@ -175,7 +175,7 @@ export default function ImageGallery({ images, isLinkImage }: Props) {
   };
 
   const onEnterLightbox = async (): Promise<void> => {
-    if (!isOpeningWithZoom) {
+    if (isOpeningWithZoom) {
       const imageUrl = images.find((image) => image.id === galleryId)?.url || '';
 
       if (!imageUrl) {
