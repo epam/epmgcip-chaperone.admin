@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, Fragment, ReactElement, useMemo, useState } from 'react';
+import { ChangeEvent, Fragment, ReactElement, useEffect, useMemo, useState } from 'react';
 
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
@@ -10,6 +10,7 @@ import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
 } from '@/constants/pagination';
+import { CredentialsResponseBody } from '@/interfaces/CredentialsApi';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
@@ -42,11 +43,14 @@ export default function Exhibitions({
   const [searchError, setSearchError] = useState<string>('');
   const [isSubmittingSearch, setIsSubmittingSearch] = useState<boolean>(false);
 
+  const [spaceId, setSpaceId] = useState<string>('');
+  const [accessToken, setAccessToken] = useState<string>('');
+
   const isSearchInputInvalid = (): boolean =>
     searchInput.length >= 1 && searchInput.length < minSearchLength;
 
   const fetchExhibitions = async (search: string, page: number): Promise<void> => {
-    const client = createApolloClient();
+    const client = createApolloClient(spaceId, accessToken);
 
     const { exhibitions, total } = await getExhibitions(client)(
       search,
@@ -92,6 +96,23 @@ export default function Exhibitions({
 
     setIsSubmittingSearch(false);
   };
+
+  useEffect(() => {
+    const fetchClientCredentials = async (): Promise<void> => {
+      const response: Response = await fetch('/api/credentials');
+      const responseBody: CredentialsResponseBody = await response.json();
+
+      if (responseBody.accessToken) {
+        setAccessToken(responseBody.accessToken);
+      }
+
+      if (responseBody.spaceId) {
+        setSpaceId(responseBody.spaceId);
+      }
+    };
+
+    fetchClientCredentials();
+  }, []);
 
   const pagesAmount = useMemo(
     () =>
