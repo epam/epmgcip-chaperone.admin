@@ -1,15 +1,6 @@
 'use client';
 
-import {
-  ChangeEvent,
-  FC,
-  Fragment,
-  ReactElement,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { ChangeEvent, FC, Fragment, useMemo, useState } from 'react';
 
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
@@ -19,8 +10,8 @@ import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
 } from '@/constants/pagination';
-import { getCredentialsContext } from '@/contexts/credentialsContext';
-import { ICredentialsResponseBody } from '@/interfaces/ICredentialsApi';
+import { withCredentialsContext } from '@/hocs/withCredentials';
+import { ICredentialsContextProps } from '@/interfaces/ICredentialsContext';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
@@ -35,54 +26,18 @@ import styles from './Exhibitions.module.scss';
 const initialPage = 1;
 const minSearchLength = 3;
 
-interface Props {
+interface Props extends ICredentialsContextProps {
   exhibitions: IExhibition[];
   exhibitionsAmountPerPage: number;
   totalExhibitionsAmount: number;
 }
 
-const CredentialsContext = getCredentialsContext();
-
-export default function Exhibitions(props: Props): ReactElement {
-  const [spaceId, setSpaceId] = useState<string>('');
-  const [accessToken, setAccessToken] = useState<string>('');
-
-  const changeAccessToken = (accessToken: string): void => {
-    setAccessToken(accessToken);
-  };
-
-  const changeSpaceId = (spaceId: string): void => {
-    setSpaceId(spaceId);
-  };
-
-  useEffect(() => {
-    const fetchClientCredentials = async (): Promise<void> => {
-      const response: Response = await fetch('/api/credentials');
-      const responseBody: ICredentialsResponseBody = await response.json();
-
-      if (responseBody.accessToken) {
-        changeAccessToken(responseBody.accessToken);
-      }
-
-      if (responseBody.spaceId) {
-        changeSpaceId(responseBody.spaceId);
-      }
-    };
-
-    fetchClientCredentials();
-  }, []);
-
-  return (
-    <CredentialsContext.Provider value={{ accessToken, spaceId }}>
-      <ExhibitionsPage {...props} />
-    </CredentialsContext.Provider>
-  );
-}
-
-const ExhibitionsPage: FC<Props> = ({
+const Exhibitions: FC<Props> = ({
   exhibitions,
   totalExhibitionsAmount,
   exhibitionsAmountPerPage,
+  spaceId,
+  accessToken,
 }) => {
   const [totalItemsCount, setTotalItemsCount] = useState<number>(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
@@ -90,8 +45,6 @@ const ExhibitionsPage: FC<Props> = ({
   const [searchInput, setSearchInput] = useState<string>(exhibitionsDefaultSearchValue);
   const [searchError, setSearchError] = useState<string>('');
   const [isSubmittingSearch, setIsSubmittingSearch] = useState<boolean>(false);
-
-  const { accessToken, spaceId } = useContext(CredentialsContext);
 
   const isSearchInputInvalid = (): boolean =>
     searchInput.length >= 1 && searchInput.length < minSearchLength;
@@ -199,3 +152,5 @@ const ExhibitionsPage: FC<Props> = ({
     </div>
   );
 };
+
+export default withCredentialsContext(Exhibitions);
