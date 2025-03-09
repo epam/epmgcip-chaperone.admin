@@ -1,4 +1,4 @@
-export interface CredentialsResponseBody {
+export interface ICredentialsResponseBody {
   accessToken: string | undefined;
   spaceId: string | undefined;
 }

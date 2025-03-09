@@ -1,6 +1,15 @@
 'use client';
 
-import { ChangeEvent, Fragment, ReactElement, useEffect, useMemo, useState } from 'react';
+import {
+  ChangeEvent,
+  FC,
+  Fragment,
+  ReactElement,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
@@ -10,7 +19,8 @@ import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
 } from '@/constants/pagination';
-import { CredentialsResponseBody } from '@/interfaces/CredentialsApi';
+import { getCredentialsContext } from '@/contexts/credentialsContext';
+import { ICredentialsResponseBody } from '@/interfaces/ICredentialsApi';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
@@ -31,11 +41,49 @@ interface Props {
   totalExhibitionsAmount: number;
 }
 
-export default function Exhibitions({
+const CredentialsContext = getCredentialsContext();
+
+export default function Exhibitions(props: Props): ReactElement {
+  const [spaceId, setSpaceId] = useState<string>('');
+  const [accessToken, setAccessToken] = useState<string>('');
+
+  const changeAccessToken = (accessToken: string): void => {
+    setAccessToken(accessToken);
+  };
+
+  const changeSpaceId = (spaceId: string): void => {
+    setSpaceId(spaceId);
+  };
+
+  useEffect(() => {
+    const fetchClientCredentials = async (): Promise<void> => {
+      const response: Response = await fetch('/api/credentials');
+      const responseBody: ICredentialsResponseBody = await response.json();
+
+      if (responseBody.accessToken) {
+        changeAccessToken(responseBody.accessToken);
+      }
+
+      if (responseBody.spaceId) {
+        changeSpaceId(responseBody.spaceId);
+      }
+    };
+
+    fetchClientCredentials();
+  }, []);
+
+  return (
+    <CredentialsContext.Provider value={{ accessToken, spaceId }}>
+      <ExhibitionsPage {...props} />
+    </CredentialsContext.Provider>
+  );
+}
+
+const ExhibitionsPage: FC<Props> = ({
   exhibitions,
   totalExhibitionsAmount,
   exhibitionsAmountPerPage,
-}: Props): ReactElement {
+}) => {
   const [totalItemsCount, setTotalItemsCount] = useState<number>(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
   const [activePage, setPage] = useState<number>(initialPage);
@@ -43,8 +91,7 @@ export default function Exhibitions({
   const [searchError, setSearchError] = useState<string>('');
   const [isSubmittingSearch, setIsSubmittingSearch] = useState<boolean>(false);
 
-  const [spaceId, setSpaceId] = useState<string>('');
-  const [accessToken, setAccessToken] = useState<string>('');
+  const { accessToken, spaceId } = useContext(CredentialsContext);
 
   const isSearchInputInvalid = (): boolean =>
     searchInput.length >= 1 && searchInput.length < minSearchLength;
@@ -96,23 +143,6 @@ export default function Exhibitions({
 
     setIsSubmittingSearch(false);
   };
-
-  useEffect(() => {
-    const fetchClientCredentials = async (): Promise<void> => {
-      const response: Response = await fetch('/api/credentials');
-      const responseBody: CredentialsResponseBody = await response.json();
-
-      if (responseBody.accessToken) {
-        setAccessToken(responseBody.accessToken);
-      }
-
-      if (responseBody.spaceId) {
-        setSpaceId(responseBody.spaceId);
-      }
-    };
-
-    fetchClientCredentials();
-  }, []);
 
   const pagesAmount = useMemo(
     () =>
@@ -168,4 +198,4 @@ export default function Exhibitions({
       )}
     </div>
   );
-}
+};
