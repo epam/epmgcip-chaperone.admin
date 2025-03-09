@@ -12,6 +12,7 @@ import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
 import { getExhibitions } from '@/lib/exhibition';
 import { exhibitImagePreview } from '@/mocks/exhibit';
 import { exhibitionItem } from '@/mocks/exhibition';
+import { accessTokenMock, spaceIdMock } from '@/mocks/settingsMock';
 
 jest.mock('yet-another-react-lightbox', () => jest.fn());
 jest.mock('yet-another-react-lightbox/plugins/zoom', () => ({}));
@@ -27,6 +28,12 @@ jest.mock('@/lib/exhibit', () => ({
 jest.mock('@/lib/apolloClient', () => ({
   createApolloClient: jest.fn(),
 }));
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve(),
+  }),
+) as jest.Mock;
 
 const getExhibitionsMock = getExhibitions as jest.Mock;
 const getImagePreviewExhibitsByIdsMock = getImagePreviewExhibitsByIds as jest.Mock;
@@ -45,6 +52,8 @@ describe('Exhibitions component', () => {
             exhibitionsAmountPerPage={exhibitionsAmountPerPage}
             totalExhibitionsAmount={totalExhibitionsAmount}
             exhibitions={exhibitions}
+            accessToken={accessTokenMock}
+            spaceId={spaceIdMock}
           />
         </MantineProvider>
       </NextIntlClientProvider>,
