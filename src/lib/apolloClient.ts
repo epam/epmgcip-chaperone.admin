@@ -8,10 +8,10 @@ export const createApolloClient = (
     cache: new InMemoryCache(),
     link: new HttpLink({
       headers: {
-        Authorization: `Bearer ${accessToken ?? process.env.NEXT_PUBLIC_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${accessToken ?? process.env.CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN}`,
         'Content-Type': 'application/json',
       },
-      uri: `https://graphql.contentful.com/content/v1/spaces/${spaceId ?? process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}`,
+      uri: `https://graphql.contentful.com/content/v1/spaces/${spaceId ?? process.env.CONTENTFUL_SPACE_ID}`,
     }),
   });
 };
