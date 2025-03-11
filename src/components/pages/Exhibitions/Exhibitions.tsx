@@ -5,12 +5,11 @@ import { ChangeEvent, FC, Fragment, useMemo, useState } from 'react';
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
-import { ExhibitionDetails } from '@/components/pages/Exhibitions/ExhibitionDetails';
 import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
 } from '@/constants/pagination';
-import { withCredentials } from '@/hocs/with-credentials';
+import { withClientSettings } from '@/hocs/with-client-settings';
 import { ICredentialsContextProps } from '@/interfaces/ICredentialsContext';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
@@ -21,6 +20,7 @@ import {
   mergeExhibitsImagesPreviewsIntoExhibitions,
 } from '@/utils/exhibitions';
 
+import { ExhibitionDetails } from './ExhibitionDetails';
 import styles from './Exhibitions.module.scss';
 
 const initialPage = 1;
@@ -153,4 +153,4 @@ const Exhibitions: FC<Props> = ({
   );
 };
 
-export default withCredentials(Exhibitions);
+export default withClientSettings(Exhibitions);

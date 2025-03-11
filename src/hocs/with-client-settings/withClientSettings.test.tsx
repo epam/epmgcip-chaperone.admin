@@ -2,12 +2,13 @@ import { FC } from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
 
-import { withCredentials } from '@/hocs/with-credentials/withCredentials';
 import { ICredentialsResponseBody } from '@/interfaces/ICredentialsApi';
 import { ICredentialsContextProps } from '@/interfaces/ICredentialsContext';
 import { accessTokenMock, spaceIdMock } from '@/mocks/settingsMock';
 
-describe('withCredentials tests', () => {
+import { withClientSettings } from './withClientSettings';
+
+describe('withClientSettings tests', () => {
   const TestComponent: FC<ICredentialsContextProps> = (props) => (
     <div>
       <p data-testid="space-id">{props.spaceId}</p>
@@ -15,9 +16,9 @@ describe('withCredentials tests', () => {
     </div>
   );
 
-  const CredentialsComponent = withCredentials(TestComponent);
+  const ClientSettingsComponent = withClientSettings(TestComponent);
 
-  const renderComponent = () => render(<CredentialsComponent />);
+  const renderComponent = () => render(<ClientSettingsComponent />);
 
   beforeEach(() => {
     jest.clearAllMocks();

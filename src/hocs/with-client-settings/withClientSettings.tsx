@@ -7,7 +7,7 @@ import { Logger } from '@/utils/logger';
 
 const CredentialsContext = getCredentialsContext();
 
-function withCredentials<
+function withClientSettings<
   TComponentProps extends ICredentialsContextProps = ICredentialsContextProps,
 >(Component: ComponentType<TComponentProps>) {
   return function CredentialComponent(
@@ -19,7 +19,7 @@ function withCredentials<
     useEffect((): void => {
       const fetchClientCredentials = async (): Promise<void> => {
         try {
-          const response: Response = await fetch('/api/credentials');
+          const response: Response = await fetch('/api/client-settings');
           const responseBody: ICredentialsResponseBody = await response.json();
 
           if (responseBody.accessToken) {
@@ -47,4 +47,4 @@ function withCredentials<
   };
 }
 
-export { withCredentials };
+export { withClientSettings };
