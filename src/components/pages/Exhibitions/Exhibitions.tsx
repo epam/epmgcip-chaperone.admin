@@ -10,7 +10,7 @@ import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
 } from '@/constants/pagination';
-import { withCredentialsContext } from '@/hocs/withCredentials';
+import { withCredentials } from '@/hocs/with-credentials';
 import { ICredentialsContextProps } from '@/interfaces/ICredentialsContext';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
@@ -153,4 +153,4 @@ const Exhibitions: FC<Props> = ({
   );
 };
 
-export default withCredentialsContext(Exhibitions);
+export default withCredentials(Exhibitions);

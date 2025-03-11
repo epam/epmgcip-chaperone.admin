@@ -12,7 +12,6 @@ import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
 import { getExhibitions } from '@/lib/exhibition';
 import { exhibitImagePreview } from '@/mocks/exhibit';
 import { exhibitionItem } from '@/mocks/exhibition';
-import { accessTokenMock, spaceIdMock } from '@/mocks/settingsMock';
 
 jest.mock('yet-another-react-lightbox', () => jest.fn());
 jest.mock('yet-another-react-lightbox/plugins/zoom', () => ({}));
@@ -52,8 +51,6 @@ describe('Exhibitions component', () => {
             exhibitionsAmountPerPage={exhibitionsAmountPerPage}
             totalExhibitionsAmount={totalExhibitionsAmount}
             exhibitions={exhibitions}
-            accessToken={accessTokenMock}
-            spaceId={spaceIdMock}
           />
         </MantineProvider>
       </NextIntlClientProvider>,

@@ -1,0 +1,1 @@
+export { withCredentials } from './withCredentials';
