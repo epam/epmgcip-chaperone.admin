@@ -1,15 +1,16 @@
 'use client';
 
-import { ChangeEvent, Fragment, ReactElement, useMemo, useState } from 'react';
+import { ChangeEvent, FC, Fragment, useMemo, useState } from 'react';
 
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
-import { ExhibitionDetails } from '@/components/pages/Exhibitions/ExhibitionDetails';
 import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
 } from '@/constants/pagination';
+import { withClientSettings } from '@/hocs/with-client-settings';
+import { ICredentialsContextProps } from '@/interfaces/ICredentialsContext';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
@@ -19,22 +20,25 @@ import {
   mergeExhibitsImagesPreviewsIntoExhibitions,
 } from '@/utils/exhibitions';
 
+import { ExhibitionDetails } from './ExhibitionDetails';
 import styles from './Exhibitions.module.scss';
 
 const initialPage = 1;
 const minSearchLength = 3;
 
-interface Props {
+interface Props extends ICredentialsContextProps {
   exhibitions: IExhibition[];
   exhibitionsAmountPerPage: number;
   totalExhibitionsAmount: number;
 }
 
-export default function Exhibitions({
+const Exhibitions: FC<Props> = ({
   exhibitions,
   totalExhibitionsAmount,
   exhibitionsAmountPerPage,
-}: Props): ReactElement {
+  spaceId,
+  accessToken,
+}) => {
   const [totalItemsCount, setTotalItemsCount] = useState<number>(totalExhibitionsAmount);
   const [items, setItems] = useState<IExhibition[]>(exhibitions);
   const [activePage, setPage] = useState<number>(initialPage);
@@ -46,7 +50,7 @@ export default function Exhibitions({
     searchInput.length >= 1 && searchInput.length < minSearchLength;
 
   const fetchExhibitions = async (search: string, page: number): Promise<void> => {
-    const client = createApolloClient();
+    const client = createApolloClient(spaceId, accessToken);
 
     const { exhibitions, total } = await getExhibitions(client)(
       search,
@@ -147,4 +151,6 @@ export default function Exhibitions({
       )}
     </div>
   );
-}
+};
+
+export default withClientSettings(Exhibitions);

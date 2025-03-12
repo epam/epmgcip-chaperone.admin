@@ -5,13 +5,14 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import messages from 'messages/en.json';
 
-import Exhibitions from '@/components/pages/Exhibitions/Exhibitions';
 import { IExhibition } from '@/interfaces/IExhibition';
 import { createApolloClient } from '@/lib/apolloClient';
 import { getImagePreviewExhibitsByIds } from '@/lib/exhibit';
 import { getExhibitions } from '@/lib/exhibition';
 import { exhibitImagePreview } from '@/mocks/exhibit';
 import { exhibitionItem } from '@/mocks/exhibition';
+
+import Exhibitions from './Exhibitions';
 
 jest.mock('yet-another-react-lightbox', () => jest.fn());
 jest.mock('yet-another-react-lightbox/plugins/zoom', () => ({}));
@@ -27,6 +28,12 @@ jest.mock('@/lib/exhibit', () => ({
 jest.mock('@/lib/apolloClient', () => ({
   createApolloClient: jest.fn(),
 }));
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve(),
+  }),
+) as jest.Mock;
 
 const getExhibitionsMock = getExhibitions as jest.Mock;
 const getImagePreviewExhibitsByIdsMock = getImagePreviewExhibitsByIds as jest.Mock;

@@ -1,0 +1,1 @@
+export { withClientSettings } from './withClientSettings';
