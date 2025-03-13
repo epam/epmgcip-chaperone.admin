@@ -28,9 +28,11 @@
 .searchButton {
   margin-left: 15px;
   background-color: $colorOrange;
+  transition: opacity 0.1s;
 
   &:hover {
     background-color: $colorOrange;
+    opacity: 0.8;
   }
 }
 
@@ -75,4 +77,8 @@
     background-color: $colorOrange;
     border-color: $colorOrange;
   }
+}
+
+.contentWrapper {
+  position: relative;
 }
