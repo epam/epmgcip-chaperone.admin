@@ -5,6 +5,7 @@ import { ChangeEvent, FC, Fragment, useMemo, useState } from 'react';
 import { Button, Pagination, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
+import LoadingOverlay from '@/components/atoms/LoadingOverlay/LoadingOverlay';
 import {
   exhibitionsDefaultSearchValue,
   exhibitionsRelatedItemsLimit,
@@ -45,11 +46,13 @@ const Exhibitions: FC<Props> = ({
   const [searchInput, setSearchInput] = useState<string>(exhibitionsDefaultSearchValue);
   const [searchError, setSearchError] = useState<string>('');
   const [isSubmittingSearch, setIsSubmittingSearch] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const isSearchInputInvalid = (): boolean =>
     searchInput.length >= 1 && searchInput.length < minSearchLength;
 
   const fetchExhibitions = async (search: string, page: number): Promise<void> => {
+    setIsFetching(true);
     const client = createApolloClient(spaceId, accessToken);
 
     const { exhibitions, total } = await getExhibitions(client)(
@@ -69,6 +72,7 @@ const Exhibitions: FC<Props> = ({
 
     setItems(mergedExhibitions);
     setTotalItemsCount(total);
+    setIsFetching(false);
   };
 
   const onChangePage = async (page: number): Promise<void> => {
@@ -129,15 +133,19 @@ const Exhibitions: FC<Props> = ({
         {searchError}
       </p>
 
-      {items.length ? (
-        <div>
-          {items.map((exhibition) => (
-            <Fragment key={exhibition.sys.id}>
-              <ExhibitionDetails exhibition={exhibition} />
-            </Fragment>
-          ))}
-        </div>
-      ) : null}
+      <div className={styles.contentWrapper}>
+        <LoadingOverlay visible={isFetching} />
+
+        {items.length ? (
+          <div>
+            {items.map((exhibition) => (
+              <Fragment key={exhibition.sys.id}>
+                <ExhibitionDetails exhibition={exhibition} />
+              </Fragment>
+            ))}
+          </div>
+        ) : null}
+      </div>
 
       {totalItemsCount > exhibitionsAmountPerPage && (
         <Pagination
